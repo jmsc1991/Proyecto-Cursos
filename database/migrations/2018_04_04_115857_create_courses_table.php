@@ -20,7 +20,7 @@ class CreateCoursesTable extends Migration
             $table->Text('description');
             $table->integer('price');
             $table->unsignedInteger('category_id')->nullable();
-            $table->unsignedInteger('owner')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->text('learn');
             $table->text('requirements');
             $table->timestamps();

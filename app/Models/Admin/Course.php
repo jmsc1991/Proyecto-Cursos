@@ -70,9 +70,9 @@ class Course extends Model
         'requirements' => 'required'
     ];
 
-    public function owner()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'owner');
+        return $this->belongsTo(User::class);
     }
     
 }

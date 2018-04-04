@@ -18,7 +18,28 @@ class CourseDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'admin.courses.datatables_actions');
+        return $dataTable->addColumn('Titulo', function($course){
+                            return substr($course->title, 0, 35);
+                        })
+                        ->addColumn('Extracto', function($course){
+                            return substr($course->excerpt, 0, 35);
+                        })
+                        ->addColumn('Descripcion', function($course){
+                            return substr($course->description, 0, 35);
+                        })
+                        ->addColumn('Precio', function($course){
+                            return $course->price . '€';
+                        })
+                        ->addColumn('Propietario', function($course){
+                            return $course->user->name;
+                        })
+                        ->addColumn('Aprendizaje', function($course){
+                            return substr($course->learn, 0, 35);
+                        })
+                        ->addColumn('Requisitos', function($course){
+                            return substr($course->requirements, 0, 35);
+                        })
+                        ->addColumn('action', 'admin.courses.datatables_actions');
     }
 
     /**
@@ -64,14 +85,14 @@ class CourseDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'title',
-            'excerpt',
-            'description',
-            'price',
+            'Titulo',
+            'Extracto',
+            'Descripcion',
+            'Precio',
             'category_id',
-            'owner',
-            'learn',
-            'requirements'
+            'Propietario',
+            'Aprendizaje',
+            'Requisitos'
         ];
     }
 

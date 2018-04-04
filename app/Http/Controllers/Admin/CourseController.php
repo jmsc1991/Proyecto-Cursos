@@ -56,7 +56,7 @@ class CourseController extends AppBaseController
 
         $course = $this->courseRepository->create($input);
 
-        $course->owner = Auth::id();
+        $course->user_id = Auth::id();
 
         $course->save();
 

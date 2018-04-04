@@ -37,7 +37,7 @@
 <!-- Owner Field -->
 <div class="form-group">
     {!! Form::label('owner', 'Owner:') !!}
-    <p>{!! $course->owner !!}</p>
+    <p>{!! $course->user_id !!}</p>
 </div>
 
 <!-- Learn Field -->
