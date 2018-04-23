@@ -37,7 +37,7 @@
 
             <!-- Logo -->
             <a href="#" class="logo">
-                <b>InfyOm</b>
+                <b>Proyecto DAW</b>
             </a>
 
             <!-- Header Navbar -->

@@ -33,4 +33,14 @@ Route::group([
         Route::delete('courses/{courses}', ['as'=> 'admin.courses.destroy', 'uses' => 'CourseController@destroy']);
         Route::get('courses/{courses}', ['as'=> 'admin.courses.show', 'uses' => 'CourseController@show']);
         Route::get('courses/{courses}/edit', ['as'=> 'admin.courses.edit', 'uses' => 'CourseController@edit']);
+
+        Route::get('categories', ['as'=> 'admin.categories.index', 'uses' => 'CategoriesController@index']);
+        Route::post('categories', ['as'=> 'admin.categories.store', 'uses' => 'CategoriesController@store']);
+        Route::get('categories/create', ['as'=> 'admin.categories.create', 'uses' => 'CategoriesController@create']);
+        Route::put('categories/{categories}', ['as'=> 'admin.categories.update', 'uses' => 'CategoriesController@update']);
+        Route::patch('categories/{categories}', ['as'=> 'admin.categories.update', 'uses' => 'CategoriesController@update']);
+        Route::delete('categories/{categories}', ['as'=> 'admin.categories.destroy', 'uses' => 'CategoriesController@destroy']);
+        Route::get('categories/{categories}', ['as'=> 'admin.categories.show', 'uses' => 'CategoriesController@show']);
+        Route::get('categories/{categories}/edit', ['as'=> 'admin.categories.edit', 'uses' => 'CategoriesController@edit']);
+
     });

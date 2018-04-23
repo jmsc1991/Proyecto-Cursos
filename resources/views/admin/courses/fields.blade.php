@@ -4,6 +4,11 @@
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group col-sm-6">
+    {!! Form::label('category_id', 'Categoria:') !!}
+    {!! Form::select('category_id', $categorias, old('category_id',isset($course) ? $course->category_id : null), ['class' => 'form-control']) !!}
+</div>
+
 <!-- Price Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('price', 'Price:') !!}
