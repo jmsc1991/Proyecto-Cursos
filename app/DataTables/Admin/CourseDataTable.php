@@ -18,7 +18,7 @@ class CourseDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('Titulo', function($course){
+        return $dataTable->editColumn('title', function($course){
                             return substr($course->title, 0, 35);
                         })
                         ->addColumn('Extracto', function($course){
@@ -29,6 +29,9 @@ class CourseDataTable extends DataTable
                         })
                         ->addColumn('Precio', function($course){
                             return $course->price . '€';
+                        })
+                        ->addColumn('Categoria', function($course){
+                            return $course->category->name;
                         })
                         ->addColumn('Propietario', function($course){
                             return $course->user->name;
@@ -85,11 +88,11 @@ class CourseDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'Titulo',
+            'title',
             'Extracto',
             'Descripcion',
             'Precio',
-            'category_id',
+            'Categoria',
             'Propietario',
             'Aprendizaje',
             'Requisitos'

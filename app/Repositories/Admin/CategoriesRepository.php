@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Admin;
 
-use App\Models\Admin\Categories;
+use App\Models\Admin\Category;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
@@ -10,9 +10,9 @@ use InfyOm\Generator\Common\BaseRepository;
  * @package App\Repositories\Admin
  * @version April 23, 2018, 3:11 pm UTC
  *
- * @method categories findWithoutFail($id, $columns = ['*'])
- * @method categories find($id, $columns = ['*'])
- * @method categories first($columns = ['*'])
+ * @method Category findWithoutFail($id, $columns = ['*'])
+ * @method Category find($id, $columns = ['*'])
+ * @method Category first($columns = ['*'])
 */
 class CategoriesRepository extends BaseRepository
 {
@@ -29,6 +29,6 @@ class CategoriesRepository extends BaseRepository
      **/
     public function model()
     {
-        return categories::class;
+        return Category::class;
     }
 }

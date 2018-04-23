@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Admin\Categories;
+use App\Models\Admin\Category;
 
 class UpdateCategoriesRequest extends FormRequest
 {
@@ -25,6 +25,6 @@ class UpdateCategoriesRequest extends FormRequest
      */
     public function rules()
     {
-        return categories::$rules;
+        return Category::$rules;
     }
 }

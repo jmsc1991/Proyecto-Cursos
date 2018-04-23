@@ -6,7 +6,7 @@ use App\DataTables\Admin\CourseDataTable;
 use App\Http\Requests\Admin;
 use App\Http\Requests\Admin\CreateCourseRequest;
 use App\Http\Requests\Admin\UpdateCourseRequest;
-use App\Models\Admin\Categories;
+use App\Models\Admin\Category;
 use App\Repositories\Admin\CourseRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
@@ -41,7 +41,7 @@ class CourseController extends AppBaseController
      */
     public function create()
     {
-        $categories = Categories::all();
+        $categories = Category::all();
         $categorias = ['0' => 'Ver Todas'];
         foreach ($categories as $category) {
             $categorias[$category->id] = $category->name;
@@ -109,7 +109,7 @@ class CourseController extends AppBaseController
             return redirect(route('admin.courses.index'));
         }
 
-        $categories = Categories::all();
+        $categories = Category::all();
         $categorias = ['0' => 'Ver Todas'];
         foreach ($categories as $category) {
             $categorias[$category->id] = $category->name;
