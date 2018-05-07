@@ -61,7 +61,7 @@
                 </ul>
                 <ul class="navbar-nav absolute-right">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Entrar</a>
+                        <a href="{{ route('login') }}" class="nav-link">Entrar</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Registrarse</a>
