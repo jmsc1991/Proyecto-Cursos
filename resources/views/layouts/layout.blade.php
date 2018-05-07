@@ -97,7 +97,7 @@
         <div class="row mb-5">
             <div class="col-md-4">
                 <h3>Acerca de nosotros</h3>
-                <p> Cursos DAW es una web desarrollada por Alvaro y Jose, dedicada a la gestión de Cursos y Videos online y realizada como proyecto de final de curso de DAW</p>
+                <p> Cursos DAW es una web desarrollada por Alvaro y Jose, dedicada a la gestión de Cursos y Videos online. Realizada como proyecto de final de curso de DAW</p>
             </div>
             <div class="col-md-6 ml-auto">
                 <div class="row">
