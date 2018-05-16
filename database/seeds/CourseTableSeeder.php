@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Admin\Course;
 
-class DatabaseSeeder extends Seeder
+class CourseTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CourseTableSeeder::class);
-        $this->call(VideoTableSeeder::class);
+        Course::truncate();
+
+        factory(Course::class,10)->create();
     }
 }

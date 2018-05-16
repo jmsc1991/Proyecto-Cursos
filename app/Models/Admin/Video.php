@@ -14,15 +14,24 @@ class Video extends Model
     protected $dates = ['deleted_at'];
 
     public $fillable = [
+        'title',
+        'description',
         'url',
+        'course_id',
     ];
 
     protected $casts = [
+        'title' => 'string',
         'url' => 'string',
+        'description' => 'text',
+        'course_id' => 'integer',
     ];
 
     public static $rules = [
+        'title' => 'required',
         'url' => 'required',
+        'description' => 'required',
+        'course_id' => 'required',
     ];
 
     public function tags()

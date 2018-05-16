@@ -17,20 +17,21 @@ class Comment extends Model
         'content',
         'video_id',
         'user_id',
-        'comment_id',
+        'parent_id',
     ];
 
     protected $casts = [
       'content' => 'text',
       'video_id' => 'integer',
       'user_id' => 'integer',
-      'comment_id' => 'integer',
+      'parent_id' => 'integer',
     ];
 
     public static $rules = [
         'content' => 'required',
         'video_id' => 'required',
         'user_id' => 'required',
+        'parent_id' => 'integer',
     ];
 
     public function user()
@@ -43,8 +44,13 @@ class Comment extends Model
         return $this->belongsTo(Video::class);
     }
 
-    public function subcomments(array $models = [])
+    public function parentComment()
     {
-        return new CommentCollection($models);
+        return $this->hasOne('comment','parent_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('comment','parent_id');
     }
 }
