@@ -43,12 +43,12 @@ Route::group([
         Route::get('categories/{categories}', ['as'=> 'admin.categories.show', 'uses' => 'CategoriesController@show']);
         Route::get('categories/{categories}/edit', ['as'=> 'admin.categories.edit', 'uses' => 'CategoriesController@edit']);
 
-        Route::get('admin/users', ['as'=> 'admin.users.index', 'uses' => 'Admin\UserController@index']);
-        Route::post('admin/users', ['as'=> 'admin.users.store', 'uses' => 'Admin\UserController@store']);
-        Route::get('admin/users/create', ['as'=> 'admin.users.create', 'uses' => 'Admin\UserController@create']);
-        Route::put('admin/users/{users}', ['as'=> 'admin.users.update', 'uses' => 'Admin\UserController@update']);
-        Route::patch('admin/users/{users}', ['as'=> 'admin.users.update', 'uses' => 'Admin\UserController@update']);
-        Route::delete('admin/users/{users}', ['as'=> 'admin.users.destroy', 'uses' => 'Admin\UserController@destroy']);
-        Route::get('admin/users/{users}', ['as'=> 'admin.users.show', 'uses' => 'Admin\UserController@show']);
-        Route::get('admin/users/{users}/edit', ['as'=> 'admin.users.edit', 'uses' => 'Admin\UserController@edit']);
+        Route::get('users', ['as'=> 'admin.users.index', 'uses' => 'UserController@index']);
+        Route::post('users', ['as'=> 'admin.users.store', 'uses' => 'UserController@store']);
+        Route::get('users/create', ['as'=> 'admin.users.create', 'uses' => 'UserController@create']);
+        Route::put('users/{users}', ['as'=> 'admin.users.update', 'uses' => 'UserController@update']);
+        Route::patch('users/{users}', ['as'=> 'admin.users.update', 'uses' => 'UserController@update']);
+        Route::delete('users/{users}', ['as'=> 'admin.users.destroy', 'uses' => 'UserController@destroy']);
+        Route::get('users/{users}', ['as'=> 'admin.users.show', 'uses' => 'UserController@show']);
+        Route::get('users/{users}/edit', ['as'=> 'admin.users.edit', 'uses' => 'UserController@edit']);
     });
