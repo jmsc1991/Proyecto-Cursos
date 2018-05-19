@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'SpaController@index');
+Route::get('/home', 'SpaController@index');
 
 
 Auth::routes();
