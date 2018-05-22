@@ -38,12 +38,21 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav absolute-right">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Entrar</a>
+                            <li class="nav-item" v-if="!user">
+                                <a href="/login" class="nav-link">Entrar</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" v-if="!user">
                                 <a href="#" class="nav-link">Registrarse</a>
                             </li>
+
+                            <li class="nav-item dropdown" v-if="user">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.email }}</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown06">
+                                    <a class="dropdown-item" href="#">Mis Cursos</a>
+                                    <a class="dropdown-item" href="#">Cerrar Sesion</a>
+                                </div>
+                            </li>
+
                         </ul>
 
                     </div>
@@ -105,6 +114,23 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
+        data() {
+            return {
+                user: null,
+            }
+        },
+        created() {
+            this.getUser();
+        },
+        methods: {
+            getUser: function() {
+                axios.get('data/user').then(response => {
+                    this.user = response.data;
+                })
+            }
+        }
     }
 </script>

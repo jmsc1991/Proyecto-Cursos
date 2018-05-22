@@ -1,11 +1,11 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('content')
     <section class="site-section bg-light">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5 box">
-                    <h2 class="mb-5">Log in with your account</h2>
+                    <h2 class="mb-5">Logueate con tu cuenta</h2>
                     <form method="post" action="{{ url('/login') }}">
                         {!! csrf_field() !!}
                         <div class="row">
@@ -23,7 +23,7 @@
                         <div class="row mb-5">
                             <div class="col-md-12 form-group">
                                 <label for="password">Contraseña</label>
-                                <input type="password" class="form-control" placeholder="Password" name="password">
+                                <input type="password" class="form-control" placeholder="Contraseña" name="password">
                                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                                 @if ($errors->has('password'))
                                     <span class="help-block">

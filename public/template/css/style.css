@@ -151,8 +151,8 @@ header .navbar.navbar-light .nav-link.active {
 .site-hero {
   background-size: cover;
   background-position: center center;
-  min-height: 750px;
-  height: 100vh;
+  min-height: 541px;
+  height: 65vh;
 }
 
 .site-hero a {
@@ -213,8 +213,8 @@ header .navbar.navbar-light .nav-link.active {
 }
 
 .site-hero .site-hero-inner {
-  min-height: 750px;
-  height: 100vh;
+  min-height: 652px;
+  height: 74vh;
 }
 
 .box {

@@ -14,7 +14,6 @@
 Route::get('/', 'SpaController@index');
 Route::get('/home', 'SpaController@index');
 
-
 Auth::routes();
 
 Route::group([
@@ -51,3 +50,12 @@ Route::group([
         Route::get('users/{users}', ['as'=> 'admin.users.show', 'uses' => 'UserController@show']);
         Route::get('users/{users}/edit', ['as'=> 'admin.users.edit', 'uses' => 'UserController@edit']);
     });
+
+Route::group([
+    'prefix'    =>  'data',
+    'namespace' =>  'Data',],
+    function () {
+        Route::get('/user', 'UserController@getUser');
+    });
+
+
