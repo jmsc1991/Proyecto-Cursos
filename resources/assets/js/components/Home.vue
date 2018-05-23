@@ -51,46 +51,13 @@
                     </div>
                 </div>
                 <div class="row top-course">
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-12" v-for="curso in cursos">
                         <a href="#" class="course">
-                            <img src="template/images/webdesign.jpg" alt="Image placeholder">
-                            <h2>Web Design 101</h2>
-                            <p>Enroll Now</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-                        <a href="#" class="course">
-                            <img src="template/images/wordpress.jpg" alt="Image placeholder">
-                            <h2>Learn How To Develop WordPress Plugin</h2>
-                            <p>Enroll Now</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-                        <a href="#" class="course">
-                            <img src="template/images/javascript.jpg" alt="Image placeholder">
-                            <h2>JavaScript 101</h2>
-                            <p>Enroll Now</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-                        <a href="#" class="course">
-                            <img src="template/images/photoshop.jpg" alt="Image placeholder">
-                            <h2>Photoshop Design 101</h2>
-                            <p>Enroll Now</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-                        <a href="#" class="course">
-                            <img src="template/images/reactjs.jpg" alt="Image placeholder">
-                            <h2>Learn Native ReactJS</h2>
-                            <p>Enroll Now</p>
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 col-12">
-                        <a href="#" class="course">
-                            <img src="template/images/angularjs.jpg" alt="Image placeholder">
-                            <h2>Learn AngularJS 2</h2>
-                            <p>Enroll Now</p>
+                            <img :src="curso.foto" alt="Image placeholder" v-if="curso.foto">
+                            <img src="template/images/img.png" alt="Image placeholder" v-if="!curso.foto">
+                            <h2>{{ curso.titulo }}</h2>
+                            <p>{{ curso.categoria }}</p>
+                            <h2>{{ curso.precio }}€</h2>
                         </a>
                     </div>
                 </div>
@@ -100,6 +67,25 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
+        data() {
+            return {
+                cursos: null,
+            }
+        },
+        created() {
+            this.getCursos();
+        },
+        methods: {
+            getCursos: function() {
+                axios.get('data/cursos/top').then(response => {
+                    this.cursos = response.data.data;
+                }).catch(error => {
+
+                })
+            }
+        }
     }
 </script>

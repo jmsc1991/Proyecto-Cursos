@@ -56,6 +56,7 @@ Route::group([
     'namespace' =>  'Data',],
     function () {
         Route::get('/user', 'UserController@getUser');
+        Route::get('/cursos/top', 'CursoController@getTopCursos');
     });
 
 
