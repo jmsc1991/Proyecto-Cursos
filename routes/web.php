@@ -57,6 +57,7 @@ Route::group([
     function () {
         Route::get('/user', 'UserController@getUser');
         Route::get('/cursos/top', 'CursoController@getTopCursos');
+        Route::get('/categorias', 'CategoriaController@getCategorias');
     });
 
 

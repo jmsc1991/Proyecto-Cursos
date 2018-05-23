@@ -20,11 +20,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown05">
-                                    <a class="dropdown-item" href="#">HTML</a>
-                                    <a class="dropdown-item" href="#">WordPress</a>
-                                    <a class="dropdown-item" href="#">Web Development</a>
-                                    <a class="dropdown-item" href="#">Javascript</a>
-                                    <a class="dropdown-item" href="#">Photoshop</a>
+                                    <a class="dropdown-item" href="#" v-if="categorias" v-for="categoria in categorias">{{ categoria.nombre }}</a>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -120,15 +116,22 @@
         data() {
             return {
                 user: null,
+                categorias: null,
             }
         },
         created() {
             this.getUser();
+            this.getCategorias();
         },
         methods: {
             getUser: function() {
                 axios.get('data/user').then(response => {
                     this.user = response.data;
+                })
+            },
+            getCategorias: function() {
+                axios.get('data/categorias').then(response => {
+                    this.categorias = response.data.data;
                 })
             }
         }
