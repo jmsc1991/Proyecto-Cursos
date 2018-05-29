@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'SpaController@index');
-Route::get('/home', 'SpaController@index');
+Route::get('/curso/{any}', 'SpaController@index');
 
 Auth::routes();
 
@@ -58,6 +58,7 @@ Route::group([
         Route::get('/user', 'UserController@getUser');
         Route::get('/cursos/top', 'CursoController@getTopCursos');
         Route::get('/categorias', 'CategoriaController@getCategorias');
+        Route::get('/cursos/{id}', 'CursoController@verCurso');
     });
 
 

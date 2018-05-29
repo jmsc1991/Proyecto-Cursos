@@ -11,7 +11,7 @@
                     <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Inicio</a>
+                                <router-link :to="{ name: 'home'}" class="nav-link">Inicio</router-link>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link" href="#">Cursos Online</a>
@@ -45,7 +45,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.email }}</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown06">
                                     <a class="dropdown-item" href="#">Mis Cursos</a>
-                                    <a class="dropdown-item" href="#">Cerrar Sesion</a>
+                                    <a class="dropdown-item" href="#" v-on:click.prevent="cerrarSesion">Cerrar Sesion</a>
                                 </div>
                             </li>
 
@@ -56,24 +56,10 @@
             </nav>
         </header>
         <!-- END header -->
-        <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(template/images/big_image_1.jpg);">
-            <div class="container">
-                <div class="row align-items-center site-hero-inner justify-content-center">
-                    <div class="col-md-8 text-center">
-                        <div class="mb-5">
-                            <h1>Cursos y Video Tutoriales Online</h1>
-                            <p class="lead">Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada</p>
-                            <p><a href="#" class="btn btn-primary">Conseguir VIP</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- END section -->
 
         <router-view></router-view>
 
-        <footer class="site-footer" style="background-image: url(template/images/big_image_3.jpg);">
+        <footer class="site-footer" style="background-image: url(/template/images/big_image_3.jpg);">
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-md-4">
@@ -125,14 +111,20 @@
         },
         methods: {
             getUser: function() {
-                axios.get('data/user').then(response => {
+                axios.get('/data/user').then(response => {
                     this.user = response.data;
                 })
             },
             getCategorias: function() {
-                axios.get('data/categorias').then(response => {
+                axios.get('/data/categorias').then(response => {
                     this.categorias = response.data.data;
                 })
+            },
+            cerrarSesion: function() {
+                axios.post('/logout').then(response => {
+                    this.user = null;
+                    this.$router.push('/');
+                });
             }
         }
     }

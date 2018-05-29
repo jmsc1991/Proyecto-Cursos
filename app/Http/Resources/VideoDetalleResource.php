@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Admin\Category;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CursosResource extends JsonResource
+class VideoDetalleResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +17,8 @@ class CursosResource extends JsonResource
         return [
             'id' => $this->id,
             'titulo' => $this->title,
-            'categoria' => Category::find($this->category_id)->name,
-            'precio' => $this->price
+            'descripcion' => $this->description,
+            'url' => $this->url,
         ];
     }
 }

@@ -5,6 +5,7 @@ Vue.use(VueRouter);
 
 import App from './components/Layout'
 import Home from './components/Home'
+import Curso from './components/Curso'
 
 const router = new VueRouter({
     mode: 'history',
@@ -14,6 +15,13 @@ const router = new VueRouter({
             name: 'home',
             component: Home
         },
+        {
+            path: '/curso/:id',
+            name: 'curso',
+            component: Curso,
+            props: true
+        }
+
     ],
 });
 
