@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-9">
                             <p class="meta">Episode {{ index }}</p>
-                            <h2><a href="#">{{ video.titulo }}</a></h2>
+                            <h2><router-link :to="{ name: 'video', params: { id: video.id } }">{{ video.titulo }}</router-link></h2>
                             <p>{{ video.descripcion }}</p>
                         </div>
                     </div>

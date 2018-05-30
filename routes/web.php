@@ -13,6 +13,7 @@
 
 Route::get('/', 'SpaController@index');
 Route::get('/curso/{any}', 'SpaController@index');
+Route::get('/curso/video/{any}', 'SpaController@index');
 
 Auth::routes();
 
@@ -59,6 +60,15 @@ Route::group([
         Route::get('/cursos/top', 'CursoController@getTopCursos');
         Route::get('/categorias', 'CategoriaController@getCategorias');
         Route::get('/cursos/{id}', 'CursoController@verCurso');
+        Route::get('/videos/{id}', 'VideoController@verVideo');
+    });
+
+Route::group([
+    'prefix'    =>  'data',
+    'namespace' =>  'Data',
+    'middleware' => 'auth'],
+    function () {
+        Route::post('/comentario/{id}', 'VideoController@comentar');
     });
 
 
