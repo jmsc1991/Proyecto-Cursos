@@ -38,7 +38,7 @@
                                 <a href="/login" class="nav-link">Entrar</a>
                             </li>
                             <li class="nav-item" v-if="!user">
-                                <a href="#" class="nav-link">Registrarse</a>
+                                <a href="/register" class="nav-link">Registrarse</a>
                             </li>
 
                             <li class="nav-item dropdown" v-if="user">
