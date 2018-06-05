@@ -14,7 +14,7 @@
                                 <router-link :to="{ name: 'home'}" class="nav-link">Inicio</router-link>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">Cursos Online</a>
+                                <router-link :to="{ name: 'cursos'}" class="nav-link">Cursos Online</router-link>
                             </li>
 
                             <li class="nav-item dropdown">
@@ -56,8 +56,9 @@
             </nav>
         </header>
         <!-- END header -->
-
-        <router-view></router-view>
+        <fade-transition>
+            <router-view></router-view>
+        </fade-transition>
 
         <footer class="site-footer" style="background-image: url(/template/images/big_image_3.jpg);">
             <div class="container">
@@ -98,6 +99,8 @@
 <script>
     import axios from 'axios';
 
+    import {FadeTransition} from 'vue2-transitions'
+
     export default {
         data() {
             return {
@@ -126,6 +129,9 @@
                     this.$router.push('/');
                 });
             }
+        },
+        components: {
+            FadeTransition
         }
     }
 </script>

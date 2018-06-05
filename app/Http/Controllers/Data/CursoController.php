@@ -10,6 +10,15 @@ use App\Http\Controllers\Controller;
 
 class CursoController extends Controller
 {
+    public function getAllCursos()
+    {
+        $cursos = Course::paginate(6);
+
+        if ($cursos) {
+            return CursoDetalleResource::collection($cursos);
+        }
+    }
+
     public function getTopCursos()
     {
         $cursos = Course::all()->take(6);

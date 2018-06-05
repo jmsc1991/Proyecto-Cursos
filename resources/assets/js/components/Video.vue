@@ -1,5 +1,5 @@
 <template>
-    <fade-transition>
+    <div>
         <div v-if="video">
             <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(/template/images/big_image_1.jpg);">
                 <div class="container">
@@ -78,12 +78,10 @@
                 </div>
             </section>
         </div>
-    </fade-transition>
+    </div>
 </template>
 
 <script>
-    import {FadeTransition} from 'vue2-transitions'
-
     import axios from 'axios';
 
     export default {
@@ -116,9 +114,6 @@
                     this.cancelar();
                 })
             }
-        },
-        components: {
-            FadeTransition
         }
     }
 </script>

@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "vue-router": "^3.0.1",
-        "vue2-transitions": "^0.2.3"
+        "vue2-transitions": "^0.2.3",
+        "vuejs-paginate": "^1.9.3"
     }
 }

@@ -14,6 +14,7 @@
 Route::get('/', 'SpaController@index');
 Route::get('/curso/{any}', 'SpaController@index');
 Route::get('/curso/video/{any}', 'SpaController@index');
+Route::get('/cursos', 'SpaController@index');
 
 Auth::routes();
 
@@ -48,7 +49,7 @@ Route::group([
         Route::put('users/{users}', ['as'=> 'admin.users.update', 'uses' => 'UserController@update']);
         Route::patch('users/{users}', ['as'=> 'admin.users.update', 'uses' => 'UserController@update']);
         Route::delete('users/{users}', ['as'=> 'admin.users.destroy', 'uses' => 'UserController@destroy']);
-        Route::get('users/{users}', ['as'=> 'admin.users.show', 'uses' => 'UserController@show']);
+        Route::get('users/{users}', ['as'=> 'admin.users.show', 'uses' => 'UserController@ show']);
         Route::get('users/{users}/edit', ['as'=> 'admin.users.edit', 'uses' => 'UserController@edit']);
     });
 
@@ -59,8 +60,9 @@ Route::group([
         Route::get('/user', 'UserController@getUser');
         Route::get('/cursos/top', 'CursoController@getTopCursos');
         Route::get('/categorias', 'CategoriaController@getCategorias');
-        Route::get('/cursos/{id}', 'CursoController@verCurso');
+        Route::get('/cursos/ver/{id}', 'CursoController@verCurso');
         Route::get('/videos/{id}', 'VideoController@verVideo');
+        Route::get('/cursos/all', 'CursoController@getAllCursos');
     });
 
 Route::group([
