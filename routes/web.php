@@ -15,6 +15,8 @@ Route::get('/', 'SpaController@index');
 Route::get('/curso/{any}', 'SpaController@index');
 Route::get('/curso/video/{any}', 'SpaController@index');
 Route::get('/cursos', 'SpaController@index');
+Route::get('/categoria/{any}', 'SpaController@index');
+Route::get('/about', 'SpaController@index');
 
 Auth::routes();
 
@@ -63,6 +65,7 @@ Route::group([
         Route::get('/cursos/ver/{id}', 'CursoController@verCurso');
         Route::get('/videos/{id}', 'VideoController@verVideo');
         Route::get('/cursos/all', 'CursoController@getAllCursos');
+        Route::get('/categoria/{id}', 'CursoController@getCategoria');
     });
 
 Route::group([

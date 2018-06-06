@@ -36,4 +36,13 @@ class CursoController extends Controller
             return new CursoDetalleResource($curso);
         }
     }
+
+    public function getCategoria($id)
+    {
+        $cursos = Course::where('category_id', $id)->paginate(6);
+
+        if ($cursos) {
+            return CursosResource::collection($cursos);
+        }
+    }
 }

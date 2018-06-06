@@ -9,6 +9,8 @@ import Home from './components/Home'
 import Curso from './components/Curso'
 import Video from './components/Video'
 import Cursos from './components/Cursos'
+import Categoria from './components/Categoria'
+import About from './components/About'
 
 Vue.component('paginate', Paginate)
 
@@ -36,9 +38,18 @@ const router = new VueRouter({
             path: '/cursos',
             name: 'cursos',
             component: Cursos,
+        },
+        {
+            path: '/categoria/:id',
+            name: 'categoria',
+            component: Categoria,
             props: true
-        }
-
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: About,
+        },
     ],
 });
 

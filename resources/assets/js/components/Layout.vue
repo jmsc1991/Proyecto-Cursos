@@ -20,14 +20,16 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown05">
-                                    <a class="dropdown-item" href="#" v-if="categorias" v-for="categoria in categorias">{{ categoria.nombre }}</a>
+                                    <div v-for="categoria in categorias">
+                                        <router-link class="dropdown-item" :to="{name: 'categoria', params: { id: categoria.id } }" v-if="categorias">{{ categoria.nombre }}</router-link>
+                                    </div>
                                 </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Blog</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Acerca De</a>
+                                <router-link class="nav-link" :to="{name: 'about'}">Acerca De</router-link>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Contacto</a>
