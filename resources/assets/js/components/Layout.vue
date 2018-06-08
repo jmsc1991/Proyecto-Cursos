@@ -36,15 +36,15 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav absolute-right">
-                            <li class="nav-item" v-if="!user">
+                            <li class="nav-item" v-if="!$store.state.user">
                                 <a href="/login" class="nav-link">Entrar</a>
                             </li>
-                            <li class="nav-item" v-if="!user">
+                            <li class="nav-item" v-if="!$store.state.user">
                                 <a href="/register" class="nav-link">Registrarse</a>
                             </li>
 
-                            <li class="nav-item dropdown" v-if="user">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.email }}</a>
+                            <li class="nav-item dropdown" v-if="$store.state.user">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $store.state.user.email }}</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown06">
                                     <a class="dropdown-item" href="#">Mis Cursos</a>
                                     <a class="dropdown-item" href="#" v-on:click.prevent="cerrarSesion">Cerrar Sesion</a>
@@ -111,15 +111,10 @@
             }
         },
         created() {
-            this.getUser();
+            this.$store.commit('getUser');
             this.getCategorias();
         },
         methods: {
-            getUser: function() {
-                axios.get('/data/user').then(response => {
-                    this.user = response.data;
-                })
-            },
             getCategorias: function() {
                 axios.get('/data/categorias').then(response => {
                     this.categorias = response.data.data;
@@ -127,13 +122,13 @@
             },
             cerrarSesion: function() {
                 axios.post('/logout').then(response => {
-                    this.user = null;
+                    this.$store.commit('cerrarSesion');-
                     this.$router.push('/');
                 });
             }
         },
         components: {
             FadeTransition
-        }
+        },
     }
 </script>

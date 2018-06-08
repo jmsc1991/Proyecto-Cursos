@@ -67,6 +67,7 @@
         },
         created() {
             this.getCursos();
+            this.$store.commit('getUser');
         },
         methods: {
             getCursos: function() {

@@ -14,4 +14,13 @@ class UserController extends Controller
 
         return $user;
     }
+
+    public function puedeVer($id)
+    {
+        $user = Auth::user();
+
+        if ($user->subscription) {
+            return response()->json(true);
+        }
+    }
 }

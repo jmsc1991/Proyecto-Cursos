@@ -50,7 +50,19 @@
                     <div class="col-md-3">
                         <span class="episode-number">{{ ++index }}</span>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-9" v-if="! puedeVer && index == 1">
+                        <p class="meta">Episode {{ index }}</p>
+                        <h2><router-link :to="{ name: 'video', params: { id: video.id } }">{{ video.titulo }}</router-link></h2>
+                        <p>{{ video.descripcion }}</p>
+                    </div>
+
+                    <div class="col-md-9" v-if="! puedeVer && index > 1">
+                        <p class="meta">Episode {{ index }} / Este Video es privado, compra el curso o hazte VIP para poder verlo</p>
+                        <h2>{{ video.titulo }}</h2>
+                        <p>{{ video.descripcion }}</p>
+                    </div>
+
+                    <div class="col-md-9" v-if="puedeVer">
                         <p class="meta">Episode {{ index }}</p>
                         <h2><router-link :to="{ name: 'video', params: { id: video.id } }">{{ video.titulo }}</router-link></h2>
                         <p>{{ video.descripcion }}</p>
@@ -70,16 +82,26 @@
         data() {
             return {
                 curso: null,
+                puedeVer: null,
             }
         },
         created() {
             this.getCurso();
+            this.$store.commit('getUser');
+            this.permiso();
         },
         methods: {
             getCurso: function() {
                 axios.get('/data/cursos/ver/' + this.id).then(response => {
                     this.curso = response.data.data;
                 })
+            },
+            permiso: function() {
+                if (this.$store.state.user) {
+                    axios.get('/data/user/puede/ver/' + this.id).then(response => {
+                        this.puedeVer = response.data;
+                    });
+                }
             }
         },
     }

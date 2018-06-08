@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Paginate from 'vuejs-paginate'
+import Vuex from 'vuex'
+import { store } from './Store'
+
+Vue.use(Vuex)
 
 Vue.use(VueRouter);
+
+import axios from 'axios';
 
 import App from './components/Layout'
 import Home from './components/Home'
@@ -55,6 +61,7 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
-    components: { App },
+    store: store,
+    render: h => h(App),
     router,
 });

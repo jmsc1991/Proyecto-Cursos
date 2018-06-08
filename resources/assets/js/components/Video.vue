@@ -94,6 +94,7 @@
             }
         },
         created() {
+            this.$store.commit('getUser');
             this.getVideo();
         },
         methods: {

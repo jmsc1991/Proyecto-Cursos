@@ -90,6 +90,7 @@
             }
         },
         created() {
+            this.$store.commit('getUser');
             this.getCursos();
         },
         methods: {
