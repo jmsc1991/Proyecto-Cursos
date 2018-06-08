@@ -75,6 +75,8 @@ Route::group([
     'middleware' => 'auth'],
     function () {
         Route::post('/comentario/{id}', 'VideoController@comentar');
+        Route::get('/carrito', 'CarritoController@getCarrito');
+        Route::get('/carrito/add/{id}', 'CarritoController@add');
     });
 
 

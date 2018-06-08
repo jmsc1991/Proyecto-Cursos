@@ -12,7 +12,9 @@
                                     <p>By {{ curso.autor }}</p>
                                     <p class="lead mb-5">{{ curso.extracto }}</p>
 
-                                    <p><a href="#" class="btn btn-primary mr-2">Start Series</a></p>
+                                    <p v-if="puedeVer"><a href="#series" class="btn btn-primary mr-2">Start Series</a></p>
+
+                                    <p v-if="!puedeVer"><button class="btn btn-success" v-on:click="add(curso.id)">{{ curso.precio }}€ - Añadir al Carrito</button></p>
                                 </div>
                                 <div class="col-md-4">
                                     <img :src="curso.foto" alt="Image placeholder" v-if="curso.foto" class="img-fluid">
@@ -44,7 +46,7 @@
             </div>
         </section>
 
-        <section class="site-section episodes">
+        <section class="site-section episodes" id="series">
             <div class="container">
                 <div class="row bg-light align-items-center p-4 episode" v-for="(video, index) in curso.videos">
                     <div class="col-md-3">
@@ -97,13 +99,23 @@
                 })
             },
             permiso: function() {
-                if (this.$store.state.user) {
+                if (this.user) {
                     axios.get('/data/user/puede/ver/' + this.id).then(response => {
                         this.puedeVer = response.data;
                     });
                 }
+            },
+            add: function(id) {
+                axios.get('/data/carrito/add/' + id).then(response => {
+                    this.$store.commit('getCarrito');
+                })
             }
         },
+        computed: {
+            user () {
+                return this.$store.getters.getUser;
+            }
+        }
     }
 </script>
 

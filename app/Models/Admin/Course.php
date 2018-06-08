@@ -79,4 +79,9 @@ class Course extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function carritos()
+    {
+        return $this->belongsToMany(Carrito::class, 'carrito_cursos');
+    }
 }

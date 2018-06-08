@@ -9,6 +9,7 @@ export const store = new Vuex.Store({
     state: {
         user: null,
         puedeVer: null,
+        carrito: null,
     },
     mutations: {
         getUser: function (state) {
@@ -25,6 +26,19 @@ export const store = new Vuex.Store({
                     state.puedeVer = response.data;
                 });
             }
+        },
+        getCarrito: function (state) {
+            axios.get('/data/carrito').then(response => {
+                state.carrito = response.data.data;
+            })
         }
     },
+    getters: {
+        getUser: state => {
+            return state.user;
+        },
+        getCarrito: state => {
+            return state.carrito;
+        }
+    }
 });

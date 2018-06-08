@@ -31,20 +31,27 @@
                             <li class="nav-item">
                                 <router-link class="nav-link" :to="{name: 'about'}">Acerca De</router-link>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contacto</a>
-                            </li>
                         </ul>
                         <ul class="navbar-nav absolute-right">
-                            <li class="nav-item" v-if="!$store.state.user">
+                            <li class="nav-item" v-if="! user">
                                 <a href="/login" class="nav-link">Entrar</a>
                             </li>
-                            <li class="nav-item" v-if="!$store.state.user">
+                            <li class="nav-item" v-if="!user">
                                 <a href="/register" class="nav-link">Registrarse</a>
                             </li>
 
-                            <li class="nav-item dropdown" v-if="$store.state.user">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $store.state.user.email }}</a>
+                            <li class="nav-item dropdown" v-if="user && carrito">
+                                <a class="nav-link dropdown-toggle" id="dropdown07"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fas fa-shopping-cart"></i><span class="badge badge-light">{{ carrito.productos.length }}</span></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown07">
+
+                                    <p class="dropdown-item" v-for="item in carrito.productos">{{ item.titulo }} / {{ item.precio }}€</p>
+
+                                    <a class="dropdown-item" href="#" v-on:click.prevent="cerrarSesion">Cerrar Sesion</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown" v-if="user">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.email }}</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown06">
                                     <a class="dropdown-item" href="#">Mis Cursos</a>
                                     <a class="dropdown-item" href="#" v-on:click.prevent="cerrarSesion">Cerrar Sesion</a>
@@ -106,12 +113,12 @@
     export default {
         data() {
             return {
-                user: null,
                 categorias: null,
             }
         },
         created() {
             this.$store.commit('getUser');
+            this.$store.commit('getCarrito');
             this.getCategorias();
         },
         methods: {
@@ -130,5 +137,20 @@
         components: {
             FadeTransition
         },
+        computed: {
+            user () {
+                return this.$store.getters.getUser;
+            },
+            carrito() {
+                return this.$store.getters.getCarrito;
+            }
+        }
     }
 </script>
+
+<style>
+    .fa-shopping-cart {
+        font-size: 30px;
+    }
+
+</style>

@@ -31,6 +31,7 @@
                             <p>{{ curso.categoria }}</p>
                             <h2>{{ curso.precio }}€</h2>
                         </router-link>
+                        <button class="btn btn-success" v-on:click="add(curso.id)">Añadir al Carrito</button>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -80,6 +81,11 @@
                     this.cursos = response.data.data;
                 })
             },
+            add: function(id) {
+                axios.get('/data/carrito/add/' + id).then(response => {
+                    this.$store.commit('getCarrito');
+                })
+            }
         }
     }
 </script>
