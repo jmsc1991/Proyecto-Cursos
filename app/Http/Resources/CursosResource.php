@@ -16,6 +16,7 @@ class CursosResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'titulo' => $this->title,
             'categoria' => Category::find($this->category_id)->name,
             'precio' => $this->price

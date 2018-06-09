@@ -51,5 +51,9 @@ class User extends Model
         'email' => 'required'
     ];
 
+    public function carrito()
+    {
+        return $this->belongsTo(Carrito::class);
+    }
     
 }

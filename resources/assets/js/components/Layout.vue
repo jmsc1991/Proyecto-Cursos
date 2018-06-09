@@ -11,41 +11,50 @@
                     <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Inicio</a>
+                                <router-link :to="{ name: 'home'}" class="nav-link">Inicio</router-link>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">Cursos Online</a>
+                                <router-link :to="{ name: 'cursos'}" class="nav-link">Cursos Online</router-link>
                             </li>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown05">
-                                    <a class="dropdown-item" href="#" v-if="categorias" v-for="categoria in categorias">{{ categoria.nombre }}</a>
+                                    <div v-for="categoria in categorias">
+                                        <router-link class="dropdown-item" :to="{name: 'categoria', params: { id: categoria.id } }" v-if="categorias">{{ categoria.nombre }}</router-link>
+                                    </div>
                                 </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Blog</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Acerca De</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contacto</a>
+                                <router-link class="nav-link" :to="{name: 'about'}">Acerca De</router-link>
                             </li>
                         </ul>
                         <ul class="navbar-nav absolute-right">
-                            <li class="nav-item" v-if="!user">
+                            <li class="nav-item" v-if="! user">
                                 <a href="/login" class="nav-link">Entrar</a>
                             </li>
                             <li class="nav-item" v-if="!user">
-                                <a href="#" class="nav-link">Registrarse</a>
+                                <a href="/register" class="nav-link">Registrarse</a>
+                            </li>
+
+                            <li class="nav-item dropdown" v-if="user && carrito">
+                                <a class="nav-link dropdown-toggle" id="dropdown07"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fas fa-shopping-cart"></i><span class="badge badge-light">{{ carrito.productos.length }}</span></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown07">
+
+                                    <p class="dropdown-item" v-for="item in carrito.productos">{{ item.titulo }} / {{ item.precio }}€</p>
+
+                                    <a class="dropdown-item" href="#" v-on:click.prevent="cerrarSesion">Cerrar Sesion</a>
+                                </div>
                             </li>
 
                             <li class="nav-item dropdown" v-if="user">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.email }}</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown06">
                                     <a class="dropdown-item" href="#">Mis Cursos</a>
-                                    <a class="dropdown-item" href="#">Cerrar Sesion</a>
+                                    <a class="dropdown-item" href="#" v-on:click.prevent="cerrarSesion">Cerrar Sesion</a>
                                 </div>
                             </li>
 
@@ -56,24 +65,11 @@
             </nav>
         </header>
         <!-- END header -->
-        <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(template/images/big_image_1.jpg);">
-            <div class="container">
-                <div class="row align-items-center site-hero-inner justify-content-center">
-                    <div class="col-md-8 text-center">
-                        <div class="mb-5">
-                            <h1>Cursos y Video Tutoriales Online</h1>
-                            <p class="lead">Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada</p>
-                            <p><a href="#" class="btn btn-primary">Conseguir VIP</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- END section -->
+        <fade-transition>
+            <router-view></router-view>
+        </fade-transition>
 
-        <router-view></router-view>
-
-        <footer class="site-footer" style="background-image: url(template/images/big_image_3.jpg);">
+        <footer class="site-footer" style="background-image: url(/template/images/big_image_3.jpg);">
             <div class="container">
                 <div class="row mb-5">
                     <div class="col-md-4">
@@ -112,28 +108,49 @@
 <script>
     import axios from 'axios';
 
+    import {FadeTransition} from 'vue2-transitions'
+
     export default {
         data() {
             return {
-                user: null,
                 categorias: null,
             }
         },
         created() {
-            this.getUser();
+            this.$store.commit('getUser');
+            this.$store.commit('getCarrito');
             this.getCategorias();
         },
         methods: {
-            getUser: function() {
-                axios.get('data/user').then(response => {
-                    this.user = response.data;
-                })
-            },
             getCategorias: function() {
-                axios.get('data/categorias').then(response => {
+                axios.get('/data/categorias').then(response => {
                     this.categorias = response.data.data;
                 })
+            },
+            cerrarSesion: function() {
+                axios.post('/logout').then(response => {
+                    this.$store.commit('cerrarSesion');-
+                    this.$router.push('/');
+                });
+            }
+        },
+        components: {
+            FadeTransition
+        },
+        computed: {
+            user () {
+                return this.$store.getters.getUser;
+            },
+            carrito() {
+                return this.$store.getters.getCarrito;
             }
         }
     }
 </script>
+
+<style>
+    .fa-shopping-cart {
+        font-size: 30px;
+    }
+
+</style>

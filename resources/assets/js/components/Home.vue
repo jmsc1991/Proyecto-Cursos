@@ -1,5 +1,19 @@
 <template>
     <div>
+        <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(/template/images/big_image_1.jpg);">
+            <div class="container">
+                <div class="row align-items-center site-hero-inner justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <div class="mb-5">
+                            <h1>Cursos y Video Tutoriales Online</h1>
+                            <p class="lead">Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada</p>
+                            <p><a href="#" class="btn btn-primary">Conseguir VIP</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="site-section">
             <div class="container">
                 <section class="school-features text-dark d-flex">
@@ -52,13 +66,13 @@
                 </div>
                 <div class="row top-course">
                     <div class="col-lg-2 col-md-4 col-sm-6 col-12" v-for="curso in cursos">
-                        <a href="#" class="course">
+                        <router-link :to="{ name: 'curso', params: { id: curso.id } }" class="course">
                             <img :src="curso.foto" alt="Image placeholder" v-if="curso.foto">
                             <img src="template/images/img.png" alt="Image placeholder" v-if="!curso.foto">
                             <h2>{{ curso.titulo }}</h2>
                             <p>{{ curso.categoria }}</p>
                             <h2>{{ curso.precio }}€</h2>
-                        </a>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -76,6 +90,7 @@
             }
         },
         created() {
+            this.$store.commit('getUser');
             this.getCursos();
         },
         methods: {
@@ -86,6 +101,6 @@
 
                 })
             }
-        }
+        },
     }
 </script>

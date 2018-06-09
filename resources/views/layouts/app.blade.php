@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="{!! asset('template/fonts/fontawesome/css/font-awesome.min.css') !!}">
     <link rel="stylesheet" href="{!! asset('template/fonts/flaticon/font/flaticon.css') !!}">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+
+
     <!-- Theme Style -->
     <link rel="stylesheet" href="{!! asset('template/css/style.css') !!}">
 </head>
@@ -31,10 +35,10 @@
             <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Inicio</a>
+                        <a class="nav-link active" href="/">Inicio</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#">Cursos Online</a>
+                        <a class="nav-link" href="/cursos">Cursos Online</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -59,10 +63,10 @@
                 </ul>
                 <ul class="navbar-nav absolute-right">
                     <li class="nav-item">
-                        <router-link to="/login" class="nav-link">Entrar</router-link>
+                        <a href="/login" class="nav-link">Entrar</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Registrarse</a>
+                        <a href="/register" class="nav-link">Registrarse</a>
                     </li>
                 </ul>
 
