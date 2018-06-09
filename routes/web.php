@@ -77,6 +77,7 @@ Route::group([
         Route::post('/comentario/{id}', 'VideoController@comentar');
         Route::get('/carrito', 'CarritoController@getCarrito');
         Route::get('/carrito/add/{id}', 'CarritoController@add');
+        Route::get('/carrito/remove/{id}', 'CarritoController@remove');
     });
 
 

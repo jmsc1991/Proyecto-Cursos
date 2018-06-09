@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{!! asset('template/fonts/fontawesome/css/font-awesome.min.css') !!}">
     <link rel="stylesheet" href="{!! asset('template/fonts/flaticon/font/flaticon.css') !!}">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
     <!-- Theme Style -->
@@ -36,6 +38,8 @@
 
 
 <script src="{!! asset('template/js/main.js') !!}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script src="{!! asset('js/app.js') !!}"></script>
 </body>

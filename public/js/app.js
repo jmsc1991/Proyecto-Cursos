@@ -17474,6 +17474,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -17504,6 +17517,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/logout').then(function (response) {
                 _this2.$store.commit('cerrarSesion');-_this2.$router.push('/');
+            });
+        },
+        removeItem: function removeItem(id) {
+            var _this3 = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/remove/' + id).then(function (response) {
+                _this3.$store.commit('getCarrito');
             });
         }
     },
@@ -18211,45 +18231,91 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "dropdown-menu",
-                              attrs: { "aria-labelledby": "dropdown07" }
-                            },
-                            [
-                              _vm._l(_vm.carrito.productos, function(item) {
-                                return _c(
-                                  "p",
-                                  { staticClass: "dropdown-item" },
-                                  [
+                          _vm.carrito.productos.length > 0
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass: "dropdown-menu",
+                                  attrs: { "aria-labelledby": "dropdown07" }
+                                },
+                                [
+                                  _vm._l(_vm.carrito.productos, function(item) {
+                                    return _c(
+                                      "p",
+                                      { staticClass: "dropdown-item" },
+                                      [
+                                        _c(
+                                          "a",
+                                          {
+                                            attrs: { href: "#" },
+                                            on: {
+                                              click: function($event) {
+                                                $event.preventDefault()
+                                                _vm.removeItem(item.id)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass:
+                                                "fas fa-trash-alt text-danger"
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          " -- " +
+                                            _vm._s(item.titulo) +
+                                            " / " +
+                                            _vm._s(item.precio) +
+                                            "€\n                                "
+                                        )
+                                      ]
+                                    )
+                                  }),
+                                  _vm._v(" "),
+                                  _c("p", { staticClass: "dropdown-item" }, [
                                     _vm._v(
-                                      _vm._s(item.titulo) +
-                                        " / " +
-                                        _vm._s(item.precio) +
+                                      "Total: " +
+                                        _vm._s(_vm.carrito.total) +
                                         "€"
                                     )
-                                  ]
-                                )
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.cerrarSesion($event)
-                                    }
-                                  }
-                                },
-                                [_vm._v("Cerrar Sesion")]
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass: "dropdown-item",
+                                      attrs: { href: "#" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.preventDefault()
+                                          return _vm.cerrarSesion($event)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Finalizar Compra")]
+                                  )
+                                ],
+                                2
                               )
-                            ],
-                            2
-                          )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.carrito.productos.length == 0
+                            ? _c(
+                                "div",
+                                {
+                                  staticClass: "dropdown-menu",
+                                  attrs: { "aria-labelledby": "dropdown07" }
+                                },
+                                [
+                                  _c("p", { staticClass: "dropdown-item" }, [
+                                    _vm._v(
+                                      "\n                                    El carrito esta vacio.\n                                "
+                                    )
+                                  ])
+                                ]
+                              )
+                            : _vm._e()
                         ])
                       : _vm._e(),
                     _vm._v(" "),
@@ -19916,7 +19982,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
-                _this3.$store.commit('getCarrito');
+                console.log(response.data);
+                if (response.data == 'ok') {
+                    _this3.$store.commit('getCarrito');
+                    toastr.success('Curso añadido al carrito!');
+                } else if (response.data == 'repetido') {
+                    toastr.error('Este curso ya se encuentra en tu carrito.');
+                }
             });
         }
     }

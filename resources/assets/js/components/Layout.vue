@@ -42,11 +42,24 @@
 
                             <li class="nav-item dropdown" v-if="user && carrito">
                                 <a class="nav-link dropdown-toggle" id="dropdown07"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fas fa-shopping-cart"></i><span class="badge badge-light">{{ carrito.productos.length }}</span></a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown07">
+                                <div class="dropdown-menu" aria-labelledby="dropdown07" v-if="carrito.productos.length > 0">
 
-                                    <p class="dropdown-item" v-for="item in carrito.productos">{{ item.titulo }} / {{ item.precio }}€</p>
+                                    <p class="dropdown-item" v-for="item in carrito.productos">
+                                        <a href="#" v-on:click.prevent="removeItem(item.id)">
+                                            <i class="fas fa-trash-alt text-danger"></i>
+                                        </a> -- {{ item.titulo }} / {{ item.precio }}€
+                                    </p>
 
-                                    <a class="dropdown-item" href="#" v-on:click.prevent="cerrarSesion">Cerrar Sesion</a>
+                                    <p class="dropdown-item">Total: {{ carrito.total }}€</p>
+
+                                    <a class="dropdown-item" href="#" v-on:click.prevent="cerrarSesion">Finalizar Compra</a>
+                                </div>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdown07" v-if="carrito.productos.length == 0">
+                                    <p class="dropdown-item">
+                                        El carrito esta vacio.
+                                    </p>
+
                                 </div>
                             </li>
 
@@ -132,6 +145,11 @@
                     this.$store.commit('cerrarSesion');-
                     this.$router.push('/');
                 });
+            },
+            removeItem: function(id) {
+                axios.get('/data/carrito/remove/' + id).then(response => {
+                    this.$store.commit('getCarrito');
+                })
             }
         },
         components: {

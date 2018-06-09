@@ -83,7 +83,15 @@
             },
             add: function(id) {
                 axios.get('/data/carrito/add/' + id).then(response => {
-                    this.$store.commit('getCarrito');
+                    console.log(response.data);
+                    if (response.data == 'ok') {
+                        this.$store.commit('getCarrito');
+                        toastr.success('Curso añadido al carrito!')
+                    } else if (response.data == 'repetido') {
+                        toastr.error('Este curso ya se encuentra en tu carrito.')
+                    }
+
+
                 })
             }
         }

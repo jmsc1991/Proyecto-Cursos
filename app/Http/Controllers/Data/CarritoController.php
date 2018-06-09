@@ -29,9 +29,34 @@ class CarritoController extends Controller
 
     public function add($id)
     {
+        $item = CarritoCurso::where([
+            ['carrito_id', Carrito::where('user_id', Auth::user()->id)->first()->id],
+            ['course_id', $id]
+        ])->first();
+
+        if ($item) {
+            return response()->json('repetido');
+        }
+
         $item = CarritoCurso::create([
             'carrito_id' => Carrito::where('user_id', Auth::user()->id)->first()->id,
             'course_id' => $id,
         ]);
+
+        if ($item) {
+            return response()->json('ok');
+        }
+    }
+
+    public function remove($id)
+    {
+        $carrito = Carrito::where('user_id', Auth::user()->id)->first();
+
+        $item = CarritoCurso::where([
+            ['carrito_id', $carrito->id],
+            ['course_id', $id]
+            ]);
+
+        $item->delete();
     }
 }
