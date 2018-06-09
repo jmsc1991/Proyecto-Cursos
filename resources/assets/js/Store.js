@@ -28,9 +28,11 @@ export const store = new Vuex.Store({
             }
         },
         getCarrito: function (state) {
-            axios.get('/data/carrito').then(response => {
-                state.carrito = response.data.data;
-            })
+            if (state.user) {
+                axios.get('/data/carrito').then(response => {
+                    state.carrito = response.data.data;
+                })
+            }
         }
     },
     getters: {

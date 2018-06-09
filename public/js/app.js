@@ -16337,9 +16337,11 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
             }
         },
         getCarrito: function getCarrito(state) {
-            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/data/carrito').then(function (response) {
-                state.carrito = response.data.data;
-            });
+            if (state.user) {
+                __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/data/carrito').then(function (response) {
+                    state.carrito = response.data.data;
+                });
+            }
         }
     },
     getters: {
@@ -17498,12 +17500,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             categorias: null
         };
     },
-    created: function created() {
-        this.$store.commit('getUser');
-        this.$store.commit('getCarrito');
-        this.getCategorias();
-    },
 
+    watch: {
+        '$route': function $route(to, from) {
+            this.$store.commit('getUser');
+            this.$store.commit('getCarrito');
+            this.getCategorias();
+        }
+    },
     methods: {
         getCategorias: function getCategorias() {
             var _this = this;
@@ -18640,6 +18644,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -18661,6 +18666,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('data/cursos/top').then(function (response) {
                 _this.cursos = response.data.data;
             }).catch(function (error) {});
+        },
+        add: function add(id) {
+            var _this2 = this;
+
+            if (this.user) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
+                    console.log(response.data);
+                    if (response.data == 'ok') {
+                        _this2.$store.commit('getCarrito');
+                        toastr.success('Curso añadido al carrito!');
+                    } else if (response.data == 'repetido') {
+                        toastr.error('Este curso ya se encuentra en tu carrito.');
+                    }
+                });
+            } else {
+                toastr.error('Tienes que estar registrado para poder comprar cursos.');
+            }
+        }
+    },
+    computed: {
+        user: function user() {
+            return this.$store.getters.getUser;
         }
     }
 });
@@ -18718,6 +18745,19 @@ var render = function() {
                     _vm._v(" "),
                     _c("h2", [_vm._v(_vm._s(curso.precio) + "€")])
                   ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: {
+                      click: function($event) {
+                        _vm.add(curso.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Añadir al Carrito")]
                 )
               ],
               1
@@ -18968,7 +19008,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -19096,9 +19136,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         add: function add(id) {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
-                _this3.$store.commit('getCarrito');
-            });
+            if (this.user) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
+                    console.log(response.data);
+                    if (response.data == 'ok') {
+                        _this3.$store.commit('getCarrito');
+                        toastr.success('Curso añadido al carrito!');
+                    } else if (response.data == 'repetido') {
+                        toastr.error('Este curso ya se encuentra en tu carrito.');
+                    }
+                });
+            } else {
+                toastr.error('Tienes que estar registrado para poder comprar cursos.');
+            }
         }
     },
     computed: {
@@ -19981,15 +20031,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         add: function add(id) {
             var _this3 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
-                console.log(response.data);
-                if (response.data == 'ok') {
-                    _this3.$store.commit('getCarrito');
-                    toastr.success('Curso añadido al carrito!');
-                } else if (response.data == 'repetido') {
-                    toastr.error('Este curso ya se encuentra en tu carrito.');
-                }
-            });
+            if (this.user) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
+                    console.log(response.data);
+                    if (response.data == 'ok') {
+                        _this3.$store.commit('getCarrito');
+                        toastr.success('Curso añadido al carrito!');
+                    } else if (response.data == 'repetido') {
+                        toastr.error('Este curso ya se encuentra en tu carrito.');
+                    }
+                });
+            } else {
+                toastr.error('Tienes que estar registrado para poder comprar cursos.');
+            }
+        }
+    },
+    computed: {
+        user: function user() {
+            return this.$store.getters.getUser;
         }
     }
 });
@@ -20249,7 +20308,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -20318,6 +20377,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -20329,11 +20389,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             pageCount: 0
         };
     },
-    created: function created() {
-        this.getCursos();
-        this.$store.commit('getUser');
-    },
 
+    watch: {
+        '$route': function $route(to, from) {
+            this.getCursos();
+            this.$store.commit('getUser');
+        }
+    },
     methods: {
         getCursos: function getCursos() {
             var _this = this;
@@ -20349,6 +20411,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/categoria/' + this.id + '?page=' + pageNum).then(function (response) {
                 _this2.cursos = response.data.data;
             });
+        },
+        add: function add(id) {
+            var _this3 = this;
+
+            if (this.user) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
+                    console.log(response.data);
+                    if (response.data == 'ok') {
+                        _this3.$store.commit('getCarrito');
+                        toastr.success('Curso añadido al carrito!');
+                    } else if (response.data == 'repetido') {
+                        toastr.error('Este curso ya se encuentra en tu carrito.');
+                    }
+                });
+            } else {
+                toastr.error('Tienes que estar registrado para poder comprar cursos.');
+            }
+        }
+    },
+    computed: {
+        user: function user() {
+            return this.$store.getters.getUser;
         }
     }
 });
@@ -20404,6 +20488,19 @@ var render = function() {
                     _vm._v(" "),
                     _c("h2", [_vm._v(_vm._s(curso.precio) + "€")])
                   ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    on: {
+                      click: function($event) {
+                        _vm.add(curso.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Añadir al Carrito")]
                 )
               ],
               1

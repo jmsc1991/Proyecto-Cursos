@@ -106,9 +106,20 @@
                 }
             },
             add: function(id) {
-                axios.get('/data/carrito/add/' + id).then(response => {
-                    this.$store.commit('getCarrito');
-                })
+                if (this.user) {
+                    axios.get('/data/carrito/add/' + id).then(response => {
+                        console.log(response.data);
+                        if (response.data == 'ok') {
+                            this.$store.commit('getCarrito');
+                            toastr.success('Curso añadido al carrito!')
+                        } else if (response.data == 'repetido') {
+                            toastr.error('Este curso ya se encuentra en tu carrito.')
+                        }
+                    })
+                } else {
+                    toastr.error('Tienes que estar registrado para poder comprar cursos.')
+                }
+
             }
         },
         computed: {
