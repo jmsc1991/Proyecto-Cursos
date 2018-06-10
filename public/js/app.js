@@ -13334,7 +13334,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Categoria___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_Categoria__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_About__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_About___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_About__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Carrito__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Carrito__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Carrito___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_Carrito__);
 
 
@@ -18661,6 +18661,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             cursos: null
         };
     },
+
+    watch: {
+        '$route': function $route(to, from) {
+            this.$store.commit('getUser');
+            this.getCursos();
+        }
+    },
     created: function created() {
         this.$store.commit('getUser');
         this.getCursos();
@@ -21308,24 +21315,19 @@ if (false) {
 }
 
 /***/ }),
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(81)
+  __webpack_require__(76)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(83)
+var __vue_script__ = __webpack_require__(78)
 /* template */
-var __vue_template__ = __webpack_require__(84)
+var __vue_template__ = __webpack_require__(79)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -21364,13 +21366,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 81 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(82);
+var content = __webpack_require__(77);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -21390,7 +21392,7 @@ if(false) {
 }
 
 /***/ }),
-/* 82 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(false);
@@ -21398,13 +21400,13 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 83 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21477,6 +21479,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            metodo: ''
+        };
+    },
+
     watch: {
         '$route': function $route(to, from) {
             this.$store.commit('getCarrito');
@@ -21498,12 +21506,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/remove/' + id).then(function (response) {
                 _this.$store.commit('getCarrito');
             });
+        },
+        comprar: function comprar() {
+            var _this2 = this;
+
+            if (!this.metodo) {
+                toastr.error('Selecciona un metodo de pago.');
+            } else if (this.metodo == 'paypal') {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/comprar').then(function (response) {
+                    _this2.$router.push({ path: '/' });
+                });
+            }
         }
     }
 });
 
 /***/ }),
-/* 84 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -21597,7 +21616,77 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _c("div", { staticClass: "col-12" }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.comprar($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("h4", { staticClass: "mb-3" }, [
+                      _vm._v("Metodo de pago")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "d-block my-3" }, [
+                      _c(
+                        "div",
+                        { staticClass: "custom-control custom-radio" },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.metodo,
+                                expression: "metodo"
+                              }
+                            ],
+                            staticClass: "custom-control-input",
+                            attrs: {
+                              id: "paypal",
+                              name: "paymentMethod",
+                              value: "paypal",
+                              type: "radio",
+                              required: ""
+                            },
+                            domProps: { checked: _vm._q(_vm.metodo, "paypal") },
+                            on: {
+                              change: function($event) {
+                                _vm.metodo = "paypal"
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "custom-control-label",
+                              attrs: { for: "paypal" }
+                            },
+                            [_vm._v("PayPal")]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("hr", { staticClass: "mb-4" }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-lg btn-block",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Finalizar Compra")]
+                    )
+                  ]
+                )
+              ])
             ])
           ])
         ])
@@ -21651,54 +21740,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c(
-        "form",
-        { staticClass: "needs-validation", attrs: { novalidate: "" } },
-        [
-          _c("h4", { staticClass: "mb-3" }, [_vm._v("Metodo de pago")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "d-block my-3" }, [
-            _c("div", { staticClass: "custom-control custom-radio" }, [
-              _c("input", {
-                staticClass: "custom-control-input",
-                attrs: {
-                  id: "paypal",
-                  name: "paymentMethod",
-                  type: "radio",
-                  required: ""
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass: "custom-control-label",
-                  attrs: { for: "paypal" }
-                },
-                [_vm._v("PayPal")]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("hr", { staticClass: "mb-4" }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary btn-lg btn-block",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("Finalizar Compra")]
-          )
-        ]
-      )
-    ])
   }
 ]
 render._withStripped = true

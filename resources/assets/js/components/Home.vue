@@ -90,6 +90,12 @@
                 cursos: null,
             }
         },
+        watch: {
+            '$route' (to, from) {
+                this.$store.commit('getUser');
+                this.getCursos();
+            }
+        },
         created() {
             this.$store.commit('getUser');
             this.getCursos();

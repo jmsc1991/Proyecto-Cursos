@@ -23,7 +23,7 @@ class Carrito extends Model
 
     public function getTotal()
     {
-        $carrito = Carrito::where('user_id', Auth::user()->id)->first();
+        $carrito = Carrito::where([['user_id', Auth::user()->id], ['estado', 'Pendiente']])->first();
 
         $total = 0;
 

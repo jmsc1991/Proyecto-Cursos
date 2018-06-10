@@ -40,12 +40,12 @@
                         </ul>
                     </div>
                     <div class="col-12">
-                        <form class="needs-validation" novalidate>
+                        <form v-on:submit.prevent="comprar">
                             <h4 class="mb-3">Metodo de pago</h4>
 
                             <div class="d-block my-3">
                                 <div class="custom-control custom-radio">
-                                    <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                    <input id="paypal" name="paymentMethod" v-model="metodo" value="paypal" type="radio" class="custom-control-input" required>
                                     <label class="custom-control-label" for="paypal">PayPal</label>
                                 </div>
                             </div>
@@ -64,6 +64,11 @@
     import axios from 'axios';
 
     export default {
+        data() {
+            return {
+                metodo: ''
+            }
+        },
         watch: {
             '$route' (to, from) {
                 this.$store.commit('getCarrito');
@@ -82,6 +87,15 @@
                 axios.get('/data/carrito/remove/' + id).then(response => {
                     this.$store.commit('getCarrito');
                 })
+            },
+            comprar: function() {
+                if (! this.metodo) {
+                    toastr.error('Selecciona un metodo de pago.')
+                } else if (this.metodo == 'paypal') {
+                    axios.get('/data/carrito/comprar').then(response => {
+                        this.$router.push({ path: '/' })
+                    })
+                }
             }
         }
     }

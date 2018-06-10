@@ -80,6 +80,7 @@ Route::group([
         Route::get('/carrito/add/{id}', 'CarritoController@add');
         Route::get('/carrito/remove/{id}', 'CarritoController@remove');
         Route::get('/carrito/ver', 'CarritoController@ver');
+        Route::get('/carrito/comprar', 'CarritoController@comprar');
     });
 
 
