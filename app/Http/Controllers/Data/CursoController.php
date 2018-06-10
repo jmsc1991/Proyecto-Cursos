@@ -10,9 +10,14 @@ use App\Http\Controllers\Controller;
 
 class CursoController extends Controller
 {
-    public function getAllCursos()
+    public function getAllCursos(Request $request)
     {
-        $cursos = Course::paginate(6);
+        if ($request->buscar) {
+            $cursos = Course::where('title', 'LIKE', "%$request->buscar%")
+                ->paginate(6);
+        } else {
+            $cursos = Course::paginate(6);
+        }
 
         if ($cursos) {
             return CursoDetalleResource::collection($cursos);

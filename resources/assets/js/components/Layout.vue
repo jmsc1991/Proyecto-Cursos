@@ -52,7 +52,7 @@
 
                                     <p class="dropdown-item">Total: {{ carrito.total }}€</p>
 
-                                    <a class="dropdown-item" href="#" v-on:click.prevent="cerrarSesion">Finalizar Compra</a>
+                                    <router-link class="dropdown-item" :to="{name: 'carrito'}">Ver Carrito</router-link>
                                 </div>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdown07" v-if="carrito.productos.length == 0">
@@ -135,6 +135,11 @@
                 this.$store.commit('getCarrito');
                 this.getCategorias();
             }
+        },
+        created() {
+            this.$store.commit('getUser');
+            this.$store.commit('getCarrito');
+            this.getCategorias();
         },
         methods: {
             getCategorias: function() {
