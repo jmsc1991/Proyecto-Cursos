@@ -14,6 +14,6 @@ class CommentTableSeeder extends Seeder
     {
         Comment::truncate();
 
-        factory(Comment::class,10)->create();
+        factory(Comment::class,5)->create();
     }
 }
