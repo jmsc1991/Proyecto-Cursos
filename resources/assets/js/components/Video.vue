@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="video">
+        <div v-if="video && puedeVer">
             <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(/template/images/big_image_1.jpg);">
                 <div class="container">
                     <div class="row align-items-center site-hero-inner justify-content-center">
@@ -78,6 +78,22 @@
                 </div>
             </section>
         </div>
+        <div v-if="! puedeVer">
+            <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(/template/images/big_image_1.jpg);">
+                <div class="container">
+                    <div class="row align-items-center site-hero-inner justify-content-center">
+                        <div class="col-md-8 text-center">
+                            <div class="mb-5">
+                                <h1>Este video es privado</h1>
+
+                                <p>Compra el curso para ver el video</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END section -->
+        </div>
     </div>
 </template>
 
@@ -91,11 +107,13 @@
                 video: null,
                 responder: null,
                 newComent: '',
+                puedeVer: null,
             }
         },
         created() {
             this.$store.commit('getUser');
             this.getVideo();
+            this.permiso();
         },
         methods: {
             getVideo: function() {
@@ -114,7 +132,13 @@
                     this.getVideo();
                     this.cancelar();
                 })
-            }
+            },
+            permiso: function() {
+                axios.get('/data/user/puede/ver/video/' + this.id).then(response => {
+                    this.puedeVer = response.data;
+                });
+
+            },
         }
     }
 </script>

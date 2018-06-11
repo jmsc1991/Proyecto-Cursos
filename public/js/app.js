@@ -19498,7 +19498,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -19594,6 +19594,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -19603,12 +19619,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             video: null,
             responder: null,
-            newComent: ''
+            newComent: '',
+            puedeVer: null
         };
     },
     created: function created() {
         this.$store.commit('getUser');
         this.getVideo();
+        this.permiso();
     },
 
     methods: {
@@ -19632,6 +19650,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.getVideo();
                 _this2.cancelar();
             });
+        },
+        permiso: function permiso() {
+            var _this3 = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/user/puede/ver/video/' + this.id).then(function (response) {
+                _this3.puedeVer = response.data;
+            });
         }
     }
 });
@@ -19645,7 +19670,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.video
+    _vm.video && _vm.puedeVer
       ? _c("div", [
           _c(
             "section",
@@ -19831,7 +19856,9 @@ var render = function() {
             ])
           ])
         ])
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.puedeVer ? _c("div", [_vm._m(1)]) : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -19844,6 +19871,41 @@ var staticRenderFns = [
         _vm._v("Ver Video")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "section",
+      {
+        staticClass: "site-hero overlay",
+        staticStyle: {
+          "background-image": "url(/template/images/big_image_1.jpg)"
+        },
+        attrs: { "data-stellar-background-ratio": "0.5" }
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "row align-items-center site-hero-inner justify-content-center"
+            },
+            [
+              _c("div", { staticClass: "col-md-8 text-center" }, [
+                _c("div", { staticClass: "mb-5" }, [
+                  _c("h1", [_vm._v("Este video es privado")]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Compra el curso para ver el video")])
+                ])
+              ])
+            ]
+          )
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

@@ -68,6 +68,7 @@ Route::group([
         Route::get('/cursos/all', 'CursoController@getAllCursos');
         Route::get('/categoria/{id}', 'CursoController@getCategoria');
         Route::get('/user/puede/ver/{id}', 'UserController@puedeVer');
+        Route::get('/user/puede/ver/video/{id}', 'UserController@puedeVerVideo');
     });
 
 Route::group([
