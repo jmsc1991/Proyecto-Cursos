@@ -20,6 +20,7 @@ class VideoDetalleResource extends JsonResource
             'descripcion' => $this->description,
             'url' => $this->url,
             'comentarios' => ComentarioDetalleResource::collection($this->comments),
+            'free' => $this->free,
         ];
     }
 }

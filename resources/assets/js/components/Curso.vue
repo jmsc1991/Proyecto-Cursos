@@ -52,19 +52,19 @@
                     <div class="col-md-3">
                         <span class="episode-number">{{ ++index }}</span>
                     </div>
-                    <div class="col-md-9" v-if="! puedeVer && index == 1">
-                        <p class="meta">Episode {{ index }}</p>
+                    <div class="col-md-9" v-if="video.free == 1">
+                        <p class="meta">Episode {{ index }} / Video Gratuito</p>
                         <h2><router-link :to="{ name: 'video', params: { id: video.id } }">{{ video.titulo }}</router-link></h2>
                         <p>{{ video.descripcion }}</p>
                     </div>
 
-                    <div class="col-md-9" v-if="! puedeVer && index > 1">
+                    <div class="col-md-9" v-if="video.free == 0 && !puedeVer">
                         <p class="meta">Episode {{ index }} / Este Video es privado, compra el curso o hazte VIP para poder verlo</p>
                         <h2>{{ video.titulo }}</h2>
                         <p>{{ video.descripcion }}</p>
                     </div>
 
-                    <div class="col-md-9" v-if="puedeVer">
+                    <div class="col-md-9" v-if="video.free == 0 && puedeVer">
                         <p class="meta">Episode {{ index }}</p>
                         <h2><router-link :to="{ name: 'video', params: { id: video.id } }">{{ video.titulo }}</router-link></h2>
                         <p>{{ video.descripcion }}</p>

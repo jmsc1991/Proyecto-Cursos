@@ -56,6 +56,15 @@
                 </div>
             </div>
         </section>
+        <PayPal
+                v-if="finalizar"
+                :amount="carrito.total"
+                currency="EUR"
+                :client="credentials"
+                env="sandbox"
+                v-on:payment-completed="completado"
+        >
+        </PayPal>
     </div>
 
 </template>
@@ -63,10 +72,16 @@
 <script>
     import axios from 'axios';
 
+    import PayPal from 'vue-paypal-checkout'
+
     export default {
         data() {
             return {
-                metodo: ''
+                metodo: '',
+                credentials: {
+                    sandbox: 'AY5xySETsU2bI4SkCJsAwdeupNgMVgSDWiI9NeM_-Yy6C9DRtCLm0BYYKk1P0IRcy1kC__VOo5CEUF3n',
+                },
+                finalizar: false,
             }
         },
         watch: {
@@ -92,11 +107,17 @@
                 if (! this.metodo) {
                     toastr.error('Selecciona un metodo de pago.')
                 } else if (this.metodo == 'paypal') {
-                    axios.get('/data/carrito/comprar').then(response => {
-                        this.$router.push({ path: '/' })
-                    })
+                    this.finalizar = true;
                 }
+            },
+            completado: function() {
+                axios.get('/data/carrito/comprar').then(response => {
+                    toastr.success('completadooooo')
+                })
             }
+        },
+        components: {
+            PayPal
         }
     }
 </script>
