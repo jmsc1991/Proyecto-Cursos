@@ -73,6 +73,7 @@
                             <p>{{ curso.categoria }}</p>
                             <h2>{{ curso.precio }}€</h2>
                         </router-link>
+                        <button class="btn btn-success" v-on:click="add(curso.id)">Añadir al Carrito</button>
                     </div>
                 </div>
             </div>
@@ -89,6 +90,12 @@
                 cursos: null,
             }
         },
+        watch: {
+            '$route' (to, from) {
+                this.$store.commit('getUser');
+                this.getCursos();
+            }
+        },
         created() {
             this.$store.commit('getUser');
             this.getCursos();
@@ -100,7 +107,27 @@
                 }).catch(error => {
 
                 })
+            },
+            add: function(id) {
+                if (this.user) {
+                    axios.get('/data/carrito/add/' + id).then(response => {
+                        console.log(response.data);
+                        if (response.data == 'ok') {
+                            this.$store.commit('getCarrito');
+                            toastr.success('Curso añadido al carrito!')
+                        } else if (response.data == 'repetido') {
+                            toastr.error('Este curso ya se encuentra en tu carrito.')
+                        }
+                    })
+                } else {
+                    toastr.error('Tienes que estar registrado para poder comprar cursos.')
+                }
             }
         },
+        computed: {
+            user () {
+                return this.$store.getters.getUser;
+            }
+        }
     }
 </script>

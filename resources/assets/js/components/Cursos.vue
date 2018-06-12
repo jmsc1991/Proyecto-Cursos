@@ -20,6 +20,12 @@
                     <div class="col-md-7 text-center">
                         <h2>Nuestos Cursos</h2>
                         <p class="lead">Aqui encontraras una lista con todos nuestros cursos.</p>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" v-model="buscar" placeholder="Buscar.." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" v-on:click="getCursos">Buscar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row top-course">
@@ -63,6 +69,7 @@
             return {
                 cursos: null,
                 pageCount: 0,
+                buscar: '',
             }
         },
         created() {
@@ -71,7 +78,7 @@
         },
         methods: {
             getCursos: function() {
-                axios.get('data/cursos/all').then(response => {
+                axios.get('data/cursos/all?buscar=' + this.buscar).then(response => {
                     this.cursos = response.data.data;
                     this.pageCount = response.data.meta.last_page;
                 })
@@ -82,9 +89,25 @@
                 })
             },
             add: function(id) {
-                axios.get('/data/carrito/add/' + id).then(response => {
-                    this.$store.commit('getCarrito');
-                })
+                if (this.user) {
+                    axios.get('/data/carrito/add/' + id).then(response => {
+                        console.log(response.data);
+                        if (response.data == 'ok') {
+                            this.$store.commit('getCarrito');
+                            toastr.success('Curso añadido al carrito!')
+                        } else if (response.data == 'repetido') {
+                            toastr.error('Este curso ya se encuentra en tu carrito.')
+                        }
+                    })
+                } else {
+                    toastr.error('Tienes que estar registrado para poder comprar cursos.')
+                }
+
+            }
+        },
+        computed: {
+            user () {
+                return this.$store.getters.getUser;
             }
         }
     }

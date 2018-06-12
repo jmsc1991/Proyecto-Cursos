@@ -17,6 +17,7 @@ Route::get('/curso/video/{any}', 'SpaController@index');
 Route::get('/cursos', 'SpaController@index');
 Route::get('/categoria/{any}', 'SpaController@index');
 Route::get('/about', 'SpaController@index');
+Route::get('/carrito', 'SpaController@index');
 
 Auth::routes();
 
@@ -67,6 +68,7 @@ Route::group([
         Route::get('/cursos/all', 'CursoController@getAllCursos');
         Route::get('/categoria/{id}', 'CursoController@getCategoria');
         Route::get('/user/puede/ver/{id}', 'UserController@puedeVer');
+        Route::get('/user/puede/ver/video/{id}', 'UserController@puedeVerVideo');
     });
 
 Route::group([
@@ -77,6 +79,9 @@ Route::group([
         Route::post('/comentario/{id}', 'VideoController@comentar');
         Route::get('/carrito', 'CarritoController@getCarrito');
         Route::get('/carrito/add/{id}', 'CarritoController@add');
+        Route::get('/carrito/remove/{id}', 'CarritoController@remove');
+        Route::get('/carrito/ver', 'CarritoController@ver');
+        Route::get('/carrito/comprar', 'CarritoController@comprar');
     });
 
 

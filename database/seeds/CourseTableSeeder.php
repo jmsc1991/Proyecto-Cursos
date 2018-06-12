@@ -14,6 +14,6 @@ class CourseTableSeeder extends Seeder
     {
         Course::truncate();
 
-        factory(Course::class,10)->create();
+        factory(Course::class,20)->create();
     }
 }

@@ -16,7 +16,8 @@ class CarritoResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'productos' => CursosResource::collection($this->cursos)
+            'productos' => CursosResource::collection($this->cursos),
+            'total' => $this->getTotal(),
         ];
     }
 }

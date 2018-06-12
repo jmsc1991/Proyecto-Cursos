@@ -155,7 +155,6 @@
           <root url="file://$MODULE_DIR$/vendor/phpunit/php-timer" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/php-token-stream" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit-mock-objects" />
           <root url="file://$MODULE_DIR$/vendor/prettus/l5-repository" />
           <root url="file://$MODULE_DIR$/vendor/prettus/laravel-validation" />
           <root url="file://$MODULE_DIR$/vendor/psr/container" />
@@ -252,7 +251,6 @@
           <root url="file://$MODULE_DIR$/vendor/phpunit/php-timer" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/php-token-stream" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
-          <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit-mock-objects" />
           <root url="file://$MODULE_DIR$/vendor/prettus/l5-repository" />
           <root url="file://$MODULE_DIR$/vendor/prettus/laravel-validation" />
           <root url="file://$MODULE_DIR$/vendor/psr/container" />

@@ -55,5 +55,10 @@ class User extends Model
     {
         return $this->belongsTo(Carrito::class);
     }
+
+    public function cursos()
+    {
+        return $this->belongsToMany(Course::class, 'user_courses');
+    }
     
 }

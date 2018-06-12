@@ -52,19 +52,19 @@
                     <div class="col-md-3">
                         <span class="episode-number">{{ ++index }}</span>
                     </div>
-                    <div class="col-md-9" v-if="! puedeVer && index == 1">
-                        <p class="meta">Episode {{ index }}</p>
+                    <div class="col-md-9" v-if="video.free == 1">
+                        <p class="meta">Episode {{ index }} / Video Gratuito</p>
                         <h2><router-link :to="{ name: 'video', params: { id: video.id } }">{{ video.titulo }}</router-link></h2>
                         <p>{{ video.descripcion }}</p>
                     </div>
 
-                    <div class="col-md-9" v-if="! puedeVer && index > 1">
+                    <div class="col-md-9" v-if="video.free == 0 && !puedeVer">
                         <p class="meta">Episode {{ index }} / Este Video es privado, compra el curso o hazte VIP para poder verlo</p>
                         <h2>{{ video.titulo }}</h2>
                         <p>{{ video.descripcion }}</p>
                     </div>
 
-                    <div class="col-md-9" v-if="puedeVer">
+                    <div class="col-md-9" v-if="video.free == 0 && puedeVer">
                         <p class="meta">Episode {{ index }}</p>
                         <h2><router-link :to="{ name: 'video', params: { id: video.id } }">{{ video.titulo }}</router-link></h2>
                         <p>{{ video.descripcion }}</p>
@@ -106,9 +106,20 @@
                 }
             },
             add: function(id) {
-                axios.get('/data/carrito/add/' + id).then(response => {
-                    this.$store.commit('getCarrito');
-                })
+                if (this.user) {
+                    axios.get('/data/carrito/add/' + id).then(response => {
+                        console.log(response.data);
+                        if (response.data == 'ok') {
+                            this.$store.commit('getCarrito');
+                            toastr.success('Curso añadido al carrito!')
+                        } else if (response.data == 'repetido') {
+                            toastr.error('Este curso ya se encuentra en tu carrito.')
+                        }
+                    })
+                } else {
+                    toastr.error('Tienes que estar registrado para poder comprar cursos.')
+                }
+
             }
         },
         computed: {

@@ -4,6 +4,8 @@ import Paginate from 'vuejs-paginate'
 import Vuex from 'vuex'
 import { store } from './Store'
 
+
+
 Vue.use(Vuex)
 
 Vue.use(VueRouter);
@@ -17,6 +19,7 @@ import Video from './components/Video'
 import Cursos from './components/Cursos'
 import Categoria from './components/Categoria'
 import About from './components/About'
+import Carrito from './components/Carrito'
 
 Vue.component('paginate', Paginate)
 
@@ -55,6 +58,11 @@ const router = new VueRouter({
             path: '/about',
             name: 'about',
             component: About,
+        },
+        {
+            path: '/carrito',
+            name: 'carrito',
+            component: Carrito,
         },
     ],
 });
