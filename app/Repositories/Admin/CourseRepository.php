@@ -27,7 +27,8 @@ class CourseRepository extends BaseRepository
         'category_id',
         'owner',
         'learn',
-        'requirements'
+        'requirements',
+        'photo'
     ];
 
     /**

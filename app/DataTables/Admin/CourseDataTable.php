@@ -31,7 +31,7 @@ class CourseDataTable extends DataTable
                             return $course->price . '€';
                         })
                         ->addColumn('Categoria', function($course){
-                            return $course->category->name;
+                           return $course->category->name;
                         })
                         ->addColumn('Propietario', function($course){
                             return $course->user->name;
@@ -42,7 +42,10 @@ class CourseDataTable extends DataTable
                         ->addColumn('Requisitos', function($course){
                             return substr($course->requirements, 0, 35);
                         })
-                        ->addColumn('action', 'admin.courses.datatables_actions');
+                        ->addColumn('action', 'admin.courses.datatables_actions')
+                        ->addColumn('photo',function($course){
+                            return (!is_null($course->photo)) ? '<img width="100" heigth="100" src="'.$course->photo.'"/>': '';
+                        })->rawColumns(['photo','action']);
     }
 
     /**
@@ -95,7 +98,8 @@ class CourseDataTable extends DataTable
             'Categoria',
             'Propietario',
             'Aprendizaje',
-            'Requisitos'
+            'Requisitos',
+            'photo'
         ];
     }
 

@@ -14,6 +14,13 @@ class UserTableSeeder extends Seeder
     {
         User::truncate();
 
+        $user = new User();
+
+        $user->name = "admin";
+        $user->email = "admin@admin.es";
+        $user->password = bcrypt("123456");
+        $user->save();
+
         factory(User::class,5)->create();
     }
 }

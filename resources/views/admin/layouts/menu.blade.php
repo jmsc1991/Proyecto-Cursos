@@ -9,3 +9,7 @@
 <li class="{{ Request::is('users*') ? 'active' : '' }}">
     <a href="{!! route('admin.users.index') !!}"><i class="fa fa-edit"></i><span>Usuarios</span></a>
 </li>
+
+<li class="{{ Request::is('comments*') ? 'active' : '' }}">
+    <a href="{!! route('admin.comments.index') !!}"><i class="fa fa-edit"></i><span>Comentarios</span></a>
+</li>

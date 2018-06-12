@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer owner
  * @property string learn
  * @property string requirements
+ * @property string photo
  */
 class Course extends Model
 {
@@ -54,7 +55,8 @@ class Course extends Model
         'category_id' => 'integer',
         'owner' => 'integer',
         'learn' => 'string',
-        'requirements' => 'string'
+        'requirements' => 'string',
+        'photo' => 'image',
     ];
 
     /**
@@ -68,7 +70,8 @@ class Course extends Model
         'description' => 'required',
         'price' => 'required',
         'learn' => 'required',
-        'requirements' => 'required'
+        'requirements' => 'required',
+        'photo' => 'max:1999',
     ];
 
     public function user()

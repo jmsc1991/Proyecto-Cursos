@@ -1,3 +1,9 @@
+<!-- photo Field -->
+<div class="form-group">
+    {!! Form::label('photo', 'Photo:') !!}
+    <img width="500" height="300" src="{!! $course->photo !!}">
+</div>
+
 <!-- Id Field -->
 <div class="form-group">
     {!! Form::label('id', 'Id:') !!}

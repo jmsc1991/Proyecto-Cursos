@@ -12,6 +12,7 @@ use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\Auth;
 use Response;
+use File;
 
 class CourseController extends AppBaseController
 {
@@ -65,6 +66,9 @@ class CourseController extends AppBaseController
 
         $course->user_id = Auth::id();
 
+        $path =  '/storage/'.request()->file('photo')->store('images','public');
+
+        $course->photo = $path;
         $course->save();
 
         Flash::success('Course saved successfully.');
@@ -130,13 +134,21 @@ class CourseController extends AppBaseController
     {
         $course = $this->courseRepository->findWithoutFail($id);
 
+        $path = '';
+
         if (empty($course)) {
             Flash::error('Course not found');
 
             return redirect(route('admin.courses.index'));
         }
 
+        if($request->hasFile('photo')){
+            $path =  '/storage/'.request()->file('photo')->store('images','public');
+        }
+
         $course = $this->courseRepository->update($request->all(), $id);
+
+        $course->update(['photo' => $path]);
 
         Flash::success('Course updated successfully.');
 
