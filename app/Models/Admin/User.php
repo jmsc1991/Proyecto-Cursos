@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use Carbon\Carbon;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -38,7 +39,6 @@ class User extends Model
     protected $casts = [
         'name' => 'string',
         'email' => 'string',
-        'subscription' => 'string'
     ];
 
     /**
@@ -59,6 +59,23 @@ class User extends Model
     public function cursos()
     {
         return $this->belongsToMany(Course::class, 'user_courses');
+    }
+
+    public function getVip()
+    {
+        $now = Carbon::now();
+
+        if ($this->subscription) {
+            $inicio = Carbon::parse($this->subscription);
+
+            if ($inicio->addMonth() < $now) {
+                return false;
+            } else {
+                return $inicio->diffInDays($now);
+            }
+        } else {
+            return false;
+        }
     }
     
 }

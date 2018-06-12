@@ -1,9 +1,21 @@
 <template>
-    <div>
+    <div v-if="user">
         <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(/template/images/big_image_1.jpg);">
             <div class="container">
                 <div class="row align-items-center site-hero-inner justify-content-center">
-                    <div class="col-md-8 text-center">
+                    <div class="col-md-8 text-center" v-if="user">
+                        <div class="mb-5" v-if="user.vip == false">
+                            <h1>Cursos y Video Tutoriales Online</h1>
+                            <p class="lead">Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada</p>
+                            <p><a href="#" class="btn btn-primary">Conseguir VIP</a></p>
+                        </div>
+                        <div class="mb-5" v-if="user.vip != false">
+                            <h1>Cursos y Video Tutoriales Online</h1>
+                            <p class="lead">Haz click aquí para ver todos los cursos disponibles</p>
+                            <p><router-link :to="{ name: 'cursos' }" class="btn btn-primary">Cursos</router-link></p>
+                        </div>
+                    </div>
+                    <div class="col-md-8 text-center" v-if="!user">
                         <div class="mb-5">
                             <h1>Cursos y Video Tutoriales Online</h1>
                             <p class="lead">Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada</p>
@@ -17,92 +29,73 @@
         <section class="site-section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-12">
 
                         <!-- Profile Image -->
                         <div class="card card-primary card-outline">
                             <div class="card-body box-profile">
-                                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                                <h3 class="profile-username text-center">{{ user.name }}</h3>
 
-                                <p class="text-muted text-center">Software Engineer</p>
-
-                                <ul class="list-group list-group-unbordered mb-3">
+                                <ul class="list-group list-group-unbordered mb-3" v-if="cursos">
                                     <li class="list-group-item">
-                                        <b>Followers</b> <a class="float-right">1,322</a>
+                                        <b>Cursos</b> <a class="float-right">{{ cursos.length }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Following</b> <a class="float-right">543</a>
+                                        <b>Subscripcion</b>
+                                        <a class="float-right" v-if="user.vip != false">VIP</a>
+                                        <a class="float-right" v-if="user.vip == false">Gratuita</a>
                                     </li>
-                                    <li class="list-group-item">
-                                        <b>Friends</b> <a class="float-right">13,287</a>
+                                    <li class="list-group-item" v-if="user.vip != false">
+                                        <b>Dias restantes</b>
+                                        <a class="float-right" v-if="user.vip != false">{{ user.vip }}</a>
+                                        <a class="float-right" v-if="user.vip == false">0</a>
+                                    </li>
+                                    <li class="list-group-item" v-if="user.vip == false">
+                                        <button class="btn btn-xs btn-primary">Comprar VIP</button>
                                     </li>
                                 </ul>
-
-                                <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                             </div>
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
 
                         <!-- About Me Box -->
-                        <div class="card card-primary">
+                        <div class="card card-primary mt-3">
                             <div class="card-header">
                                 <h3 class="card-title">About Me</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <strong><i class="fa fa-book mr-1"></i> Education</strong>
+                                <strong><i class="fa fa-book mr-1"></i> Email</strong>
 
                                 <p class="text-muted">
-                                    B.S. in Computer Science from the University of Tennessee at Knoxville
+                                    {{ user.email }}
                                 </p>
-
-                                <hr>
-
-                                <strong><i class="fa fa-map-marker mr-1"></i> Location</strong>
-
-                                <p class="text-muted">Malibu, California</p>
-
-                                <hr>
-
-                                <strong><i class="fa fa-pencil mr-1"></i> Skills</strong>
-
-                                <p class="text-muted">
-                                    <span class="tag tag-danger">UI Design</span>
-                                    <span class="tag tag-success">Coding</span>
-                                    <span class="tag tag-info">Javascript</span>
-                                    <span class="tag tag-warning">PHP</span>
-                                    <span class="tag tag-primary">Node.js</span>
-                                </p>
-
-                                <hr>
-
-                                <strong><i class="fa fa-file-text-o mr-1"></i> Notes</strong>
-
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
                             </div>
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-header p-2">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
-                                </ul>
-                            </div><!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="tab-content">
 
+                        <div v-if="cursos">
+                            <div class="card card-primary mt-3" v-if="cursos.length > 0">
+                                <div class="card-header">
+                                    <h3 class="card-title">Mis Cursos</h3>
                                 </div>
-                                <!-- /.tab-content -->
-                            </div><!-- /.card-body -->
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div v-for="curso in cursos">
+                                        <router-link :to="{ name: 'curso', params: { id: curso.id } }">
+                                            <strong><i class="fa fa-play mr-1"></i> {{ curso.title }}</strong>
+
+                                            <p class="text-muted">
+                                                {{ curso.excerpt }}
+                                            </p>
+                                        </router-link>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
                         </div>
-                        <!-- /.nav-tabs-custom -->
                     </div>
                     <!-- /.col -->
                 </div>
@@ -113,7 +106,29 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
+        data() {
+            return {
+                cursos: null,
+            }
+        },
+        created () {
+            this.getCursos();
+        },
+        methods: {
+            getCursos: function() {
+                axios.get('/data/user/cursos').then(response => {
+                    this.cursos = response.data;
+                })
+            }
+        },
+        computed: {
+            user () {
+                return this.$store.getters.getUser;
+            },
+        }
     }
 </script>
 

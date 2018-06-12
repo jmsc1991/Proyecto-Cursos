@@ -19,6 +19,7 @@ Route::get('/categoria/{any}', 'SpaController@index');
 Route::get('/about', 'SpaController@index');
 Route::get('/carrito', 'SpaController@index');
 Route::get('/perfil', 'SpaController@index');
+Route::get('/vip', 'SpaController@index');
 
 Auth::routes();
 
@@ -87,6 +88,8 @@ Route::group([
         Route::get('/carrito/remove/{id}', 'CarritoController@remove');
         Route::get('/carrito/ver', 'CarritoController@ver');
         Route::get('/carrito/comprar', 'CarritoController@comprar');
+        Route::get('/carrito/comprar/vip', 'CarritoController@comprarVip');
+        Route::get('/user/cursos', 'UserController@getCursos');
     });
 
 

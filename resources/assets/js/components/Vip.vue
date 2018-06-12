@@ -1,5 +1,5 @@
 <template>
-    <div v-if="carrito">
+    <div v-if="user">
         <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image: url(/template/images/big_image_1.jpg);">
             <div class="container">
                 <div class="row align-items-center site-hero-inner justify-content-center">
@@ -7,7 +7,7 @@
                         <div class="mb-5">
                             <h1>Cursos y Video Tutoriales Online</h1>
                             <p class="lead">Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada</p>
-                            <p><router-link :to="{ name: 'vip' }" class="btn btn-primary">Conseguir VIP</router-link></p>
+                            <p><a href="#" class="btn btn-primary">Conseguir VIP</a></p>
                         </div>
                     </div>
                 </div>
@@ -21,21 +21,18 @@
                     <div class="col-12">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                             <span class="text-muted">Your cart</span>
-                            <span class="badge badge-secondary badge-pill">{{ carrito.productos.length }}</span>
+                            <span class="badge badge-secondary badge-pill">1</span>
                         </h4>
                         <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between lh-condensed" v-for="item in carrito.productos">
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
                                 <div>
-                                    <h6 class="my-0">{{ item.titulo }}</h6>
-                                    <a href="#" v-on:click.prevent="removeItem(item.id)">
-                                        <i class="fas fa-trash-alt text-danger"></i>
-                                    </a>
+                                    <h6 class="my-0">Subscripcion VIP / 1 mes</h6>
                                 </div>
-                                <span class="text-muted">{{ item.precio }}€</span>
+                                <span class="text-muted">10€</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Total (EUR)</span>
-                                <strong>{{ carrito.total }}€</strong>
+                                <strong>10€</strong>
                             </li>
                         </ul>
                     </div>
@@ -52,7 +49,7 @@
                         <button v-if="metodo == ''" class="btn btn-primary btn-lg btn-block">Finalizar Compra</button>
                         <PayPal
                                 v-if="metodo == 'paypal'"
-                                :amount="carrito.total"
+                                amount="10"
                                 currency="EUR"
                                 :button-style="myStyle"
                                 :client="credentials"
@@ -86,37 +83,16 @@
                     shape: 'pill',
                     color: 'gold'
                 },
-                finalizar: false,
             }
-        },
-        watch: {
-            '$route' (to, from) {
-                this.$store.commit('getCarrito');
-            }
-        },
-        created() {
-            this.$store.commit('getCarrito');
         },
         computed: {
-            carrito() {
-                return this.$store.getters.getCarrito;
+            user() {
+                return this.$store.getters.getUser;
             }
         },
         methods: {
-            removeItem: function(id) {
-                axios.get('/data/carrito/remove/' + id).then(response => {
-                    this.$store.commit('getCarrito');
-                })
-            },
-            comprar: function() {
-                if (! this.metodo) {
-                    toastr.error('Selecciona un metodo de pago.')
-                } else if (this.metodo == 'paypal') {
-                    this.finalizar = true;
-                }
-            },
             completado: function() {
-                axios.get('/data/carrito/comprar').then(response => {
+                axios.get('/data/carrito/comprar/vip').then(response => {
                     this.$router.push({ path: '/' })
                 })
             }

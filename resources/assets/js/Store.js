@@ -14,7 +14,7 @@ export const store = new Vuex.Store({
     mutations: {
         getUser: function (state) {
             axios.get('/data/user').then(response => {
-                state.user = response.data;
+                state.user = response.data.data;
                 if (state.user) {
                     axios.get('/data/carrito').then(response => {
                         state.carrito = response.data.data;

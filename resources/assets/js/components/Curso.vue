@@ -14,7 +14,10 @@
 
                                     <p v-if="puedeVer"><a href="#series" class="btn btn-primary mr-2">Start Series</a></p>
 
-                                    <p v-if="!puedeVer"><button class="btn btn-success" v-on:click="add(curso.id)">{{ curso.precio }}€ - Añadir al Carrito</button></p>
+                                    <p v-if="!puedeVer">
+                                        <button class="btn btn-success" v-if="user" v-on:click="add(curso.id)">{{ curso.precio }}€ - Añadir al Carrito</button>
+                                        <a href="/login" class="btn btn-success" v-if="!user">{{ curso.precio }}€ - Añadir al Carrito</a>
+                                    </p>
                                 </div>
                                 <div class="col-md-4">
                                     <img :src="curso.foto" alt="Image placeholder" v-if="curso.foto" class="img-fluid">
