@@ -14,7 +14,7 @@ class AddCollumnToUsers extends Migration
     public function up()
     {
         Schema::table('users', function($table) {
-            $table->boolean('subscription')->nullable()->default(null);
+            $table->string('subscription')->nullable()->default(null);
         });
     }
 

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Admin\Course;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -34,5 +35,22 @@ class User extends Authenticatable
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function getVip()
+    {
+        $now = Carbon::now();
+
+        if ($this->subscription) {
+            $inicio = Carbon::parse($this->subscription);
+
+            if ($inicio->addMonth() < $now) {
+                return false;
+            } else {
+                return $inicio->diffInDays($now);
+            }
+        } else {
+            return false;
+        }
     }
 }

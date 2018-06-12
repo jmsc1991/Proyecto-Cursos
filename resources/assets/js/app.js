@@ -21,6 +21,7 @@ import Categoria from './components/Categoria'
 import About from './components/About'
 import Carrito from './components/Carrito'
 import Perfil from './components/Perfil'
+import Vip from './components/Vip'
 
 Vue.component('paginate', Paginate)
 
@@ -69,6 +70,11 @@ const router = new VueRouter({
             path: '/perfil',
             name: 'perfil',
             component: Perfil,
+        },
+        {
+            path: '/vip',
+            name: 'vip',
+            component: Vip,
         },
     ],
 });

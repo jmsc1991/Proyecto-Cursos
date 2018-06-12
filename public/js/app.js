@@ -13859,6 +13859,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_Carrito___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_Carrito__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_Perfil__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_Perfil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_Perfil__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_Vip__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_Vip___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__components_Vip__);
 
 
 
@@ -13868,6 +13870,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vuex__["a" /* default */]);
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+
 
 
 
@@ -13920,6 +13923,10 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
         path: '/perfil',
         name: 'perfil',
         component: __WEBPACK_IMPORTED_MODULE_14__components_Perfil___default.a
+    }, {
+        path: '/vip',
+        name: 'vip',
+        component: __WEBPACK_IMPORTED_MODULE_15__components_Vip___default.a
     }]
 });
 
@@ -16858,7 +16865,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     mutations: {
         getUser: function getUser(state) {
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/data/user').then(function (response) {
-                state.user = response.data;
+                state.user = response.data.data;
                 if (state.user) {
                     __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/data/carrito').then(function (response) {
                         state.carrito = response.data.data;
@@ -19186,6 +19193,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -19249,7 +19274,96 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c(
+      "section",
+      {
+        staticClass: "site-hero overlay",
+        staticStyle: {
+          "background-image": "url(/template/images/big_image_1.jpg)"
+        },
+        attrs: { "data-stellar-background-ratio": "0.5" }
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "row align-items-center site-hero-inner justify-content-center"
+            },
+            [
+              _vm.user
+                ? _c("div", { staticClass: "col-md-8 text-center" }, [
+                    _vm.user.vip == false
+                      ? _c("div", { staticClass: "mb-5" }, [
+                          _c("h1", [
+                            _vm._v("Cursos y Video Tutoriales Online")
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "lead" }, [
+                            _vm._v(
+                              "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  attrs: { to: { name: "vip" } }
+                                },
+                                [_vm._v("Conseguir VIP")]
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.user.vip != false
+                      ? _c("div", { staticClass: "mb-5" }, [
+                          _c("h1", [
+                            _vm._v("Cursos y Video Tutoriales Online")
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "lead" }, [
+                            _vm._v(
+                              "Haz click aquí para ver todos los cursos disponibles"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  attrs: { to: { name: "cursos" } }
+                                },
+                                [_vm._v("Cursos")]
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.user
+                ? _c("div", { staticClass: "col-md-8 text-center" }, [
+                    _vm._m(0)
+                  ])
+                : _vm._e()
+            ]
+          )
+        ])
+      ]
+    ),
     _vm._v(" "),
     _vm._m(1),
     _vm._v(" "),
@@ -19295,18 +19409,57 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    on: {
-                      click: function($event) {
-                        _vm.add(curso.id)
-                      }
-                    }
-                  },
-                  [_vm._v("Añadir al Carrito")]
-                )
+                _vm.user
+                  ? _c(
+                      "div",
+                      [
+                        _vm.user.vip == false
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                on: {
+                                  click: function($event) {
+                                    _vm.add(curso.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Añadir al Carrito")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.user.vip != false
+                          ? _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn btn-success",
+                                attrs: {
+                                  to: {
+                                    name: "curso",
+                                    params: { id: curso.id }
+                                  }
+                                }
+                              },
+                              [_vm._v("Ver Curso")]
+                            )
+                          : _vm._e()
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.user
+                  ? _c("div", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-xs btn-success",
+                          attrs: { href: "/login" }
+                        },
+                        [_vm._v("Añadir al Carrito")]
+                      )
+                    ])
+                  : _vm._e()
               ],
               1
             )
@@ -19321,48 +19474,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      {
-        staticClass: "site-hero overlay",
-        staticStyle: {
-          "background-image": "url(/template/images/big_image_1.jpg)"
-        },
-        attrs: { "data-stellar-background-ratio": "0.5" }
-      },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "row align-items-center site-hero-inner justify-content-center"
-            },
-            [
-              _c("div", { staticClass: "col-md-8 text-center" }, [
-                _c("div", { staticClass: "mb-5" }, [
-                  _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "lead" }, [
-                    _vm._v(
-                      "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c(
-                      "a",
-                      { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                      [_vm._v("Conseguir VIP")]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
+    return _c("div", { staticClass: "mb-5" }, [
+      _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "lead" }, [
+        _vm._v(
+          "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _c("a", { staticClass: "btn btn-primary", attrs: { href: "/login" } }, [
+          _vm._v("Conseguir VIP")
         ])
-      ]
-    )
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -19556,7 +19682,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -19569,6 +19695,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
 //
 //
 //
@@ -19763,23 +19892,41 @@ var render = function() {
                           _vm._v(" "),
                           !_vm.puedeVer
                             ? _c("p", [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-success",
-                                    on: {
-                                      click: function($event) {
-                                        _vm.add(_vm.curso.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      _vm._s(_vm.curso.precio) +
-                                        "€ - Añadir al Carrito"
+                                _vm.user
+                                  ? _c(
+                                      "button",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.add(_vm.curso.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(_vm.curso.precio) +
+                                            "€ - Añadir al Carrito"
+                                        )
+                                      ]
                                     )
-                                  ]
-                                )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                !_vm.user
+                                  ? _c(
+                                      "a",
+                                      {
+                                        staticClass: "btn btn-success",
+                                        attrs: { href: "/login" }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(_vm.curso.precio) +
+                                            "€ - Añadir al Carrito"
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
                               ])
                             : _vm._e()
                         ]),
@@ -20615,6 +20762,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -20681,13 +20846,89 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c(
+      "section",
+      {
+        staticClass: "site-hero overlay",
+        staticStyle: {
+          "background-image": "url(/template/images/big_image_1.jpg)"
+        },
+        attrs: { "data-stellar-background-ratio": "0.5" }
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "row align-items-center site-hero-inner justify-content-center"
+            },
+            [
+              _vm.user
+                ? _c("div", { staticClass: "col-md-8 text-center" }, [
+                    _vm.user.vip == false
+                      ? _c("div", { staticClass: "mb-5" }, [
+                          _c("h1", [
+                            _vm._v("Cursos y Video Tutoriales Online")
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "lead" }, [
+                            _vm._v(
+                              "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  attrs: { to: { name: "vip" } }
+                                },
+                                [_vm._v("Conseguir VIP")]
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.user.vip != false
+                      ? _c("div", { staticClass: "mb-5" }, [
+                          _c("h1", [
+                            _vm._v("Cursos y Video Tutoriales Online")
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "lead" }, [
+                            _vm._v(
+                              "Haz click aquí para ver todos los cursos disponibles"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(0)
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.user
+                ? _c("div", { staticClass: "col-md-8 text-center" }, [
+                    _vm._m(1)
+                  ])
+                : _vm._e()
+            ]
+          )
+        ])
+      ]
+    ),
     _vm._v(" "),
     _c("section", { staticClass: "site-section bg-light" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row justify-content-center mb-5" }, [
           _c("div", { staticClass: "col-md-7 text-center" }, [
-            _c("h2", [_vm._v("Nuestos Cursos")]),
+            _c("h2", { attrs: { id: "cursos" } }, [_vm._v("Nuestos Cursos")]),
             _vm._v(" "),
             _c("p", { staticClass: "lead" }, [
               _vm._v("Aqui encontraras una lista con todos nuestros cursos.")
@@ -20747,7 +20988,7 @@ var render = function() {
                 _c(
                   "router-link",
                   {
-                    staticClass: "course",
+                    staticClass: "course mb-3",
                     attrs: { to: { name: "curso", params: { id: curso.id } } }
                   },
                   [
@@ -20774,18 +21015,57 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    on: {
-                      click: function($event) {
-                        _vm.add(curso.id)
-                      }
-                    }
-                  },
-                  [_vm._v("Añadir al Carrito")]
-                )
+                _vm.user
+                  ? _c(
+                      "div",
+                      [
+                        _vm.user.vip == false
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                on: {
+                                  click: function($event) {
+                                    _vm.add(curso.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Añadir al Carrito")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.user.vip != false
+                          ? _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn btn-success",
+                                attrs: {
+                                  to: {
+                                    name: "curso",
+                                    params: { id: curso.id }
+                                  }
+                                }
+                              },
+                              [_vm._v("Ver Curso")]
+                            )
+                          : _vm._e()
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.user
+                  ? _c("div", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-xs btn-success",
+                          attrs: { href: "/login" }
+                        },
+                        [_vm._v("Añadir al Carrito")]
+                      )
+                    ])
+                  : _vm._e()
               ],
               1
             )
@@ -20823,48 +21103,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      {
-        staticClass: "site-hero overlay",
-        staticStyle: {
-          "background-image": "url(/template/images/big_image_1.jpg)"
-        },
-        attrs: { "data-stellar-background-ratio": "0.5" }
-      },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "row align-items-center site-hero-inner justify-content-center"
-            },
-            [
-              _c("div", { staticClass: "col-md-8 text-center" }, [
-                _c("div", { staticClass: "mb-5" }, [
-                  _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "lead" }, [
-                    _vm._v(
-                      "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c(
-                      "a",
-                      { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                      [_vm._v("Conseguir VIP")]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
+    return _c("p", [
+      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#cursos" } }, [
+        _vm._v("Cursos")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-5" }, [
+      _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "lead" }, [
+        _vm._v(
+          "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _c("a", { staticClass: "btn btn-primary", attrs: { href: "/login" } }, [
+          _vm._v("Conseguir VIP")
         ])
-      ]
-    )
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -20962,7 +21225,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -21032,6 +21295,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -21042,6 +21323,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             cursos: null,
             pageCount: 0
         };
+    },
+    created: function created() {
+        this.getCursos();
+        this.$store.commit('getUser');
     },
 
     watch: {
@@ -21100,15 +21385,78 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c(
+      "section",
+      {
+        staticClass: "site-hero overlay",
+        staticStyle: {
+          "background-image": "url(/template/images/big_image_1.jpg)"
+        },
+        attrs: { "data-stellar-background-ratio": "0.5" }
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "row align-items-center site-hero-inner justify-content-center"
+            },
+            [
+              _vm.user
+                ? _c("div", { staticClass: "col-md-8 text-center" }, [
+                    _vm.user.vip == false
+                      ? _c("div", { staticClass: "mb-5" }, [
+                          _c("h1", [
+                            _vm._v("Cursos y Video Tutoriales Online")
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "lead" }, [
+                            _vm._v(
+                              "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(0)
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.user.vip != false
+                      ? _c("div", { staticClass: "mb-5" }, [
+                          _c("h1", [
+                            _vm._v("Cursos y Video Tutoriales Online")
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "lead" }, [
+                            _vm._v(
+                              "Haz click aquí para ver todos los cursos disponibles"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ])
+                      : _vm._e()
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.user
+                ? _c("div", { staticClass: "col-md-8 text-center" }, [
+                    _vm._m(2)
+                  ])
+                : _vm._e()
+            ]
+          )
+        ])
+      ]
+    ),
     _vm._v(" "),
     _c("section", { staticClass: "site-section bg-light" }, [
       _c("div", { staticClass: "container" }, [
-        _vm._m(1),
+        _vm._m(3),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "row top-course" },
+          { staticClass: "row top-course mb-3" },
           _vm._l(_vm.cursos, function(curso) {
             return _c(
               "div",
@@ -21117,7 +21465,7 @@ var render = function() {
                 _c(
                   "router-link",
                   {
-                    staticClass: "course",
+                    staticClass: "course mb-3",
                     attrs: { to: { name: "curso", params: { id: curso.id } } }
                   },
                   [
@@ -21144,18 +21492,57 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    on: {
-                      click: function($event) {
-                        _vm.add(curso.id)
-                      }
-                    }
-                  },
-                  [_vm._v("Añadir al Carrito")]
-                )
+                _vm.user
+                  ? _c(
+                      "div",
+                      [
+                        _vm.user.vip == false
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                on: {
+                                  click: function($event) {
+                                    _vm.add(curso.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Añadir al Carrito")]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.user.vip != false
+                          ? _c(
+                              "router-link",
+                              {
+                                staticClass: "btn btn btn-success",
+                                attrs: {
+                                  to: {
+                                    name: "curso",
+                                    params: { id: curso.id }
+                                  }
+                                }
+                              },
+                              [_vm._v("Ver Curso")]
+                            )
+                          : _vm._e()
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.user
+                  ? _c("div", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-xs btn-success",
+                          attrs: { href: "/login" }
+                        },
+                        [_vm._v("Añadir al Carrito")]
+                      )
+                    ])
+                  : _vm._e()
               ],
               1
             )
@@ -21193,48 +21580,41 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      {
-        staticClass: "site-hero overlay",
-        staticStyle: {
-          "background-image": "url(/template/images/big_image_1.jpg)"
-        },
-        attrs: { "data-stellar-background-ratio": "0.5" }
-      },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "row align-items-center site-hero-inner justify-content-center"
-            },
-            [
-              _c("div", { staticClass: "col-md-8 text-center" }, [
-                _c("div", { staticClass: "mb-5" }, [
-                  _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "lead" }, [
-                    _vm._v(
-                      "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c(
-                      "a",
-                      { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                      [_vm._v("Conseguir VIP")]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
+    return _c("p", [
+      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+        _vm._v("Conseguir VIP")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#cursos" } }, [
+        _vm._v("Cursos")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-5" }, [
+      _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "lead" }, [
+        _vm._v(
+          "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _c("a", { staticClass: "btn btn-primary", attrs: { href: "/login" } }, [
+          _vm._v("Conseguir VIP")
         ])
-      ]
-    )
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -21242,7 +21622,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row justify-content-center mb-5" }, [
       _c("div", { staticClass: "col-md-7 text-center" }, [
-        _c("h2", [_vm._v("Nuestos Cursos")]),
+        _c("h2", { attrs: { id: "cursos" } }, [_vm._v("Nuestos Cursos")]),
         _vm._v(" "),
         _c("p", { staticClass: "lead" }, [
           _vm._v("Aqui encontraras una lista con todos nuestros cursos.")
@@ -21998,7 +22378,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -22012,8 +22392,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_paypal_checkout__ = __webpack_require__(109);
-//
-//
 //
 //
 //
@@ -22136,8 +22514,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         completado: function completado() {
+            var _this2 = this;
+
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/comprar').then(function (response) {
-                toastr.success('completadooooo');
+                _this2.$router.push({ path: '/' });
             });
         }
     },
@@ -39436,7 +39816,55 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.carrito
     ? _c("div", [
-        _vm._m(0),
+        _c(
+          "section",
+          {
+            staticClass: "site-hero overlay",
+            staticStyle: {
+              "background-image": "url(/template/images/big_image_1.jpg)"
+            },
+            attrs: { "data-stellar-background-ratio": "0.5" }
+          },
+          [
+            _c("div", { staticClass: "container" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "row align-items-center site-hero-inner justify-content-center"
+                },
+                [
+                  _c("div", { staticClass: "col-md-8 text-center" }, [
+                    _c("div", { staticClass: "mb-5" }, [
+                      _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "lead" }, [
+                        _vm._v(
+                          "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "btn btn-primary",
+                              attrs: { to: { name: "vip" } }
+                            },
+                            [_vm._v("Conseguir VIP")]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ])
+          ]
+        ),
         _vm._v(" "),
         _c("section", { staticClass: "site-section" }, [
           _c("div", { staticClass: "container" }, [
@@ -39521,148 +39949,82 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-12" }, [
-                _c(
-                  "form",
-                  {
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.comprar($event)
-                      }
-                    }
-                  },
-                  [
-                    _c("h4", { staticClass: "mb-3" }, [
-                      _vm._v("Metodo de pago")
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "d-block my-3" }, [
-                      _c(
-                        "div",
-                        { staticClass: "custom-control custom-radio" },
-                        [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.metodo,
-                                expression: "metodo"
-                              }
-                            ],
-                            staticClass: "custom-control-input",
-                            attrs: {
-                              id: "paypal",
-                              name: "paymentMethod",
-                              value: "paypal",
-                              type: "radio",
-                              required: ""
-                            },
-                            domProps: { checked: _vm._q(_vm.metodo, "paypal") },
-                            on: {
-                              change: function($event) {
-                                _vm.metodo = "paypal"
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "label",
-                            {
-                              staticClass: "custom-control-label",
-                              attrs: { for: "paypal" }
-                            },
-                            [_vm._v("PayPal")]
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("hr", { staticClass: "mb-4" }),
-                    _vm._v(" "),
-                    _vm.metodo == ""
-                      ? _c(
-                          "button",
+              _c(
+                "div",
+                { staticClass: "col-12" },
+                [
+                  _c("h4", { staticClass: "mb-3" }, [_vm._v("Metodo de pago")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-block my-3" }, [
+                    _c("div", { staticClass: "custom-control custom-radio" }, [
+                      _c("input", {
+                        directives: [
                           {
-                            staticClass: "btn btn-primary btn-lg btn-block",
-                            attrs: { type: "submit" }
-                          },
-                          [_vm._v("Finalizar Compra")]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.metodo == "paypal"
-                      ? _c("PayPal", {
-                          attrs: {
-                            amount: _vm.carrito.total,
-                            currency: "EUR",
-                            "button-style": _vm.myStyle,
-                            client: _vm.credentials,
-                            env: "sandbox"
-                          },
-                          on: { "payment-completed": _vm.completado }
-                        })
-                      : _vm._e()
-                  ],
-                  1
-                )
-              ])
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.metodo,
+                            expression: "metodo"
+                          }
+                        ],
+                        staticClass: "custom-control-input",
+                        attrs: {
+                          id: "paypal",
+                          name: "paymentMethod",
+                          value: "paypal",
+                          type: "radio",
+                          required: ""
+                        },
+                        domProps: { checked: _vm._q(_vm.metodo, "paypal") },
+                        on: {
+                          change: function($event) {
+                            _vm.metodo = "paypal"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "custom-control-label",
+                          attrs: { for: "paypal" }
+                        },
+                        [_vm._v("PayPal")]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "mb-4" }),
+                  _vm._v(" "),
+                  _vm.metodo == ""
+                    ? _c(
+                        "button",
+                        { staticClass: "btn btn-primary btn-lg btn-block" },
+                        [_vm._v("Finalizar Compra")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.metodo == "paypal"
+                    ? _c("PayPal", {
+                        attrs: {
+                          amount: _vm.carrito.total,
+                          currency: "EUR",
+                          "button-style": _vm.myStyle,
+                          client: _vm.credentials,
+                          env: "sandbox"
+                        },
+                        on: { "payment-completed": _vm.completado }
+                      })
+                    : _vm._e()
+                ],
+                1
+              )
             ])
           ])
         ])
       ])
     : _vm._e()
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      {
-        staticClass: "site-hero overlay",
-        staticStyle: {
-          "background-image": "url(/template/images/big_image_1.jpg)"
-        },
-        attrs: { "data-stellar-background-ratio": "0.5" }
-      },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "row align-items-center site-hero-inner justify-content-center"
-            },
-            [
-              _c("div", { staticClass: "col-md-8 text-center" }, [
-                _c("div", { staticClass: "mb-5" }, [
-                  _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "lead" }, [
-                    _vm._v(
-                      "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c(
-                      "a",
-                      { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                      [_vm._v("Conseguir VIP")]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
-        ])
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -39758,7 +40120,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39769,13 +40131,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -39884,7 +40241,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            cursos: null
+        };
+    },
+    created: function created() {
+        this.getCursos();
+    },
+
+    methods: {
+        getCursos: function getCursos() {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/user/cursos').then(function (response) {
+                _this.cursos = response.data;
+            });
+        }
+    },
+    computed: {
+        user: function user() {
+            return this.$store.getters.getUser;
+        }
+    }
+});
 
 /***/ }),
 /* 154 */
@@ -39894,233 +40277,286 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _vm.user
+    ? _c("div", [
+        _c(
+          "section",
+          {
+            staticClass: "site-hero overlay",
+            staticStyle: {
+              "background-image": "url(/template/images/big_image_1.jpg)"
+            },
+            attrs: { "data-stellar-background-ratio": "0.5" }
+          },
+          [
+            _c("div", { staticClass: "container" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "row align-items-center site-hero-inner justify-content-center"
+                },
+                [
+                  _vm.user
+                    ? _c("div", { staticClass: "col-md-8 text-center" }, [
+                        _vm.user.vip == false
+                          ? _c("div", { staticClass: "mb-5" }, [
+                              _c("h1", [
+                                _vm._v("Cursos y Video Tutoriales Online")
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "lead" }, [
+                                _vm._v(
+                                  "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm._m(0)
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.user.vip != false
+                          ? _c("div", { staticClass: "mb-5" }, [
+                              _c("h1", [
+                                _vm._v("Cursos y Video Tutoriales Online")
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "lead" }, [
+                                _vm._v(
+                                  "Haz click aquí para ver todos los cursos disponibles"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-primary",
+                                      attrs: { to: { name: "cursos" } }
+                                    },
+                                    [_vm._v("Cursos")]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.user
+                    ? _c("div", { staticClass: "col-md-8 text-center" }, [
+                        _vm._m(1)
+                      ])
+                    : _vm._e()
+                ]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("section", { staticClass: "site-section" }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "card card-primary card-outline" }, [
+                  _c("div", { staticClass: "card-body box-profile" }, [
+                    _c("h3", { staticClass: "profile-username text-center" }, [
+                      _vm._v(_vm._s(_vm.user.name))
+                    ]),
+                    _vm._v(" "),
+                    _vm.cursos
+                      ? _c(
+                          "ul",
+                          {
+                            staticClass: "list-group list-group-unbordered mb-3"
+                          },
+                          [
+                            _c("li", { staticClass: "list-group-item" }, [
+                              _c("b", [_vm._v("Cursos")]),
+                              _vm._v(" "),
+                              _c("a", { staticClass: "float-right" }, [
+                                _vm._v(_vm._s(_vm.cursos.length))
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "list-group-item" }, [
+                              _c("b", [_vm._v("Subscripcion")]),
+                              _vm._v(" "),
+                              _vm.user.vip != false
+                                ? _c("a", { staticClass: "float-right" }, [
+                                    _vm._v("VIP")
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.user.vip == false
+                                ? _c("a", { staticClass: "float-right" }, [
+                                    _vm._v("Gratuita")
+                                  ])
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _vm.user.vip != false
+                              ? _c("li", { staticClass: "list-group-item" }, [
+                                  _c("b", [_vm._v("Dias restantes")]),
+                                  _vm._v(" "),
+                                  _vm.user.vip != false
+                                    ? _c("a", { staticClass: "float-right" }, [
+                                        _vm._v(_vm._s(_vm.user.vip))
+                                      ])
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.user.vip == false
+                                    ? _c("a", { staticClass: "float-right" }, [
+                                        _vm._v("0")
+                                      ])
+                                    : _vm._e()
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.user.vip == false
+                              ? _c("li", { staticClass: "list-group-item" }, [
+                                  _c(
+                                    "button",
+                                    { staticClass: "btn btn-xs btn-primary" },
+                                    [_vm._v("Comprar VIP")]
+                                  )
+                                ])
+                              : _vm._e()
+                          ]
+                        )
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card card-primary mt-3" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-body" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-muted" }, [
+                      _vm._v(
+                        "\n                                " +
+                          _vm._s(_vm.user.email) +
+                          "\n                            "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm.cursos
+                  ? _c("div", [
+                      _vm.cursos.length > 0
+                        ? _c("div", { staticClass: "card card-primary mt-3" }, [
+                            _vm._m(4),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "card-body" },
+                              _vm._l(_vm.cursos, function(curso) {
+                                return _c(
+                                  "div",
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        attrs: {
+                                          to: {
+                                            name: "curso",
+                                            params: { id: curso.id }
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("strong", [
+                                          _c("i", {
+                                            staticClass: "fa fa-play mr-1"
+                                          }),
+                                          _vm._v(" " + _vm._s(curso.title))
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("p", { staticClass: "text-muted" }, [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(curso.excerpt) +
+                                              "\n                                        "
+                                          )
+                                        ])
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              })
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  : _vm._e()
+              ])
+            ])
+          ])
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "section",
-        {
-          staticClass: "site-hero overlay",
-          staticStyle: {
-            "background-image": "url(/template/images/big_image_1.jpg)"
-          },
-          attrs: { "data-stellar-background-ratio": "0.5" }
-        },
-        [
-          _c("div", { staticClass: "container" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "row align-items-center site-hero-inner justify-content-center"
-              },
-              [
-                _c("div", { staticClass: "col-md-8 text-center" }, [
-                  _c("div", { staticClass: "mb-5" }, [
-                    _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "lead" }, [
-                      _vm._v(
-                        "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-primary",
-                          attrs: { href: "#" }
-                        },
-                        [_vm._v("Conseguir VIP")]
-                      )
-                    ])
-                  ])
-                ])
-              ]
-            )
-          ])
-        ]
-      ),
+    return _c("p", [
+      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+        _vm._v("Conseguir VIP")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-5" }, [
+      _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
       _vm._v(" "),
-      _c("section", { staticClass: "site-section" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-3" }, [
-              _c("div", { staticClass: "card card-primary card-outline" }, [
-                _c("div", { staticClass: "card-body box-profile" }, [
-                  _c("h3", { staticClass: "profile-username text-center" }, [
-                    _vm._v("Nina Mcintire")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted text-center" }, [
-                    _vm._v("Software Engineer")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "ul",
-                    { staticClass: "list-group list-group-unbordered mb-3" },
-                    [
-                      _c("li", { staticClass: "list-group-item" }, [
-                        _c("b", [_vm._v("Followers")]),
-                        _vm._v(" "),
-                        _c("a", { staticClass: "float-right" }, [
-                          _vm._v("1,322")
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "list-group-item" }, [
-                        _c("b", [_vm._v("Following")]),
-                        _vm._v(" "),
-                        _c("a", { staticClass: "float-right" }, [_vm._v("543")])
-                      ]),
-                      _vm._v(" "),
-                      _c("li", { staticClass: "list-group-item" }, [
-                        _c("b", [_vm._v("Friends")]),
-                        _vm._v(" "),
-                        _c("a", { staticClass: "float-right" }, [
-                          _vm._v("13,287")
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-primary btn-block",
-                      attrs: { href: "#" }
-                    },
-                    [_c("b", [_vm._v("Follow")])]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card card-primary" }, [
-                _c("div", { staticClass: "card-header" }, [
-                  _c("h3", { staticClass: "card-title" }, [_vm._v("About Me")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
-                  _c("strong", [
-                    _c("i", { staticClass: "fa fa-book mr-1" }),
-                    _vm._v(" Education")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted" }, [
-                    _vm._v(
-                      "\n                                B.S. in Computer Science from the University of Tennessee at Knoxville\n                            "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("strong", [
-                    _c("i", { staticClass: "fa fa-map-marker mr-1" }),
-                    _vm._v(" Location")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted" }, [
-                    _vm._v("Malibu, California")
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("strong", [
-                    _c("i", { staticClass: "fa fa-pencil mr-1" }),
-                    _vm._v(" Skills")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted" }, [
-                    _c("span", { staticClass: "tag tag-danger" }, [
-                      _vm._v("UI Design")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tag tag-success" }, [
-                      _vm._v("Coding")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tag tag-info" }, [
-                      _vm._v("Javascript")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tag tag-warning" }, [
-                      _vm._v("PHP")
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "tag tag-primary" }, [
-                      _vm._v("Node.js")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("hr"),
-                  _vm._v(" "),
-                  _c("strong", [
-                    _c("i", { staticClass: "fa fa-file-text-o mr-1" }),
-                    _vm._v(" Notes")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-muted" }, [
-                    _vm._v(
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque."
-                    )
-                  ])
-                ])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-9" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-header p-2" }, [
-                  _c("ul", { staticClass: "nav nav-pills" }, [
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link active",
-                          attrs: { href: "#activity", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Activity")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#timeline", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Timeline")]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "#settings", "data-toggle": "tab" }
-                        },
-                        [_vm._v("Settings")]
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
-                  _c("div", { staticClass: "tab-content" })
-                ])
-              ])
-            ])
-          ])
+      _c("p", { staticClass: "lead" }, [
+        _vm._v(
+          "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+          _vm._v("Conseguir VIP")
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("About Me")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("strong", [
+      _c("i", { staticClass: "fa fa-book mr-1" }),
+      _vm._v(" Email")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Mis Cursos")])
     ])
   }
 ]
@@ -40130,6 +40566,412 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-159d38c3", module.exports)
+  }
+}
+
+/***/ }),
+/* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(156)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(158)
+/* template */
+var __vue_template__ = __webpack_require__(159)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-0a4f7636"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Vip.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0a4f7636", Component.options)
+  } else {
+    hotAPI.reload("data-v-0a4f7636", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(157);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("09a97d71", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0a4f7636\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Vip.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0a4f7636\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Vip.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 158 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_paypal_checkout__ = __webpack_require__(109);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            metodo: '',
+            credentials: {
+                sandbox: 'AY5xySETsU2bI4SkCJsAwdeupNgMVgSDWiI9NeM_-Yy6C9DRtCLm0BYYKk1P0IRcy1kC__VOo5CEUF3n'
+            },
+            myStyle: {
+                label: 'checkout',
+                size: 'responsive',
+                shape: 'pill',
+                color: 'gold'
+            }
+        };
+    },
+
+    computed: {
+        user: function user() {
+            return this.$store.getters.getUser;
+        }
+    },
+    methods: {
+        completado: function completado() {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/comprar/vip').then(function (response) {
+                _this.$router.push({ path: '/' });
+            });
+        }
+    },
+    components: {
+        PayPal: __WEBPACK_IMPORTED_MODULE_1_vue_paypal_checkout__["a" /* default */]
+    }
+});
+
+/***/ }),
+/* 159 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.user
+    ? _c("div", [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("section", { staticClass: "site-section" }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-12" },
+                [
+                  _c("h4", { staticClass: "mb-3" }, [_vm._v("Metodo de pago")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "d-block my-3" }, [
+                    _c("div", { staticClass: "custom-control custom-radio" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.metodo,
+                            expression: "metodo"
+                          }
+                        ],
+                        staticClass: "custom-control-input",
+                        attrs: {
+                          id: "paypal",
+                          name: "paymentMethod",
+                          value: "paypal",
+                          type: "radio",
+                          required: ""
+                        },
+                        domProps: { checked: _vm._q(_vm.metodo, "paypal") },
+                        on: {
+                          change: function($event) {
+                            _vm.metodo = "paypal"
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "custom-control-label",
+                          attrs: { for: "paypal" }
+                        },
+                        [_vm._v("PayPal")]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr", { staticClass: "mb-4" }),
+                  _vm._v(" "),
+                  _vm.metodo == ""
+                    ? _c(
+                        "button",
+                        { staticClass: "btn btn-primary btn-lg btn-block" },
+                        [_vm._v("Finalizar Compra")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.metodo == "paypal"
+                    ? _c("PayPal", {
+                        attrs: {
+                          amount: "10",
+                          currency: "EUR",
+                          "button-style": _vm.myStyle,
+                          client: _vm.credentials,
+                          env: "sandbox"
+                        },
+                        on: { "payment-completed": _vm.completado }
+                      })
+                    : _vm._e()
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "section",
+      {
+        staticClass: "site-hero overlay",
+        staticStyle: {
+          "background-image": "url(/template/images/big_image_1.jpg)"
+        },
+        attrs: { "data-stellar-background-ratio": "0.5" }
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "row align-items-center site-hero-inner justify-content-center"
+            },
+            [
+              _c("div", { staticClass: "col-md-8 text-center" }, [
+                _c("div", { staticClass: "mb-5" }, [
+                  _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "lead" }, [
+                    _vm._v(
+                      "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _c(
+                      "a",
+                      { staticClass: "btn btn-primary", attrs: { href: "#" } },
+                      [_vm._v("Conseguir VIP")]
+                    )
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c(
+        "h4",
+        {
+          staticClass: "d-flex justify-content-between align-items-center mb-3"
+        },
+        [
+          _c("span", { staticClass: "text-muted" }, [_vm._v("Your cart")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "badge badge-secondary badge-pill" }, [
+            _vm._v("1")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("ul", { staticClass: "list-group mb-3" }, [
+        _c(
+          "li",
+          {
+            staticClass:
+              "list-group-item d-flex justify-content-between lh-condensed"
+          },
+          [
+            _c("div", [
+              _c("h6", { staticClass: "my-0" }, [
+                _vm._v("Subscripcion VIP / 1 mes")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "text-muted" }, [_vm._v("10€")])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "list-group-item d-flex justify-content-between" },
+          [
+            _c("span", [_vm._v("Total (EUR)")]),
+            _vm._v(" "),
+            _c("strong", [_vm._v("10€")])
+          ]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0a4f7636", module.exports)
   }
 }
 

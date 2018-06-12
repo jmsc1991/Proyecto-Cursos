@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Data;
 
+use App\Http\Resources\UserResource;
 use App\Models\Admin\Course;
 use App\Models\Admin\User;
 use App\Models\Admin\UserCourse;
@@ -16,14 +17,16 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return $user;
+        if ($user) {
+            return new UserResource($user);
+        }
     }
 
     public function puedeVer($id)
     {
         $user = User::find(Auth::user()->id);
 
-        if ($user->subscription) {
+        if ($user->getVip()) {
             return response()->json(true);
         } else {
             $cursos = UserCourse::where('user_id', $user->id)->get();
@@ -49,12 +52,24 @@ class UserController extends Controller
         if ($video->free) {
             return response()->json(true);
         } else if ($user) {
-            $cursos = UserCourse::where('user_id', $user->id)->get();
-            foreach ($cursos as $curso) {
-                if ($curso->course_id == $video->course_id) {
-                    return response()->json(true);
+            if ($user->getVip()) {
+                return response()->json(true);
+            } else {
+                $cursos = UserCourse::where('user_id', $user->id)->get();
+                foreach ($cursos as $curso) {
+                    if ($curso->course_id == $video->course_id) {
+                        return response()->json(true);
+                    }
                 }
             }
         }
+    }
+
+    public function getCursos()
+    {
+        $user = User::find(Auth::user()->id);
+        $cursos = $user->cursos;
+
+        return $cursos;
     }
 }

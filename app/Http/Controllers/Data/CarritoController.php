@@ -6,6 +6,8 @@ use App\Http\Resources\CarritoResource;
 use App\Models\Admin\Carrito;
 use App\Models\Admin\CarritoCurso;
 use App\Models\Admin\UserCourse;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -78,5 +80,16 @@ class CarritoController extends Controller
         $carrito->estado = 'Finalizado';
         $carrito->save();
 
+    }
+
+    public function comprarVip()
+    {
+        $user = User::find(Auth::user()->id);
+
+        $now = Carbon::now();
+
+        $user->subscription = $now->toDateString();
+
+        $user->update();
     }
 }
