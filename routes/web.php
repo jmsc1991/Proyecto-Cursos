@@ -54,6 +54,10 @@ Route::group([
         Route::delete('users/{users}', ['as'=> 'admin.users.destroy', 'uses' => 'UserController@destroy']);
         Route::get('users/{users}', ['as'=> 'admin.users.show', 'uses' => 'UserController@ show']);
         Route::get('users/{users}/edit', ['as'=> 'admin.users.edit', 'uses' => 'UserController@edit']);
+
+        Route::get('comments',['as' => 'admin.comments.index', 'uses' => 'CommentController@index']);
+
+        Route::delete('comments/{comments}',['as' => 'admin.comments.destroy', 'uses' => 'CommentController@destroy']);
     });
 
 Route::group([

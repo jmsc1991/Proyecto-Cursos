@@ -2,85 +2,41 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin\Comment;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\DataTables\Admin\CommentsDataTable;
+use App\Repositories\Admin\CommentsRepository;
+use Flash;
+use App\Http\Controllers\AppBaseController;
+use Response;
 
-class CommentController extends Controller
+class CommentController extends AppBaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private $commentsRepository;
+
+    public function __construct(CommentsRepository $commentsRepo)
     {
-        //
+        $this->commentsRepository = $commentsRepo;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index(CommentsDataTable $commentsDataTable)
     {
-        //
+        return $commentsDataTable->render('admin.comments.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
+    public function destroy($id)
     {
-        //
-    }
+        $comments = $this->commentsRepository->findWithoutFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
+        if (empty($comments)) {
+            Flash::error('Comments not found');
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Comment $comment)
-    {
-        //
-    }
+            return redirect(route('admin.comments.index'));
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Comment $comment)
-    {
-        //
+        $this->commentsRepository->delete($id);
+
+        Flash::success('Comments deleted successfully.');
+
+        return redirect(route('admin.comments.index'));
     }
 }

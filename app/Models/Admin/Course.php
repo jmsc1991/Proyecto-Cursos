@@ -38,7 +38,8 @@ class Course extends Model
         'category_id',
         'owner',
         'learn',
-        'requirements'
+        'requirements',
+        'photo',
     ];
 
     /**
