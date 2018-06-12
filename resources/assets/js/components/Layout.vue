@@ -66,7 +66,7 @@
                             <li class="nav-item dropdown" v-if="user">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.email }}</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown06">
-                                    <a class="dropdown-item" href="#">Mis Cursos</a>
+                                    <router-link :to="{name: 'perfil'}" class="dropdown-item">Mis Cursos</router-link>
                                     <a class="dropdown-item" href="#" v-on:click.prevent="cerrarSesion">Cerrar Sesion</a>
                                 </div>
                             </li>

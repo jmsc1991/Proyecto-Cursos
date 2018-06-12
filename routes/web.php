@@ -18,6 +18,7 @@ Route::get('/cursos', 'SpaController@index');
 Route::get('/categoria/{any}', 'SpaController@index');
 Route::get('/about', 'SpaController@index');
 Route::get('/carrito', 'SpaController@index');
+Route::get('/perfil', 'SpaController@index');
 
 Auth::routes();
 

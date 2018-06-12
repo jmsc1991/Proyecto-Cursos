@@ -20,6 +20,7 @@ import Cursos from './components/Cursos'
 import Categoria from './components/Categoria'
 import About from './components/About'
 import Carrito from './components/Carrito'
+import Perfil from './components/Perfil'
 
 Vue.component('paginate', Paginate)
 
@@ -63,6 +64,11 @@ const router = new VueRouter({
             path: '/carrito',
             name: 'carrito',
             component: Carrito,
+        },
+        {
+            path: '/perfil',
+            name: 'perfil',
+            component: Perfil,
         },
     ],
 });
