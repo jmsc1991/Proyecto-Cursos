@@ -23,7 +23,7 @@ class CreateCoursesTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->text('learn');
             $table->text('requirements');
-            $table->string('photo');
+            $table->string('photo')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -21985,7 +21985,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -22070,6 +22070,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -22081,6 +22082,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             metodo: '',
             credentials: {
                 sandbox: 'AY5xySETsU2bI4SkCJsAwdeupNgMVgSDWiI9NeM_-Yy6C9DRtCLm0BYYKk1P0IRcy1kC__VOo5CEUF3n'
+            },
+            myStyle: {
+                label: 'checkout',
+                size: 'responsive',
+                shape: 'pill',
+                color: 'gold'
             },
             finalizar: false
         };
@@ -39415,187 +39422,183 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.carrito
-    ? _c(
-        "div",
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("section", { staticClass: "site-section" }, [
-            _c("div", { staticClass: "container" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-12" }, [
-                  _c(
-                    "h4",
-                    {
-                      staticClass:
-                        "d-flex justify-content-between align-items-center mb-3"
-                    },
-                    [
-                      _c("span", { staticClass: "text-muted" }, [
-                        _vm._v("Your cart")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        { staticClass: "badge badge-secondary badge-pill" },
-                        [_vm._v(_vm._s(_vm.carrito.productos.length))]
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "ul",
-                    { staticClass: "list-group mb-3" },
-                    [
-                      _vm._l(_vm.carrito.productos, function(item) {
-                        return _c(
-                          "li",
-                          {
-                            staticClass:
-                              "list-group-item d-flex justify-content-between lh-condensed"
-                          },
-                          [
-                            _c("div", [
-                              _c("h6", { staticClass: "my-0" }, [
-                                _vm._v(_vm._s(item.titulo))
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      _vm.removeItem(item.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "fas fa-trash-alt text-danger"
-                                  })
-                                ]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "text-muted" }, [
-                              _vm._v(_vm._s(item.precio) + "€")
-                            ])
-                          ]
-                        )
-                      }),
-                      _vm._v(" "),
-                      _c(
+    ? _c("div", [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("section", { staticClass: "site-section" }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-12" }, [
+                _c(
+                  "h4",
+                  {
+                    staticClass:
+                      "d-flex justify-content-between align-items-center mb-3"
+                  },
+                  [
+                    _c("span", { staticClass: "text-muted" }, [
+                      _vm._v("Your cart")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "badge badge-secondary badge-pill" },
+                      [_vm._v(_vm._s(_vm.carrito.productos.length))]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "ul",
+                  { staticClass: "list-group mb-3" },
+                  [
+                    _vm._l(_vm.carrito.productos, function(item) {
+                      return _c(
                         "li",
                         {
                           staticClass:
-                            "list-group-item d-flex justify-content-between"
+                            "list-group-item d-flex justify-content-between lh-condensed"
                         },
                         [
-                          _c("span", [_vm._v("Total (EUR)")]),
+                          _c("div", [
+                            _c("h6", { staticClass: "my-0" }, [
+                              _vm._v(_vm._s(item.titulo))
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.removeItem(item.id)
+                                  }
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fas fa-trash-alt text-danger"
+                                })
+                              ]
+                            )
+                          ]),
                           _vm._v(" "),
-                          _c("strong", [
-                            _vm._v(_vm._s(_vm.carrito.total) + "€")
+                          _c("span", { staticClass: "text-muted" }, [
+                            _vm._v(_vm._s(item.precio) + "€")
                           ])
                         ]
                       )
-                    ],
-                    2
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-12" }, [
-                  _c(
-                    "form",
-                    {
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          return _vm.comprar($event)
-                        }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      {
+                        staticClass:
+                          "list-group-item d-flex justify-content-between"
+                      },
+                      [
+                        _c("span", [_vm._v("Total (EUR)")]),
+                        _vm._v(" "),
+                        _c("strong", [_vm._v(_vm._s(_vm.carrito.total) + "€")])
+                      ]
+                    )
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-12" }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.comprar($event)
                       }
-                    },
-                    [
-                      _c("h4", { staticClass: "mb-3" }, [
-                        _vm._v("Metodo de pago")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "d-block my-3" }, [
-                        _c(
-                          "div",
-                          { staticClass: "custom-control custom-radio" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.metodo,
-                                  expression: "metodo"
-                                }
-                              ],
-                              staticClass: "custom-control-input",
-                              attrs: {
-                                id: "paypal",
-                                name: "paymentMethod",
-                                value: "paypal",
-                                type: "radio",
-                                required: ""
-                              },
-                              domProps: {
-                                checked: _vm._q(_vm.metodo, "paypal")
-                              },
-                              on: {
-                                change: function($event) {
-                                  _vm.metodo = "paypal"
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass: "custom-control-label",
-                                attrs: { for: "paypal" }
-                              },
-                              [_vm._v("PayPal")]
-                            )
-                          ]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "mb-4" }),
-                      _vm._v(" "),
+                    }
+                  },
+                  [
+                    _c("h4", { staticClass: "mb-3" }, [
+                      _vm._v("Metodo de pago")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "d-block my-3" }, [
                       _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary btn-lg btn-block",
-                          attrs: { type: "submit" }
-                        },
-                        [_vm._v("Finalizar Compra")]
+                        "div",
+                        { staticClass: "custom-control custom-radio" },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.metodo,
+                                expression: "metodo"
+                              }
+                            ],
+                            staticClass: "custom-control-input",
+                            attrs: {
+                              id: "paypal",
+                              name: "paymentMethod",
+                              value: "paypal",
+                              type: "radio",
+                              required: ""
+                            },
+                            domProps: { checked: _vm._q(_vm.metodo, "paypal") },
+                            on: {
+                              change: function($event) {
+                                _vm.metodo = "paypal"
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass: "custom-control-label",
+                              attrs: { for: "paypal" }
+                            },
+                            [_vm._v("PayPal")]
+                          )
+                        ]
                       )
-                    ]
-                  )
-                ])
+                    ]),
+                    _vm._v(" "),
+                    _c("hr", { staticClass: "mb-4" }),
+                    _vm._v(" "),
+                    _vm.metodo == ""
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary btn-lg btn-block",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("Finalizar Compra")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.metodo == "paypal"
+                      ? _c("PayPal", {
+                          attrs: {
+                            amount: _vm.carrito.total,
+                            currency: "EUR",
+                            "button-style": _vm.myStyle,
+                            client: _vm.credentials,
+                            env: "sandbox"
+                          },
+                          on: { "payment-completed": _vm.completado }
+                        })
+                      : _vm._e()
+                  ],
+                  1
+                )
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _vm.finalizar
-            ? _c("PayPal", {
-                attrs: {
-                  amount: _vm.carrito.total,
-                  currency: "EUR",
-                  client: _vm.credentials,
-                  env: "sandbox"
-                },
-                on: { "payment-completed": _vm.completado }
-              })
-            : _vm._e()
-        ],
-        1
-      )
+          ])
+        ])
+      ])
     : _vm._e()
 }
 var staticRenderFns = [

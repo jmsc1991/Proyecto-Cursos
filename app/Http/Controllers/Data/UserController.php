@@ -51,6 +51,7 @@ class UserController extends Controller
         } else if ($user) {
             $cursos = UserCourse::where('user_id', $user->id)->get();
             foreach ($cursos as $curso) {
+                dd($video->course_id);
                 if ($curso->course_id == $video->course_id) {
                     return response()->json(true);
                 }

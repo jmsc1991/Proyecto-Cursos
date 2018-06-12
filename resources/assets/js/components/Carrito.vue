@@ -50,21 +50,22 @@
                                 </div>
                             </div>
                             <hr class="mb-4">
-                            <button class="btn btn-primary btn-lg btn-block" type="submit">Finalizar Compra</button>
+                            <button v-if="metodo == ''" class="btn btn-primary btn-lg btn-block" type="submit">Finalizar Compra</button>
+                            <PayPal
+                                    v-if="metodo == 'paypal'"
+                                    :amount="carrito.total"
+                                    currency="EUR"
+                                    :button-style="myStyle"
+                                    :client="credentials"
+                                    env="sandbox"
+                                    v-on:payment-completed="completado"
+                            >
+                            </PayPal>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
-        <PayPal
-                v-if="finalizar"
-                :amount="carrito.total"
-                currency="EUR"
-                :client="credentials"
-                env="sandbox"
-                v-on:payment-completed="completado"
-        >
-        </PayPal>
     </div>
 
 </template>
@@ -80,6 +81,12 @@
                 metodo: '',
                 credentials: {
                     sandbox: 'AY5xySETsU2bI4SkCJsAwdeupNgMVgSDWiI9NeM_-Yy6C9DRtCLm0BYYKk1P0IRcy1kC__VOo5CEUF3n',
+                },
+                myStyle: {
+                    label: 'checkout',
+                    size:  'responsive',
+                    shape: 'pill',
+                    color: 'gold'
                 },
                 finalizar: false,
             }

@@ -18,7 +18,7 @@ class CreateVideosTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('url');
-            $table->unsignedInteger('Course_id')->nullable();
+            $table->unsignedInteger('course_id')->nullable();
             $table->string('free')->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();
