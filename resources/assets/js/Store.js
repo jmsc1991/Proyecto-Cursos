@@ -15,6 +15,11 @@ export const store = new Vuex.Store({
         getUser: function (state) {
             axios.get('/data/user').then(response => {
                 state.user = response.data;
+                if (state.user) {
+                    axios.get('/data/carrito').then(response => {
+                        state.carrito = response.data.data;
+                    })
+                }
             });
         },
         cerrarSesion: function (state) {

@@ -16859,6 +16859,11 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         getUser: function getUser(state) {
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/data/user').then(function (response) {
                 state.user = response.data;
+                if (state.user) {
+                    __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get('/data/carrito').then(function (response) {
+                        state.carrito = response.data.data;
+                    });
+                }
             });
         },
         cerrarSesion: function cerrarSesion(state) {
