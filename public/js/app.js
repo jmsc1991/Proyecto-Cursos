@@ -18320,9 +18320,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -18908,316 +18905,328 @@ var render = function() {
           "nav",
           { staticClass: "navbar navbar-expand-md navbar-dark bg-light" },
           [
-            _c("div", { staticClass: "container" }, [
-              _c(
-                "a",
-                { staticClass: "navbar-brand absolute", attrs: { href: "#" } },
-                [_vm._v("Cursos DAW")]
-              ),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "collapse navbar-collapse navbar-light",
-                  attrs: { id: "navbarsExample05" }
-                },
-                [
-                  _c("ul", { staticClass: "navbar-nav mx-auto" }, [
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "home" } }
-                          },
-                          [_vm._v("Inicio")]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      { staticClass: "nav-item dropdown" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "cursos" } }
-                          },
-                          [_vm._v("Cursos Online")]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "nav-item dropdown" }, [
+            _c(
+              "div",
+              { staticClass: "container" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "navbar-brand absolute",
+                    attrs: { to: { name: "home" } }
+                  },
+                  [_vm._v("Cursos DAW")]
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "collapse navbar-collapse navbar-light",
+                    attrs: { id: "navbarsExample05" }
+                  },
+                  [
+                    _c("ul", { staticClass: "navbar-nav mx-auto" }, [
                       _c(
-                        "a",
-                        {
-                          staticClass: "nav-link dropdown-toggle",
-                          attrs: {
-                            href: "#",
-                            id: "dropdown05",
-                            "data-toggle": "dropdown",
-                            "aria-haspopup": "true",
-                            "aria-expanded": "false"
-                          }
-                        },
-                        [_vm._v("Categorias")]
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: { name: "home" } }
+                            },
+                            [_vm._v("Inicio")]
+                          )
+                        ],
+                        1
                       ),
                       _vm._v(" "),
                       _c(
-                        "div",
-                        {
-                          staticClass: "dropdown-menu",
-                          attrs: { "aria-labelledby": "dropdown05" }
-                        },
-                        _vm._l(_vm.categorias, function(categoria) {
-                          return _c(
-                            "div",
-                            [
-                              _vm.categorias
-                                ? _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: {
-                                        to: {
-                                          name: "categoria",
-                                          params: { id: categoria.id }
-                                        }
-                                      }
-                                    },
-                                    [_vm._v(_vm._s(categoria.nombre))]
-                                  )
-                                : _vm._e()
-                            ],
-                            1
+                        "li",
+                        { staticClass: "nav-item dropdown" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: { name: "cursos" } }
+                            },
+                            [_vm._v("Cursos Online")]
                           )
-                        })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("li", { staticClass: "nav-item dropdown" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "nav-link dropdown-toggle",
+                            attrs: {
+                              href: "#",
+                              id: "dropdown05",
+                              "data-toggle": "dropdown",
+                              "aria-haspopup": "true",
+                              "aria-expanded": "false"
+                            }
+                          },
+                          [_vm._v("Categorias")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "dropdown-menu",
+                            attrs: { "aria-labelledby": "dropdown05" }
+                          },
+                          _vm._l(_vm.categorias, function(categoria) {
+                            return _c(
+                              "div",
+                              [
+                                _vm.categorias
+                                  ? _c(
+                                      "router-link",
+                                      {
+                                        staticClass: "dropdown-item",
+                                        attrs: {
+                                          to: {
+                                            name: "categoria",
+                                            params: { id: categoria.id }
+                                          }
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(categoria.nombre))]
+                                    )
+                                  : _vm._e()
+                              ],
+                              1
+                            )
+                          })
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "li",
+                        { staticClass: "nav-item" },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "nav-link",
+                              attrs: { to: { name: "about" } }
+                            },
+                            [_vm._v("Acerca De")]
+                          )
+                        ],
+                        1
                       )
                     ]),
                     _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link",
-                            attrs: { to: { name: "about" } }
-                          },
-                          [_vm._v("Acerca De")]
-                        )
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("ul", { staticClass: "navbar-nav absolute-right" }, [
-                    !_vm.user
-                      ? _c("li", { staticClass: "nav-item" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { href: "/login" }
-                            },
-                            [_vm._v("Entrar")]
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    !_vm.user
-                      ? _c("li", { staticClass: "nav-item" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link",
-                              attrs: { href: "/register" }
-                            },
-                            [_vm._v("Registrarse")]
-                          )
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.user && _vm.carrito
-                      ? _c("li", { staticClass: "nav-item dropdown" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link dropdown-toggle",
-                              attrs: {
-                                id: "dropdown07",
-                                "data-toggle": "dropdown",
-                                "aria-haspopup": "true",
-                                "aria-expanded": "false",
-                                href: "#"
-                              }
-                            },
-                            [
-                              _c("i", { staticClass: "fas fa-shopping-cart" }),
-                              _c("span", { staticClass: "badge badge-light" }, [
-                                _vm._v(_vm._s(_vm.carrito.productos.length))
-                              ])
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _vm.carrito.productos.length > 0
-                            ? _c(
-                                "div",
-                                {
-                                  staticClass: "dropdown-menu",
-                                  attrs: { "aria-labelledby": "dropdown07" }
-                                },
-                                [
-                                  _vm._l(_vm.carrito.productos, function(item) {
-                                    return _c(
-                                      "p",
-                                      { staticClass: "dropdown-item" },
-                                      [
-                                        _c(
-                                          "a",
-                                          {
-                                            attrs: { href: "#" },
-                                            on: {
-                                              click: function($event) {
-                                                $event.preventDefault()
-                                                _vm.removeItem(item.id)
+                    _c("ul", { staticClass: "navbar-nav absolute-right" }, [
+                      !_vm.user
+                        ? _c("li", { staticClass: "nav-item" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "nav-link",
+                                attrs: { href: "/login" }
+                              },
+                              [_vm._v("Entrar")]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.user
+                        ? _c("li", { staticClass: "nav-item" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "nav-link",
+                                attrs: { href: "/register" }
+                              },
+                              [_vm._v("Registrarse")]
+                            )
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.user && _vm.carrito
+                        ? _c("li", { staticClass: "nav-item dropdown" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "nav-link dropdown-toggle",
+                                attrs: {
+                                  id: "dropdown07",
+                                  "data-toggle": "dropdown",
+                                  "aria-haspopup": "true",
+                                  "aria-expanded": "false",
+                                  href: "#"
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fas fa-shopping-cart"
+                                }),
+                                _c(
+                                  "span",
+                                  { staticClass: "badge badge-light" },
+                                  [_vm._v(_vm._s(_vm.carrito.productos.length))]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _vm.carrito.productos.length > 0
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "dropdown-menu",
+                                    attrs: { "aria-labelledby": "dropdown07" }
+                                  },
+                                  [
+                                    _vm._l(_vm.carrito.productos, function(
+                                      item
+                                    ) {
+                                      return _c(
+                                        "p",
+                                        { staticClass: "dropdown-item" },
+                                        [
+                                          _c(
+                                            "a",
+                                            {
+                                              attrs: { href: "#" },
+                                              on: {
+                                                click: function($event) {
+                                                  $event.preventDefault()
+                                                  _vm.removeItem(item.id)
+                                                }
                                               }
-                                            }
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass:
-                                                "fas fa-trash-alt text-danger"
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(
-                                          " -- " +
-                                            _vm._s(item.titulo) +
-                                            " / " +
-                                            _vm._s(item.precio) +
-                                            "€\n                                "
-                                        )
-                                      ]
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass:
+                                                  "fas fa-trash-alt text-danger"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(
+                                            " -- " +
+                                              _vm._s(item.titulo) +
+                                              " / " +
+                                              _vm._s(item.precio) +
+                                              "€\n                                "
+                                          )
+                                        ]
+                                      )
+                                    }),
+                                    _vm._v(" "),
+                                    _c("p", { staticClass: "dropdown-item" }, [
+                                      _vm._v(
+                                        "Total: " +
+                                          _vm._s(_vm.carrito.total) +
+                                          "€"
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass: "dropdown-item",
+                                        attrs: { to: { name: "carrito" } }
+                                      },
+                                      [_vm._v("Ver Carrito")]
                                     )
-                                  }),
-                                  _vm._v(" "),
-                                  _c("p", { staticClass: "dropdown-item" }, [
-                                    _vm._v(
-                                      "Total: " +
-                                        _vm._s(_vm.carrito.total) +
-                                        "€"
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "router-link",
-                                    {
-                                      staticClass: "dropdown-item",
-                                      attrs: { to: { name: "carrito" } }
-                                    },
-                                    [_vm._v("Ver Carrito")]
-                                  )
-                                ],
-                                2
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.carrito.productos.length == 0
-                            ? _c(
-                                "div",
-                                {
-                                  staticClass: "dropdown-menu",
-                                  attrs: { "aria-labelledby": "dropdown07" }
-                                },
-                                [
-                                  _c("p", { staticClass: "dropdown-item" }, [
-                                    _vm._v(
-                                      "\n                                    El carrito esta vacio.\n                                "
-                                    )
-                                  ])
-                                ]
-                              )
-                            : _vm._e()
-                        ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.user
-                      ? _c("li", { staticClass: "nav-item dropdown" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "nav-link dropdown-toggle",
-                              attrs: {
-                                href: "#",
-                                id: "dropdown06",
-                                "data-toggle": "dropdown",
-                                "aria-haspopup": "true",
-                                "aria-expanded": "false"
-                              }
-                            },
-                            [_vm._v(_vm._s(_vm.user.email))]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass: "dropdown-menu",
-                              attrs: { "aria-labelledby": "dropdown06" }
-                            },
-                            [
-                              _c(
-                                "router-link",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { to: { name: "perfil" } }
-                                },
-                                [_vm._v("Mis Cursos")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.cerrarSesion($event)
+                                  ],
+                                  2
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.carrito.productos.length == 0
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass: "dropdown-menu",
+                                    attrs: { "aria-labelledby": "dropdown07" }
+                                  },
+                                  [
+                                    _c("p", { staticClass: "dropdown-item" }, [
+                                      _vm._v(
+                                        "\n                                    El carrito esta vacio.\n                                "
+                                      )
+                                    ])
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.user
+                        ? _c("li", { staticClass: "nav-item dropdown" }, [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "nav-link dropdown-toggle",
+                                attrs: {
+                                  href: "#",
+                                  id: "dropdown06",
+                                  "data-toggle": "dropdown",
+                                  "aria-haspopup": "true",
+                                  "aria-expanded": "false"
+                                }
+                              },
+                              [_vm._v(_vm._s(_vm.user.email))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "dropdown-menu",
+                                attrs: { "aria-labelledby": "dropdown06" }
+                              },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass: "dropdown-item",
+                                    attrs: { to: { name: "perfil" } }
+                                  },
+                                  [_vm._v("Mis Cursos")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "dropdown-item",
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.cerrarSesion($event)
+                                      }
                                     }
-                                  }
-                                },
-                                [_vm._v("Cerrar Sesion")]
-                              )
-                            ],
-                            1
-                          )
-                        ])
-                      : _vm._e()
-                  ])
-                ]
-              )
-            ])
+                                  },
+                                  [_vm._v("Cerrar Sesion")]
+                                )
+                              ],
+                              1
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
           ]
         )
       ]),
       _vm._v(" "),
       _c("fade-transition", [_c("router-view")], 1),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(1)
     ],
     1
   )
@@ -19242,16 +19251,6 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item" }, [
-      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-        _vm._v("Blog")
-      ])
-    ])
   },
   function() {
     var _vm = this

@@ -3,7 +3,7 @@
         <header role="banner">
             <nav class="navbar navbar-expand-md navbar-dark bg-light">
                 <div class="container">
-                    <a class="navbar-brand absolute" href="#">Cursos DAW</a>
+                    <router-link :to="{ name: 'home'}" class="navbar-brand absolute">Cursos DAW</router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -24,9 +24,6 @@
                                         <router-link class="dropdown-item" :to="{name: 'categoria', params: { id: categoria.id } }" v-if="categorias">{{ categoria.nombre }}</router-link>
                                     </div>
                                 </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Blog</a>
                             </li>
                             <li class="nav-item">
                                 <router-link class="nav-link" :to="{name: 'about'}">Acerca De</router-link>
