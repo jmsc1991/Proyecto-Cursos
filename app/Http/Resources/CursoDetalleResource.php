@@ -28,7 +28,8 @@ class CursoDetalleResource extends JsonResource
             'aprenderas' => $this->learn,
             'requisitos' => $this->requirements,
             'autor' => User::find($this->user_id)->name,
-            'videos' => VideoDetalleResource::collection(Video::where('course_id', $this->id)->get())
+            'videos' => VideoDetalleResource::collection(Video::where('course_id', $this->id)->get()),
+            'foto' => $this->photo,
         ];
     }
 }

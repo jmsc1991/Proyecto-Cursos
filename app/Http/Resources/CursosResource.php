@@ -19,7 +19,8 @@ class CursosResource extends JsonResource
             'id' => $this->id,
             'titulo' => $this->title,
             'categoria' => Category::find($this->category_id)->name,
-            'precio' => $this->price
+            'precio' => $this->price,
+            'foto' => $this->photo,
         ];
     }
 }
