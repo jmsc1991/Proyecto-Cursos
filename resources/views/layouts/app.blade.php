@@ -93,11 +93,6 @@
                 <div class="row">
                     <div class="col-md-4">
                         <ul class="list-unstyled">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Teachers</a></li>
-                            <li><a href="#">Courses</a></li>
-                            <li><a href="#">Categories</a></li>
                         </ul>
                     </div>
                 </div>

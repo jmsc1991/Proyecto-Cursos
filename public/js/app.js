@@ -18315,11 +18315,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -19280,27 +19275,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "col-md-6 ml-auto" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-4" }, [
-                  _c("ul", { staticClass: "list-unstyled" }, [
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("About Us")])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("Company")])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("Teachers")])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("Courses")])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", { attrs: { href: "#" } }, [_vm._v("Categories")])
-                    ])
-                  ])
+                  _c("ul", { staticClass: "list-unstyled" })
                 ])
               ])
             ])
