@@ -132,13 +132,11 @@
         watch: {
             '$route' (to, from) {
                 this.$store.commit('getUser');
-                this.$store.commit('getCarrito');
                 this.getCategorias();
             }
         },
         created() {
             this.$store.commit('getUser');
-            this.$store.commit('getCarrito');
             this.getCategorias();
         },
         methods: {

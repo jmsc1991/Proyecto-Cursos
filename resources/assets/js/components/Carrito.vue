@@ -89,14 +89,6 @@
                 finalizar: false,
             }
         },
-        watch: {
-            '$route' (to, from) {
-                this.$store.commit('getCarrito');
-            }
-        },
-        created() {
-            this.$store.commit('getCarrito');
-        },
         computed: {
             carrito() {
                 return this.$store.getters.getCarrito;
