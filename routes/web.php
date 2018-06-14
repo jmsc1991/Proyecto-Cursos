@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'SpaController@index');
+Route::get('/', 'SpaController@index')->name('home');
 Route::get('/curso/{any}', 'SpaController@index');
 Route::get('/curso/video/{any}', 'SpaController@index');
 Route::get('/cursos', 'SpaController@index');
@@ -26,18 +26,20 @@ Auth::routes();
 Route::group([
     'prefix'    =>  'admin',
     'namespace' =>  'Admin',
-    'middleware' => 'auth'],
+    'middleware' => ['auth','role:admin']],
     function () {
         Route::get('/', 'AdminController@index')->name('dashboard');
 
-        Route::get('courses', ['as'=> 'admin.courses.index', 'uses' => 'CourseController@index']);
-        Route::post('courses', ['as'=> 'admin.courses.store', 'uses' => 'CourseController@store']);
-        Route::get('courses/create', ['as'=> 'admin.courses.create', 'uses' => 'CourseController@create']);
-        Route::put('courses/{courses}', ['as'=> 'admin.courses.update', 'uses' => 'CourseController@update']);
-        Route::patch('courses/{courses}', ['as'=> 'admin.courses.update', 'uses' => 'CourseController@update']);
-        Route::delete('courses/{courses}', ['as'=> 'admin.courses.destroy', 'uses' => 'CourseController@destroy']);
-        Route::get('courses/{courses}', ['as'=> 'admin.courses.show', 'uses' => 'CourseController@show']);
-        Route::get('courses/{courses}/edit', ['as'=> 'admin.courses.edit', 'uses' => 'CourseController@edit']);
+        Route::group(['middleware' => 'role:admin|teacher'], function() {
+            Route::get('courses', ['as'=> 'admin.courses.index', 'uses' => 'CourseController@index']);
+            Route::post('courses', ['as'=> 'admin.courses.store', 'uses' => 'CourseController@store']);
+            Route::get('courses/create', ['as'=> 'admin.courses.create', 'uses' => 'CourseController@create']);
+            Route::put('courses/{courses}', ['as'=> 'admin.courses.update', 'uses' => 'CourseController@update']);
+            Route::patch('courses/{courses}', ['as'=> 'admin.courses.update', 'uses' => 'CourseController@update']);
+            Route::delete('courses/{courses}', ['as'=> 'admin.courses.destroy', 'uses' => 'CourseController@destroy']);
+            Route::get('courses/{courses}', ['as'=> 'admin.courses.show', 'uses' => 'CourseController@show']);
+            Route::get('courses/{courses}/edit', ['as'=> 'admin.courses.edit', 'uses' => 'CourseController@edit']);
+        });
 
         Route::get('categories', ['as'=> 'admin.categories.index', 'uses' => 'CategoriesController@index']);
         Route::post('categories', ['as'=> 'admin.categories.store', 'uses' => 'CategoriesController@store']);
@@ -54,12 +56,20 @@ Route::group([
         Route::put('users/{users}', ['as'=> 'admin.users.update', 'uses' => 'UserController@update']);
         Route::patch('users/{users}', ['as'=> 'admin.users.update', 'uses' => 'UserController@update']);
         Route::delete('users/{users}', ['as'=> 'admin.users.destroy', 'uses' => 'UserController@destroy']);
-        Route::get('users/{users}', ['as'=> 'admin.users.show', 'uses' => 'UserController@ show']);
+        Route::get('users/{users}', ['as'=> 'admin.users.show', 'uses' => 'UserController@show']);
         Route::get('users/{users}/edit', ['as'=> 'admin.users.edit', 'uses' => 'UserController@edit']);
 
         Route::get('comments',['as' => 'admin.comments.index', 'uses' => 'CommentController@index']);
 
         Route::delete('comments/{comments}',['as' => 'admin.comments.destroy', 'uses' => 'CommentController@destroy']);
+
+        Route::get('videos',['as' => 'admin.videos.index', 'uses' => 'VideoController@index']);
+        Route::post('videos', ['as'=> 'admin.videos.store', 'uses' => 'VideoController@store']);
+        Route::get('videos/create', ['as'=> 'admin.videos.create', 'uses' => 'VideoController@create']);
+        Route::put('videos/{videos}', ['as'=> 'admin.videos.update', 'uses' => 'VideoController@update']);
+        Route::get('videos/{videos}', ['as'=> 'admin.videos.show', 'uses' => 'VideoController@show']);
+        Route::get('videos/{videos}/edit', ['as'=> 'admin.videos.edit', 'uses' => 'VideoController@edit']);
+        Route::delete('videos/{videos}',['as' => 'admin.videos.destroy', 'uses' => 'VideoController@destroy']);
     });
 
 Route::group([

@@ -71,7 +71,7 @@ class Course extends Model
         'price' => 'required',
         'learn' => 'required',
         'requirements' => 'required',
-        'photo' => 'max:1999',
+        'photo' => 'required|max:1999',
     ];
 
     public function user()

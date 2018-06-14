@@ -6,13 +6,13 @@ use App\Models\Admin\Comment;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
- * Class categoriesRepository
+ * Class commentsRepository
  * @package App\Repositories\Admin
  * @version April 23, 2018, 3:11 pm UTC
  *
- * @method Category findWithoutFail($id, $columns = ['*'])
- * @method Category find($id, $columns = ['*'])
- * @method Category first($columns = ['*'])
+ * @method Comment findWithoutFail($id, $columns = ['*'])
+ * @method Comment find($id, $columns = ['*'])
+ * @method Comment first($columns = ['*'])
  */
 class CommentsRepository extends BaseRepository
 {

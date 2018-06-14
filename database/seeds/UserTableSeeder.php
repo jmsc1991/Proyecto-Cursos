@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Admin\User;
+use App\User;
+use Spatie\Permission\Models\Role;
 
 class UserTableSeeder extends Seeder
 {
@@ -14,12 +15,18 @@ class UserTableSeeder extends Seeder
     {
         User::truncate();
 
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'teacher']);
+        Role::create(['name' => 'student']);
+
         $user = new User();
 
         $user->name = "admin";
         $user->email = "admin@admin.es";
         $user->password = bcrypt("123456");
         $user->save();
+
+        $user->assignRole('admin');
 
         factory(User::class,5)->create();
     }

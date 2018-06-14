@@ -20,15 +20,16 @@ class User extends Model
     use SoftDeletes;
 
     public $table = 'users';
-    
 
+    protected $guard_name = 'web';
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
         'name',
         'email',
-        'subscription'
+        'subscription',
+        'password',
     ];
 
     /**
@@ -77,5 +78,5 @@ class User extends Model
             return false;
         }
     }
-    
+
 }

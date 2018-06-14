@@ -13,3 +13,7 @@
 <li class="{{ Request::is('comments*') ? 'active' : '' }}">
     <a href="{!! route('admin.comments.index') !!}"><i class="fa fa-edit"></i><span>Comentarios</span></a>
 </li>
+
+<li class="{{ Request::is('videos*') ? 'active' : '' }}">
+    <a href="{!! route('admin.videos.index') !!}"><i class="fa fa-edit"></i><span>Videos</span></a>
+</li>

@@ -39,7 +39,12 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        return view('admin.users.create');
+        $rolesUser = \Spatie\Permission\Models\Role::all();
+        $roles = ['0' => 'Ver Roles'];
+        foreach($rolesUser as $rolUser){
+            $roles[$rolUser->id] = $rolUser->name;
+        }
+        return view('admin.users.create',compact('roles'));
     }
 
     /**
@@ -51,6 +56,8 @@ class UserController extends AppBaseController
      */
     public function store(CreateUserRequest $request)
     {
+        $request['password'] = bcrypt("cambiame");
+
         $input = $request->all();
 
         $user = $this->userRepository->create($input);
