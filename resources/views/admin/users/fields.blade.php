@@ -13,7 +13,7 @@
 <!-- Subscription Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('subscription', 'Subscription:') !!}
-    {!! Form::text('subscription', null, ['class' => 'form-control']) !!}
+    {!! Form::date('subscription', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group col-sm-6">

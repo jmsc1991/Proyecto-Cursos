@@ -9,6 +9,7 @@ use Flash;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Admin\Course;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Admin\CreateVideoRequest;
 
 
 class VideoController extends AppBaseController
@@ -52,9 +53,17 @@ class VideoController extends AppBaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateVideoRequest $request)
     {
-        //
+        $input = $request->all();
+
+        $video = $this->videoRepository->create($input);
+
+        $video->save();
+
+        Flash::success('Video saved successfully.');
+
+        return redirect(route('admin.videos.index'));
     }
 
     /**

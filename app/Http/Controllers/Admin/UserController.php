@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\UserDataTable;
-use App\Http\Requests\Admin;
 use App\Http\Requests\Admin\CreateUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Repositories\Admin\UserRepository;
+use Spatie\Permission\Models\Role;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use App\User;
 
 class UserController extends AppBaseController
 {
@@ -39,7 +40,7 @@ class UserController extends AppBaseController
      */
     public function create()
     {
-        $rolesUser = \Spatie\Permission\Models\Role::all();
+        $rolesUser = Role::where("name",'!=',"admin")->get();
         $roles = ['0' => 'Ver Roles'];
         foreach($rolesUser as $rolUser){
             $roles[$rolUser->id] = $rolUser->name;
@@ -57,10 +58,15 @@ class UserController extends AppBaseController
     public function store(CreateUserRequest $request)
     {
         $request['password'] = bcrypt("cambiame");
+        $role = Role::find($request['role_id']);
 
         $input = $request->all();
 
         $user = $this->userRepository->create($input);
+
+        $user = User::where('name',$user->name)->first();
+
+        $user->assignRole($role);
 
         Flash::success('User saved successfully.');
 

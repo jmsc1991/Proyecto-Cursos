@@ -3,9 +3,9 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Admin\Category;
+use App\Models\Admin\Video;
 
-class CreateCategoriesRequest extends FormRequest
+class CreateVideoRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreateCategoriesRequest extends FormRequest
      */
     public function rules()
     {
-        return Category::$rules;
+        return Video::$rules;
     }
 }

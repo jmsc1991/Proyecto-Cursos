@@ -66,7 +66,11 @@ class CourseController extends AppBaseController
 
         $course->user_id = Auth::id();
 
-        $path =  '/storage/'.request()->file('photo')->store('images','public');
+        $extension = request()->file('photo')->getClientOriginalExtension();
+
+        request()->file('photo')->storeAs('public/images',$course->id."-".str_slug($course->title).".".$extension);
+
+        $path = "/storage/images/".$course->id."-".str_slug($course->title).".".$extension;
 
         $course->photo = $path;
         $course->save();
@@ -143,7 +147,10 @@ class CourseController extends AppBaseController
         }
 
         if($request->hasFile('photo')){
-            $path =  '/storage/'.request()->file('photo')->store('images','public');
+            $extension = request()->file('photo')->getClientOriginalExtension();
+            request()->file('photo')->storeAs('public/images',$course->id."-".str_slug($course->title).".".$extension);
+
+            $path = "/storage/images/".$course->id."-".str_slug($course->title).".".$extension;
         }
 
         $course = $this->courseRepository->update($request->all(), $id);
