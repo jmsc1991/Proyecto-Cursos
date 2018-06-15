@@ -111,7 +111,6 @@
             }
         },
         created() {
-            this.$store.commit('getUser');
             this.getVideo();
             this.permiso();
         },
@@ -126,12 +125,17 @@
                 this.newComent = '';
             },
             comentar: function() {
-                axios.post('/data/comentario/' + this.id, {
-                    comentario: this.newComent,
-                }).then(response => {
-                    this.getVideo();
-                    this.cancelar();
-                })
+                if (this.user) {
+                    axios.post('/data/comentario/' + this.id, {
+                        comentario: this.newComent,
+                    }).then(response => {
+                        this.getVideo();
+                        this.cancelar();
+                    })
+                } else {
+                    toastr.error('Solo pueden escribir comentarios los usuarios registrados.')
+                }
+
             },
             permiso: function() {
                 axios.get('/data/user/puede/ver/video/' + this.id).then(response => {
@@ -139,6 +143,11 @@
                 });
 
             },
+        },
+        computed: {
+            user () {
+                return this.$store.getters.getUser;
+            }
         }
     }
 </script>

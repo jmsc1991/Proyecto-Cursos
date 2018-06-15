@@ -72,7 +72,12 @@
         <div class="row align-items-center site-hero-inner justify-content-center">
             <div class="col-md-8 text-center">
                 <div class="mb-5">
-                    <h1>Login</h1>
+                    @if(Request::path() == 'login')
+                        <h1>Login</h1>
+                    @endif
+                        @if(Request::path() == 'register')
+                            <h1>Registro</h1>
+                        @endif
                 </div>
             </div>
         </div>

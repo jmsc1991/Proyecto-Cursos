@@ -92,7 +92,6 @@
         },
         created() {
             this.getCurso();
-            this.$store.commit('getUser');
             this.permiso();
         },
         methods: {

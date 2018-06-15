@@ -4,8 +4,6 @@ import Paginate from 'vuejs-paginate'
 import Vuex from 'vuex'
 import { store } from './Store'
 
-
-
 Vue.use(Vuex)
 
 Vue.use(VueRouter);

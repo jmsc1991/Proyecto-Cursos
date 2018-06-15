@@ -19495,24 +19495,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('data/cursos/top').then(function (response) {
                 _this.cursos = response.data.data;
-            }).catch(function (error) {});
+            });
         },
         add: function add(id) {
             var _this2 = this;
 
-            if (this.user) {
-                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
-                    console.log(response.data);
-                    if (response.data == 'ok') {
-                        _this2.$store.commit('getCarrito');
-                        toastr.success('Curso añadido al carrito!');
-                    } else if (response.data == 'repetido') {
-                        toastr.error('Este curso ya se encuentra en tu carrito.');
-                    }
-                });
-            } else {
-                toastr.error('Tienes que estar registrado para poder comprar cursos.');
-            }
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
+                console.log(response.data);
+                if (response.data == 'ok') {
+                    _this2.$store.commit('getCarrito');
+                    toastr.success('Curso añadido al carrito!');
+                } else if (response.data == 'repetido') {
+                    toastr.error('Este curso ya se encuentra en tu carrito.');
+                }
+            });
         }
     },
     computed: {
@@ -19939,7 +19935,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -20046,7 +20042,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         this.getCurso();
-        this.$store.commit('getUser');
         this.permiso();
     },
 
@@ -20438,7 +20433,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -20564,7 +20559,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function created() {
-        this.$store.commit('getUser');
         this.getVideo();
         this.permiso();
     },
@@ -20584,12 +20578,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         comentar: function comentar() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/data/comentario/' + this.id, {
-                comentario: this.newComent
-            }).then(function (response) {
-                _this2.getVideo();
-                _this2.cancelar();
-            });
+            if (this.user) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/data/comentario/' + this.id, {
+                    comentario: this.newComent
+                }).then(function (response) {
+                    _this2.getVideo();
+                    _this2.cancelar();
+                });
+            } else {
+                toastr.error('Solo pueden escribir comentarios los usuarios registrados.');
+            }
         },
         permiso: function permiso() {
             var _this3 = this;
@@ -20597,6 +20595,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/user/puede/ver/video/' + this.id).then(function (response) {
                 _this3.puedeVer = response.data;
             });
+        }
+    },
+    computed: {
+        user: function user() {
+            return this.$store.getters.getUser;
         }
     }
 });
@@ -21071,19 +21074,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         add: function add(id) {
             var _this3 = this;
 
-            if (this.user) {
-                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
-                    console.log(response.data);
-                    if (response.data == 'ok') {
-                        _this3.$store.commit('getCarrito');
-                        toastr.success('Curso añadido al carrito!');
-                    } else if (response.data == 'repetido') {
-                        toastr.error('Este curso ya se encuentra en tu carrito.');
-                    }
-                });
-            } else {
-                toastr.error('Tienes que estar registrado para poder comprar cursos.');
-            }
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/data/carrito/add/' + id).then(function (response) {
+                if (response.data == 'ok') {
+                    _this3.$store.commit('getCarrito');
+                    toastr.success('Curso añadido al carrito!');
+                } else if (response.data == 'repetido') {
+                    toastr.error('Este curso ya se encuentra en tu carrito.');
+                }
+            });
         }
     },
     computed: {

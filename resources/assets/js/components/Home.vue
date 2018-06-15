@@ -120,24 +120,18 @@
             getCursos: function() {
                 axios.get('data/cursos/top').then(response => {
                     this.cursos = response.data.data;
-                }).catch(error => {
-
                 })
             },
             add: function(id) {
-                if (this.user) {
-                    axios.get('/data/carrito/add/' + id).then(response => {
-                        console.log(response.data);
-                        if (response.data == 'ok') {
-                            this.$store.commit('getCarrito');
-                            toastr.success('Curso añadido al carrito!')
-                        } else if (response.data == 'repetido') {
-                            toastr.error('Este curso ya se encuentra en tu carrito.')
-                        }
-                    })
-                } else {
-                    toastr.error('Tienes que estar registrado para poder comprar cursos.')
-                }
+                axios.get('/data/carrito/add/' + id).then(response => {
+                    console.log(response.data);
+                    if (response.data == 'ok') {
+                        this.$store.commit('getCarrito');
+                        toastr.success('Curso añadido al carrito!')
+                    } else if (response.data == 'repetido') {
+                        toastr.error('Este curso ya se encuentra en tu carrito.')
+                    }
+                })
             }
         },
         computed: {
