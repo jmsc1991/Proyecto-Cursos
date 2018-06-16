@@ -18,7 +18,13 @@ class CommentsDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'admin.comments.datatables_actions');
+        return $dataTable->editColumn('content', function($comment){
+            return substr($comment->content, 0, 70);
+        })->addColumn('video', function($comment){
+            return $comment->video->title;
+        })->addColumn('user', function($comment){
+            return $comment->user->name;
+        })->addColumn('action', 'admin.comments.datatables_actions');
     }
 
     /**
@@ -65,9 +71,8 @@ class CommentsDataTable extends DataTable
     {
         return [
             'content',
-            'video_id',
-            'user_id',
-            'parent_id',
+            'video',
+            'user',
         ];
     }
 

@@ -19,7 +19,7 @@ class RoleMiddleware
             : explode('|', $role);
 
         if (! Auth::user()->hasAnyRole($roles)) {
-            throw UnauthorizedException::forRoles($roles);
+            return redirect()->route('home');
         }
 
         return $next($request);

@@ -18,6 +18,7 @@ class Video extends Model
         'description',
         'url',
         'course_id',
+        'free',
     ];
 
     protected $casts = [
@@ -34,11 +35,6 @@ class Video extends Model
         'course_id' => 'required',
     ];
 
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
-
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -46,6 +42,6 @@ class Video extends Model
 
     public function course()
     {
-        return $this->belogsTo(Course::class);
+        return $this->belongsTo(Course::class);
     }
 }

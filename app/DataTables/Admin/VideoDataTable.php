@@ -18,7 +18,9 @@ class VideoDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'admin.videos.datatables_actions');
+        return $dataTable->addColumn('course', function($video){
+            return $video->course->title;
+        })->addColumn('action', 'admin.videos.datatables_actions');
     }
 
     /**
@@ -67,7 +69,7 @@ class VideoDataTable extends DataTable
             'title',
             'description',
             'url',
-            'course_id',
+            'course',
         ];
     }
 

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DataTables\Admin\VideoDataTable;
-use App\Models\Admin\Video;
 use App\Repositories\Admin\VideoRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Admin\Course;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\CreateVideoRequest;
+use App\Http\Requests\Admin\UpdateVideoRequest;
 
 
 class VideoController extends AppBaseController
@@ -55,6 +55,8 @@ class VideoController extends AppBaseController
      */
     public function store(CreateVideoRequest $request)
     {
+        $request['url'] = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","https://www.youtube-nocookie.com/embed/$1",$request['url']);
+
         $input = $request->all();
 
         $video = $this->videoRepository->create($input);
@@ -72,9 +74,17 @@ class VideoController extends AppBaseController
      * @param  \App\Models\Admin\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function show(Video $video)
+    public function show($id)
     {
-        //
+        $video = $this->videoRepository->findWithoutFail($id);
+
+        if (empty($video)) {
+            Flash::error('Video not found');
+
+            return redirect(route('admin.videos.index'));
+        }
+
+        return view('admin.videos.show')->with('video',$video);
     }
 
     /**
@@ -83,9 +93,32 @@ class VideoController extends AppBaseController
      * @param  \App\Models\Admin\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function edit(Video $video)
+    public function edit($id)
     {
-        //
+
+        $video = $this->videoRepository->findWithoutFail($id);
+
+        if (empty($video)) {
+            Flash::error('Video not found');
+
+            return redirect(route('admin.videos.index'));
+        }
+
+        $video['url'] = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube-nocookie.com\/embed\/([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","https://www.youtube.com/watch\?v=$1",$video['url']);
+
+        if (Auth::user()->hasRole('teacher')){
+            $teacher = Auth::user()->id;
+            $cursos = Course::where('id = '.$teacher);
+        }
+
+        $cursos = Course::all();
+
+        $courses = ['0' => 'Ver Cursos'];
+        foreach ($cursos as $curso) {
+            $courses[$curso->id] = $curso->title;
+        }
+
+        return view('admin.videos.edit',compact('video','courses'));
     }
 
     /**
@@ -95,9 +128,23 @@ class VideoController extends AppBaseController
      * @param  \App\Models\Admin\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Video $video)
+    public function update($id, UpdateVideoRequest $request)
     {
-        //
+        $request['url'] = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","https://www.youtube-nocookie.com/embed/$1",$request['url']);
+
+        $video = $this->videoRepository->findWithoutFail($id);
+
+        if (empty($video)) {
+            Flash::error('Video not found');
+
+            return redirect(route('admin.videos.index'));
+        }
+
+        $video = $this->videoRepository->update($request->all(),$id);
+
+        Flash::success('Video updated successfully.');
+
+        return redirect(route('admin.videos.index'));
     }
 
     /**
@@ -106,8 +153,20 @@ class VideoController extends AppBaseController
      * @param  \App\Models\Admin\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Video $video)
+    public function destroy($id)
     {
-        //
+        $video = $this->videoRepository->findWithoutFail($id);
+
+        if (empty($video)) {
+            Flash::error('Video not found');
+
+            return redirect(route('admin.videos.index'));
+        }
+
+        $this->videoRepository->delete($id);
+
+        Flash::success('Video deleted successfully.');
+
+        return redirect(route('admin.videos.index'));
     }
 }

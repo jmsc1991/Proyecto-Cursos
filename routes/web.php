@@ -41,7 +41,7 @@ Route::group([
             Route::get('users/{users}/edit', ['as'=> 'admin.users.edit', 'uses' => 'UserController@edit']);
 
             Route::get('comments',['as' => 'admin.comments.index', 'uses' => 'CommentController@index']);
-
+            Route::get('comments/{comments}', ['as'=> 'admin.comments.show', 'uses' => 'CommentController@show']);
             Route::delete('comments/{comments}',['as' => 'admin.comments.destroy', 'uses' => 'CommentController@destroy']);
 
             Route::get('categories', ['as'=> 'admin.categories.index', 'uses' => 'CategoriesController@index']);
@@ -67,6 +67,7 @@ Route::group([
         Route::post('videos', ['as'=> 'admin.videos.store', 'uses' => 'VideoController@store']);
         Route::get('videos/create', ['as'=> 'admin.videos.create', 'uses' => 'VideoController@create']);
         Route::put('videos/{videos}', ['as'=> 'admin.videos.update', 'uses' => 'VideoController@update']);
+        Route::patch('videos/{videos}', ['as'=> 'admin.videos.update', 'uses' => 'VideoController@update']);
         Route::get('videos/{videos}', ['as'=> 'admin.videos.show', 'uses' => 'VideoController@show']);
         Route::get('videos/{videos}/edit', ['as'=> 'admin.videos.edit', 'uses' => 'VideoController@edit']);
         Route::delete('videos/{videos}',['as' => 'admin.videos.destroy', 'uses' => 'VideoController@destroy']);

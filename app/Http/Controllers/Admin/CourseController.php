@@ -62,15 +62,19 @@ class CourseController extends AppBaseController
     {
         $input = $request->all();
 
+        $path = '';
+
         $course = $this->courseRepository->create($input);
 
         $course->user_id = Auth::id();
 
-        $extension = request()->file('photo')->getClientOriginalExtension();
+        if($request->hasFile('photo')) {
+            $extension = request()->file('photo')->getClientOriginalExtension();
 
-        request()->file('photo')->storeAs('public/images',$course->id."-".str_slug($course->title).".".$extension);
+            request()->file('photo')->storeAs('public/images', $course->id . "-" . str_slug($course->title) . "." . $extension);
 
-        $path = "/storage/images/".$course->id."-".str_slug($course->title).".".$extension;
+            $path = "/storage/images/" . $course->id . "-" . str_slug($course->title) . "." . $extension;
+        }
 
         $course->photo = $path;
         $course->save();

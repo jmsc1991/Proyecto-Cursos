@@ -30,6 +30,6 @@ class Tag extends Model
 
     public function videos()
     {
-        $this->belongsToMany(Video::class);
+        return $this->belongsToMany(Video::class);
     }
 }

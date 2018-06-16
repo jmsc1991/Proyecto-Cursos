@@ -44,13 +44,8 @@ class Comment extends Model
         return $this->belongsTo(Video::class);
     }
 
-    public function parentComment()
-    {
-        return $this->hasOne('comment','parent_id');
-    }
-
     public function comments()
     {
-        return $this->hasMany('comment','parent_id');
+        return $this->hasMany('App\Models\Admin\Comment','parent_id','id');
     }
 }

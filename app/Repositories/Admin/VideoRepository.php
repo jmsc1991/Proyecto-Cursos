@@ -24,6 +24,7 @@ class VideoRepository extends BaseRepository
         'description',
         'url',
         'course_id',
+        'free',
     ];
 
     /**
