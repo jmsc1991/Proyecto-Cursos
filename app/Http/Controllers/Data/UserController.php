@@ -42,12 +42,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        if ($user) {
-            $user = User::find($user->id);
-        }
-
         $video = Video::find($id);
-
 
         if ($video->free) {
             return response()->json(true);

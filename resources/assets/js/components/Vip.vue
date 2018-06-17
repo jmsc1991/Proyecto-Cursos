@@ -7,7 +7,7 @@
                         <div class="mb-5">
                             <h1>Cursos y Video Tutoriales Online</h1>
                             <p class="lead">Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada</p>
-                            <p><a href="#" class="btn btn-primary">Conseguir VIP</a></p>
+                            <p><router-link :to="{ name: 'vip' }" class="btn btn-primary">Conseguir VIP</router-link></p>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
                         <div class="mb-5" v-if="user.vip == false">
                             <h1>Cursos y Video Tutoriales Online</h1>
                             <p class="lead">Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada</p>
-                            <p><a href="#" class="btn btn-primary">Conseguir VIP</a></p>
+                            <p><router-link :to="{ name: 'vip' }" class="btn btn-primary">Conseguir VIP</router-link></p>
                         </div>
                         <div class="mb-5" v-if="user.vip != false">
                             <h1>Cursos y Video Tutoriales Online</h1>
@@ -19,9 +19,10 @@
                         <div class="mb-5">
                             <h1>Cursos y Video Tutoriales Online</h1>
                             <p class="lead">Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada</p>
-                            <p><a href="#" class="btn btn-primary">Conseguir VIP</a></p>
+                            <p><router-link :to="{ name: 'vip' }" class="btn btn-primary">Conseguir VIP</router-link></p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -41,7 +42,7 @@
                                         <b>Cursos</b> <a class="float-right">{{ cursos.length }}</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Subscripcion</b>
+                                        <b>Suscripcion</b>
                                         <a class="float-right" v-if="user.vip != false">VIP</a>
                                         <a class="float-right" v-if="user.vip == false">Gratuita</a>
                                     </li>
@@ -51,7 +52,7 @@
                                         <a class="float-right" v-if="user.vip == false">0</a>
                                     </li>
                                     <li class="list-group-item" v-if="user.vip == false">
-                                        <button class="btn btn-xs btn-primary">Comprar VIP</button>
+                                        <router-link :to="{ name: 'vip' }" class="btn btn-primary">Conseguir VIP</router-link>
                                     </li>
                                 </ul>
                             </div>

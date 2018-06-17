@@ -30,14 +30,14 @@
             <div class="container">
                 <div class="row justify-content-center mb-5">
                     <div class="col-md-7 text-center">
-                        <h2 id="cursos">Nuestos Cursos</h2>
-                        <p class="lead">Aqui encontraras una lista con todos nuestros cursos.</p>
+                        <h2 id="cursos">Cursos</h2>
+                        <p class="lead"></p>
                     </div>
                 </div>
                 <div class="row top-course mb-3">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12" v-for="curso in cursos">
-                        <router-link :to="{ name: 'curso', params: { id: curso.id } }" class="course mb-3">
-                            <img :src="curso.foto" alt="Image placeholder" v-if="curso.foto">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-5" v-for="curso in cursos">
+                        <router-link :to="{ name: 'curso', params: { id: curso.id } }" class="course">
+                            <img :src="curso.foto" alt="Image placeholder" v-if="curso.foto" class="img-fluid">
                             <img src="/template/images/img.png" alt="Image placeholder" v-if="!curso.foto">
                             <h2>{{ curso.titulo }}</h2>
                             <p>{{ curso.categoria }}</p>

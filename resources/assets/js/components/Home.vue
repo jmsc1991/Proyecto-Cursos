@@ -79,7 +79,7 @@
                 <div class="row top-course">
                     <div class="col-lg-2 col-md-4 col-sm-6 col-12" v-for="curso in cursos">
                         <router-link :to="{ name: 'curso', params: { id: curso.id } }" class="course">
-                            <img :src="curso.foto" alt="Image placeholder" v-if="curso.foto">
+                            <img :src="curso.foto" alt="Image placeholder" v-if="curso.foto" class="img-fluid">
                             <img src="template/images/img.png" alt="Image placeholder" v-if="!curso.foto">
                             <h2>{{ curso.titulo }}</h2>
                             <p>{{ curso.categoria }}</p>

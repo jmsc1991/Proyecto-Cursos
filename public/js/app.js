@@ -19641,6 +19641,7 @@ var render = function() {
                   [
                     curso.foto
                       ? _c("img", {
+                          staticClass: "img-fluid",
                           attrs: { src: curso.foto, alt: "Image placeholder" }
                         })
                       : _vm._e(),
@@ -21237,23 +21238,25 @@ var render = function() {
           _vm._l(_vm.cursos, function(curso) {
             return _c(
               "div",
-              { staticClass: "col-lg-4 col-md-6 col-sm-6 col-12" },
+              { staticClass: "col-lg-4 col-md-6 col-sm-6 col-12 mb-5" },
               [
                 _c(
                   "router-link",
                   {
-                    staticClass: "course mb-3",
+                    staticClass: "course",
                     attrs: { to: { name: "curso", params: { id: curso.id } } }
                   },
                   [
                     curso.foto
                       ? _c("img", {
+                          staticClass: "img-fluid",
                           attrs: { src: curso.foto, alt: "Image placeholder" }
                         })
                       : _vm._e(),
                     _vm._v(" "),
                     !curso.foto
                       ? _c("img", {
+                          staticClass: "img-fluid",
                           attrs: {
                             src: "template/images/img.png",
                             alt: "Image placeholder"
@@ -21725,17 +21728,18 @@ var render = function() {
           _vm._l(_vm.cursos, function(curso) {
             return _c(
               "div",
-              { staticClass: "col-lg-4 col-md-6 col-sm-6 col-12" },
+              { staticClass: "col-lg-4 col-md-6 col-sm-6 col-12 mb-5" },
               [
                 _c(
                   "router-link",
                   {
-                    staticClass: "course mb-3",
+                    staticClass: "course",
                     attrs: { to: { name: "curso", params: { id: curso.id } } }
                   },
                   [
                     curso.foto
                       ? _c("img", {
+                          staticClass: "img-fluid",
                           attrs: { src: curso.foto, alt: "Image placeholder" }
                         })
                       : _vm._e(),
@@ -21877,11 +21881,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row justify-content-center mb-5" }, [
       _c("div", { staticClass: "col-md-7 text-center" }, [
-        _c("h2", { attrs: { id: "cursos" } }, [_vm._v("Nuestos Cursos")]),
+        _c("h2", { attrs: { id: "cursos" } }, [_vm._v("Cursos")]),
         _vm._v(" "),
-        _c("p", { staticClass: "lead" }, [
-          _vm._v("Aqui encontraras una lista con todos nuestros cursos.")
-        ])
+        _c("p", { staticClass: "lead" })
       ])
     ])
   }
@@ -40079,7 +40081,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -40092,6 +40094,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
 //
 //
 //
@@ -40270,7 +40273,20 @@ var render = function() {
                                 )
                               ]),
                               _vm._v(" "),
-                              _vm._m(0)
+                              _c(
+                                "p",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-primary",
+                                      attrs: { to: { name: "vip" } }
+                                    },
+                                    [_vm._v("Conseguir VIP")]
+                                  )
+                                ],
+                                1
+                              )
                             ])
                           : _vm._e(),
                         _vm._v(" "),
@@ -40307,7 +40323,32 @@ var render = function() {
                   _vm._v(" "),
                   !_vm.user
                     ? _c("div", { staticClass: "col-md-8 text-center" }, [
-                        _vm._m(1)
+                        _c("div", { staticClass: "mb-5" }, [
+                          _c("h1", [
+                            _vm._v("Cursos y Video Tutoriales Online")
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "lead" }, [
+                            _vm._v(
+                              "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "btn btn-primary",
+                                  attrs: { to: { name: "vip" } }
+                                },
+                                [_vm._v("Conseguir VIP")]
+                              )
+                            ],
+                            1
+                          )
+                        ])
                       ])
                     : _vm._e()
                 ]
@@ -40342,7 +40383,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("li", { staticClass: "list-group-item" }, [
-                              _c("b", [_vm._v("Subscripcion")]),
+                              _c("b", [_vm._v("Suscripcion")]),
                               _vm._v(" "),
                               _vm.user.vip != false
                                 ? _c("a", { staticClass: "float-right" }, [
@@ -40376,13 +40417,21 @@ var render = function() {
                               : _vm._e(),
                             _vm._v(" "),
                             _vm.user.vip == false
-                              ? _c("li", { staticClass: "list-group-item" }, [
-                                  _c(
-                                    "button",
-                                    { staticClass: "btn btn-xs btn-primary" },
-                                    [_vm._v("Comprar VIP")]
-                                  )
-                                ])
+                              ? _c(
+                                  "li",
+                                  { staticClass: "list-group-item" },
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass: "btn btn-primary",
+                                        attrs: { to: { name: "vip" } }
+                                      },
+                                      [_vm._v("Conseguir VIP")]
+                                    )
+                                  ],
+                                  1
+                                )
                               : _vm._e()
                           ]
                         )
@@ -40391,10 +40440,10 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card card-primary mt-3" }, [
-                  _vm._m(2),
+                  _vm._m(0),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _vm._m(3),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c("p", { staticClass: "text-muted" }, [
                       _vm._v(
@@ -40410,7 +40459,7 @@ var render = function() {
                   ? _c("div", [
                       _vm.cursos.length > 0
                         ? _c("div", { staticClass: "card card-primary mt-3" }, [
-                            _vm._m(4),
+                            _vm._m(2),
                             _vm._v(" "),
                             _c(
                               "div",
@@ -40463,36 +40512,6 @@ var render = function() {
     : _vm._e()
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-        _vm._v("Conseguir VIP")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-5" }, [
-      _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "lead" }, [
-        _vm._v(
-          "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-          _vm._v("Conseguir VIP")
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -40745,12 +40764,60 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.user
     ? _c("div", [
-        _vm._m(0),
+        _c(
+          "section",
+          {
+            staticClass: "site-hero overlay",
+            staticStyle: {
+              "background-image": "url(/template/images/big_image_1.jpg)"
+            },
+            attrs: { "data-stellar-background-ratio": "0.5" }
+          },
+          [
+            _c("div", { staticClass: "container" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "row align-items-center site-hero-inner justify-content-center"
+                },
+                [
+                  _c("div", { staticClass: "col-md-8 text-center" }, [
+                    _c("div", { staticClass: "mb-5" }, [
+                      _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "lead" }, [
+                        _vm._v(
+                          "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "btn btn-primary",
+                              attrs: { to: { name: "vip" } }
+                            },
+                            [_vm._v("Conseguir VIP")]
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ])
+          ]
+        ),
         _vm._v(" "),
         _c("section", { staticClass: "site-section" }, [
           _c("div", { staticClass: "container" }, [
             _c("div", { staticClass: "row" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "div",
@@ -40828,53 +40895,6 @@ var render = function() {
     : _vm._e()
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "section",
-      {
-        staticClass: "site-hero overlay",
-        staticStyle: {
-          "background-image": "url(/template/images/big_image_1.jpg)"
-        },
-        attrs: { "data-stellar-background-ratio": "0.5" }
-      },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c(
-            "div",
-            {
-              staticClass:
-                "row align-items-center site-hero-inner justify-content-center"
-            },
-            [
-              _c("div", { staticClass: "col-md-8 text-center" }, [
-                _c("div", { staticClass: "mb-5" }, [
-                  _c("h1", [_vm._v("Cursos y Video Tutoriales Online")]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "lead" }, [
-                    _vm._v(
-                      "Hazte miembro VIP para tener acceso a todos nuestros cursos y videos de forma ilimitada"
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c(
-                      "a",
-                      { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                      [_vm._v("Conseguir VIP")]
-                    )
-                  ])
-                ])
-              ])
-            ]
-          )
-        ])
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
