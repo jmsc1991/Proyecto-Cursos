@@ -16,9 +16,10 @@
     {!! Form::date('subscription', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
 </div>
 
+<!-- Role Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('role_id', 'Rol:') !!}
-    {!! Form::select('role_id', $roles, old('$roles',isset($user) ? $user->role_id : null), ['class' => 'form-control']) !!}
+    {!! Form::label('role_id', 'Role:') !!}
+    {!! Form::select('role_id', $roles, old('$roles',isset($user) ? $user->roles[0]->id : null), ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

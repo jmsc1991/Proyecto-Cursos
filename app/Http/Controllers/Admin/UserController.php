@@ -64,7 +64,7 @@ class UserController extends AppBaseController
 
         $user = $this->userRepository->create($input);
 
-        $user = User::where('name',$user->name)->first();
+        $user = User::where('id',$user->id)->first();
 
         $user->assignRole($role);
 
@@ -102,15 +102,20 @@ class UserController extends AppBaseController
      */
     public function edit($id)
     {
-        $user = $this->userRepository->findWithoutFail($id);
+        $user = User::find($id);
 
         if (empty($user)) {
             Flash::error('User not found');
 
             return redirect(route('admin.users.index'));
         }
+        $rolesUser = Role::where("name",'!=',"admin")->get();
+        $roles = ['0' => 'Ver Roles'];
+        foreach($rolesUser as $rolUser){
+            $roles[$rolUser->id] = $rolUser->name;
+        }
 
-        return view('admin.users.edit')->with('user', $user);
+        return view('admin.users.edit',compact('user','roles'));
     }
 
     /**
@@ -130,8 +135,13 @@ class UserController extends AppBaseController
 
             return redirect(route('admin.users.index'));
         }
+        $role = Role::find($request['role_id']);
 
         $user = $this->userRepository->update($request->all(), $id);
+
+        $user = User::where('id',$user->id)->first();
+
+        $user->assignRole($role);
 
         Flash::success('User updated successfully.');
 

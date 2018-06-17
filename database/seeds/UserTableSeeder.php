@@ -20,6 +20,8 @@ class UserTableSeeder extends Seeder
         Role::create(['name' => 'student']);
 
         $user = new User();
+        $user1 = new User();
+        $user2 = new User();
 
         $user->name = "admin";
         $user->email = "admin@admin.es";
@@ -27,8 +29,24 @@ class UserTableSeeder extends Seeder
         $user->subscription = 1;
         $user->save();
 
-        $user->assignRole('admin');
+        $user1->name = "profe";
+        $user1->email = "profe@profe.es";
+        $user1->password = bcrypt("123456");
+        $user1->subscription = 1;
+        $user1->save();
 
-        factory(User::class,5)->create();
+        $user2->name = "alumno";
+        $user2->email = "alumno@alumno.es";
+        $user2->password = bcrypt("123456");
+        $user2->subscription = 1;
+        $user2->save();
+
+        $user->assignRole('admin');
+        $user1->assignRole('teacher');
+        $user2->assignRole('student');
+
+        factory(User::class,5)->create()->each(function ($u) {
+            $u->assignRole('student');
+        });
     }
 }
