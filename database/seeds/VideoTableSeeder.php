@@ -14,6 +14,6 @@ class VideoTableSeeder extends Seeder
     {
         Video::truncate();
 
-        factory(Video::class,50)->create();
+        factory(Video::class,200)->create();
     }
 }
