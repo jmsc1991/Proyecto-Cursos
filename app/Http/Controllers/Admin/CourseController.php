@@ -115,6 +115,12 @@ class CourseController extends AppBaseController
     {
         $course = $this->courseRepository->findWithoutFail($id);
 
+        if (Auth::user()->hasRole('admin') || Auth::user()->id == $course->user_id) {
+
+        } else {
+            return redirect(route('admin.courses.index'));
+        }
+
         if (empty($course)) {
             Flash::error('Course not found');
 
@@ -176,6 +182,13 @@ class CourseController extends AppBaseController
     public function destroy($id)
     {
         $course = $this->courseRepository->findWithoutFail($id);
+
+        if (Auth::user()->hasRole('admin') || Auth::user()->id == $course->user_id) {
+
+        } else {
+            return redirect(route('admin.courses.index'));
+        }
+
 
         if (empty($course)) {
             Flash::error('Course not found');

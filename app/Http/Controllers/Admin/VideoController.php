@@ -96,8 +96,13 @@ class VideoController extends AppBaseController
      */
     public function edit($id)
     {
-
         $video = $this->videoRepository->findWithoutFail($id);
+
+        if (Auth::user()->hasRole('admin') || Auth::user()->id == $video->course->user_id) {
+
+        } else {
+            return redirect(route('admin.videos.index'));
+        }
 
         if (empty($video)) {
             Flash::error('Video not found');
@@ -159,6 +164,12 @@ class VideoController extends AppBaseController
     public function destroy($id)
     {
         $video = $this->videoRepository->findWithoutFail($id);
+
+        if (Auth::user()->hasRole('admin') || Auth::user()->id == $video->course->user_id) {
+
+        } else {
+            return redirect(route('admin.videos.index'));
+        }
 
         if (empty($video)) {
             Flash::error('Video not found');
