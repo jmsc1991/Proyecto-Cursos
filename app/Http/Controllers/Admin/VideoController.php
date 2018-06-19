@@ -34,11 +34,12 @@ class VideoController extends AppBaseController
      */
     public function create()
     {
+        $cursos = Course::all();
         if (Auth::user()->hasRole('teacher')){
             $teacher = Auth::user()->id;
-            $cursos = Course::where('id = '.$teacher);
+
+            $cursos = Course::where('user_id','=',$teacher)->get();
         }
-        $cursos = Course::all();
 
         $courses = ['0' => 'Ver Cursos'];
         foreach ($cursos as $curso) {
@@ -106,12 +107,14 @@ class VideoController extends AppBaseController
 
         $video['url'] = preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube-nocookie.com\/embed\/([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","https://www.youtube.com/watch\?v=$1",$video['url']);
 
+        $cursos = Course::all();
+
         if (Auth::user()->hasRole('teacher')){
             $teacher = Auth::user()->id;
-            $cursos = Course::where('id = '.$teacher);
+
+            $cursos = Course::where('user_id','=',$teacher)->get();
         }
 
-        $cursos = Course::all();
 
         $courses = ['0' => 'Ver Cursos'];
         foreach ($cursos as $curso) {

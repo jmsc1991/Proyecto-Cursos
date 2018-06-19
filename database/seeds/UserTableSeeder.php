@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use Spatie\Permission\Models\Role;
+use Carbon\Carbon;
 
 class UserTableSeeder extends Seeder
 {
@@ -26,19 +27,19 @@ class UserTableSeeder extends Seeder
         $user->name = "admin";
         $user->email = "admin@admin.es";
         $user->password = bcrypt("123456");
-        $user->subscription = 1;
+        $user->subscription = Carbon::now();
         $user->save();
 
         $user1->name = "profe";
         $user1->email = "profe@profe.es";
         $user1->password = bcrypt("123456");
-        $user1->subscription = 1;
+        $user1->subscription = Carbon::now();;
         $user1->save();
 
         $user2->name = "alumno";
         $user2->email = "alumno@alumno.es";
         $user2->password = bcrypt("123456");
-        $user2->subscription = 1;
+        $user2->subscription = Carbon::now();;
         $user2->save();
 
         $user->assignRole('admin');
