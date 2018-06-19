@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36174496-9f92-4f12-a851-e61b1d08478e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CourseController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CourseController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/VideoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/VideoController.php" />
+      <change beforePath="$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Middlewares/RoleMiddleware.php" afterPath="$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Middlewares/RoleMiddleware.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,17 +30,37 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/VideoController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-198">
-              <caret line="4" column="40" lean-forward="true" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+              <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CourseController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CourseController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/CourseController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
               <caret line="189" column="9" lean-forward="false" selection-start-line="189" selection-start-column="9" selection-end-line="189" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Kernel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="62" column="58" lean-forward="true" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RoleMiddleware.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Middlewares/RoleMiddleware.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="22" column="51" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -118,7 +136,6 @@
         <option value="$PROJECT_DIR$/resources/views/admin/videos/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/videos/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/Admin/UpdateVideoRequest.php" />
-        <option value="$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Middlewares/RoleMiddleware.php" />
         <option value="$PROJECT_DIR$/app/Models/Admin/Video.php" />
         <option value="$PROJECT_DIR$/app/DataTables/Admin/VideoDataTable.php" />
         <option value="$PROJECT_DIR$/app/Models/Admin/Tag.php" />
@@ -140,6 +157,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/VideoController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/CourseController.php" />
+        <option value="$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Middlewares/RoleMiddleware.php" />
       </list>
     </option>
   </component>
@@ -290,35 +308,7 @@
               <item name="Proyecto-Cursos" type="b2602c69:ProjectViewProjectNode" />
               <item name="Proyecto-Cursos" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="DataTables" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Proyecto-Cursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto-Cursos" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="DataTables" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Proyecto-Cursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto-Cursos" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Proyecto-Cursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto-Cursos" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="Proyecto-Cursos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Proyecto-Cursos" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Admin" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Proyecto-Cursos" type="b2602c69:ProjectViewProjectNode" />
@@ -399,12 +389,12 @@
       <workItem from="1529258085813" duration="178000" />
       <workItem from="1529371873843" duration="1956000" />
       <workItem from="1529375773729" duration="301000" />
-      <workItem from="1529377666286" duration="483000" />
+      <workItem from="1529377666286" duration="633000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103793000" />
+    <option name="totallyTimeSpent" value="103943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="27" width="1920" height="1053" extended-state="6" />
@@ -579,7 +569,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/VideoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-198">
-          <caret line="4" column="40" lean-forward="true" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+          <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -588,6 +578,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="189" column="9" lean-forward="false" selection-start-line="189" selection-start-column="9" selection-end-line="189" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="62" column="58" lean-forward="true" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/spatie/laravel-permission/src/Middlewares/RoleMiddleware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="22" column="51" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
           <folding />
         </state>
       </provider>

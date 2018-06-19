@@ -19,7 +19,11 @@ class RoleMiddleware
             : explode('|', $role);
 
         if (! Auth::user()->hasAnyRole($roles)) {
-            return redirect()->route('home');
+            if (Auth::user()->hasRole('teacher')){
+                return redirect()->route('dashboard');
+            }else{
+                return redirect()->route('home');
+            }
         }
 
         return $next($request);
